@@ -1,0 +1,596 @@
+# Decap CMS Configuration
+# https://decapcms.org/docs/configuration-options/
+
+backend:
+  name: github
+  repo: davidegamba-gewiss/deboragrataroli-website
+  branch: main
+  base_url: https://deboragrataroli.it
+  auth_endpoint: api/auth
+  app_id: Ov23lie5ZAfI8YGAL9S0
+
+# Locale
+locale: 'it'
+
+# Media files
+media_folder: public/media
+public_folder: /media
+
+# Slug configuration
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# Editorial workflow (draft -> review -> ready)
+publish_mode: editorial_workflow
+
+# Site URL for preview
+site_url: https://deboragrataroli.it
+display_url: https://deboragrataroli.it
+
+# Logo for CMS
+logo_url: /media/logo.png
+
+# Collections
+collections:
+  # ============================================
+  # PAGINE
+  # ============================================
+  - name: "pages"
+    label: "Pagine"
+    label_singular: "Pagina"
+    description: "Gestione delle pagine principali del sito"
+    folder: "content/pages"
+    create: false
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    editor:
+      preview: true
+    fields:
+      - label: "Titolo"
+        name: "title"
+        widget: "string"
+        required: true
+        hint: "Il titolo della pagina"
+
+      - label: "Descrizione SEO"
+        name: "seo_description"
+        widget: "text"
+        required: false
+        hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+        pattern: ['^.{0,160}$', "Massimo 160 caratteri"]
+
+      - label: "Immagine Hero"
+        name: "hero_image"
+        widget: "image"
+        required: false
+        media_folder: "/public/media/pages"
+        public_folder: "/media/pages"
+        hint: "Immagine principale della pagina"
+
+      - label: "Sottotitolo Hero"
+        name: "hero_subtitle"
+        widget: "string"
+        required: false
+
+      - label: "Contenuto"
+        name: "body"
+        widget: "markdown"
+        required: false
+        buttons:
+          - bold
+          - italic
+          - link
+          - heading-two
+          - heading-three
+          - quote
+          - bulleted-list
+          - numbered-list
+        editor_components:
+          - image
+
+  # ============================================
+  # BRANI
+  # ============================================
+  - name: "brani"
+    label: "Brani"
+    label_singular: "Brano"
+    description: "Gestione dei brani musicali"
+    folder: "content/brani"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    sortable_fields: ['title', 'categoria', 'data_pubblicazione']
+    view_groups:
+      - label: "Categoria"
+        field: "categoria"
+    summary: "{{title}} - {{categoria}}"
+    editor:
+      preview: true
+    fields:
+      - label: "Titolo"
+        name: "title"
+        widget: "string"
+        required: true
+
+      - label: "Cover"
+        name: "cover"
+        widget: "image"
+        required: false
+        media_folder: "/public/media/brani"
+        public_folder: "/media/brani"
+        hint: "Immagine di copertina del brano"
+
+      - label: "URL YouTube"
+        name: "youtube_url"
+        widget: "string"
+        required: false
+        pattern: ['^(https?://)?(www\.)?(youtube\.com|youtu\.be)/.+$', "Inserisci un URL YouTube valido"]
+        hint: "Link al video YouTube"
+
+      - label: "URL Spotify"
+        name: "spotify_url"
+        widget: "string"
+        required: false
+        pattern: ['^(https?://)?(open\.)?spotify\.com/.+$', "Inserisci un URL Spotify valido"]
+        hint: "Link al brano su Spotify"
+
+      - label: "Categoria"
+        name: "categoria"
+        widget: "select"
+        required: true
+        options:
+          - { label: "Singolo", value: "singolo" }
+          - { label: "Album", value: "album" }
+          - { label: "EP", value: "ep" }
+          - { label: "Collaborazione", value: "collaborazione" }
+          - { label: "Cover", value: "cover" }
+        default: "singolo"
+
+      - label: "Data Pubblicazione"
+        name: "data_pubblicazione"
+        widget: "datetime"
+        required: false
+        date_format: "DD/MM/YYYY"
+        format: "YYYY-MM-DD"
+
+      - label: "Descrizione"
+        name: "descrizione"
+        widget: "markdown"
+        required: false
+        minimal: true
+        buttons:
+          - bold
+          - italic
+          - link
+
+      - label: "Testo (Lyrics)"
+        name: "lyrics"
+        widget: "text"
+        required: false
+        hint: "Testo completo del brano"
+
+      - label: "Immagine Extra"
+        name: "immagine_extra"
+        widget: "image"
+        required: false
+        media_folder: "/public/media/brani"
+        public_folder: "/media/brani"
+        hint: "Immagine aggiuntiva (backstage, promo, etc.)"
+
+      - label: "In evidenza"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Mostra questo brano in evidenza nella home"
+
+  # ============================================
+  # EVENTI
+  # ============================================
+  - name: "eventi"
+    label: "Eventi"
+    label_singular: "Evento"
+    description: "Gestione degli eventi e concerti"
+    folder: "content/eventi"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    sortable_fields: ['data', 'title', 'anno_gruppo']
+    view_groups:
+      - label: "Anno"
+        field: "anno_gruppo"
+      - label: "Tour"
+        field: "nome_tour"
+    summary: "{{data | date('DD/MM/YYYY')}} - {{title}} @ {{luogo}}"
+    editor:
+      preview: true
+    fields:
+      - label: "Titolo Evento"
+        name: "title"
+        widget: "string"
+        required: true
+
+      - label: "Luogo"
+        name: "luogo"
+        widget: "string"
+        required: true
+        hint: "Nome della venue/location"
+
+      - label: "Città"
+        name: "citta"
+        widget: "string"
+        required: false
+
+      - label: "Data e Ora"
+        name: "data"
+        widget: "datetime"
+        required: true
+        date_format: "DD/MM/YYYY"
+        time_format: "HH:mm"
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+
+      - label: "Anno (per raggruppamento)"
+        name: "anno_gruppo"
+        widget: "string"
+        required: true
+        hint: "Anno per raggruppare gli eventi (es. 2024)"
+        pattern: ['^\d{4}$', "Inserisci un anno valido (es. 2024)"]
+
+      - label: "Nome Tour"
+        name: "nome_tour"
+        widget: "string"
+        required: false
+        hint: "Nome del tour (opzionale)"
+
+      - label: "Descrizione"
+        name: "descrizione"
+        widget: "markdown"
+        required: false
+        minimal: true
+
+      - label: "Immagine Evento"
+        name: "immagine"
+        widget: "image"
+        required: false
+        media_folder: "/public/media/eventi"
+        public_folder: "/media/eventi"
+
+      - label: "Link Biglietti"
+        name: "link_biglietti"
+        widget: "string"
+        required: false
+        hint: "URL per acquisto biglietti"
+
+      - label: "Prezzo"
+        name: "prezzo"
+        widget: "string"
+        required: false
+        hint: "Indicazione prezzo (es. 'Ingresso libero', '15€')"
+
+      - label: "Stato"
+        name: "stato"
+        widget: "select"
+        required: true
+        options:
+          - { label: "Confermato", value: "confermato" }
+          - { label: "Sold Out", value: "sold_out" }
+          - { label: "Annullato", value: "annullato" }
+          - { label: "Rimandato", value: "rimandato" }
+        default: "confermato"
+
+  # ============================================
+  # ESIBIZIONI
+  # ============================================
+  - name: "esibizioni"
+    label: "Esibizioni"
+    label_singular: "Esibizione"
+    description: "Video di esibizioni live, studio e cover"
+    folder: "content/esibizioni"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    sortable_fields: ['anno', 'title', 'categoria']
+    view_groups:
+      - label: "Categoria"
+        field: "categoria"
+      - label: "Anno"
+        field: "anno"
+      - label: "Playlist"
+        field: "playlist"
+    summary: "{{title}} ({{anno}}) - {{categoria}}"
+    editor:
+      preview: true
+    fields:
+      - label: "Titolo"
+        name: "title"
+        widget: "string"
+        required: true
+
+      - label: "URL YouTube"
+        name: "youtube_url"
+        widget: "string"
+        required: true
+        pattern: ['^(https?://)?(www\.)?(youtube\.com|youtu\.be)/.+$', "Inserisci un URL YouTube valido"]
+
+      - label: "Thumbnail"
+        name: "thumbnail"
+        widget: "image"
+        required: false
+        media_folder: "/public/media/esibizioni"
+        public_folder: "/media/esibizioni"
+        hint: "Lascia vuoto per usare thumbnail YouTube automatica"
+
+      - label: "Descrizione"
+        name: "descrizione"
+        widget: "markdown"
+        required: false
+        minimal: true
+
+      - label: "Anno"
+        name: "anno"
+        widget: "number"
+        required: true
+        value_type: "int"
+        min: 1990
+        max: 2100
+        hint: "Anno dell'esibizione"
+
+      - label: "Categoria"
+        name: "categoria"
+        widget: "select"
+        required: true
+        options:
+          - { label: "Live", value: "live" }
+          - { label: "Studio", value: "studio" }
+          - { label: "Cover", value: "cover" }
+          - { label: "Acustico", value: "acustico" }
+          - { label: "TV/Radio", value: "tv_radio" }
+        default: "live"
+
+      - label: "Playlist"
+        name: "playlist"
+        widget: "string"
+        required: false
+        hint: "Nome della playlist di appartenenza (opzionale)"
+
+      - label: "Evento collegato"
+        name: "evento"
+        widget: "relation"
+        required: false
+        collection: "eventi"
+        search_fields: ["title", "luogo"]
+        value_field: "{{slug}}"
+        display_fields: ["title", "luogo"]
+        hint: "Collega a un evento specifico"
+
+      - label: "In evidenza"
+        name: "featured"
+        widget: "boolean"
+        default: false
+
+  # ============================================
+  # RASSEGNA STAMPA
+  # ============================================
+  - name: "rassegna-stampa"
+    label: "Rassegna Stampa"
+    label_singular: "Articolo"
+    description: "Articoli e menzioni nella stampa"
+    folder: "content/rassegna-stampa"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    sortable_fields: ['ordine', 'data_pubblicazione', 'title']
+    summary: "[{{ordine}}] {{title}} - {{testata}}"
+    editor:
+      preview: true
+    fields:
+      - label: "Titolo Articolo"
+        name: "title"
+        widget: "string"
+        required: true
+
+      - label: "Testata"
+        name: "testata"
+        widget: "string"
+        required: true
+        hint: "Nome del giornale/rivista/sito"
+
+      - label: "Data Pubblicazione"
+        name: "data_pubblicazione"
+        widget: "datetime"
+        required: true
+        date_format: "DD/MM/YYYY"
+        format: "YYYY-MM-DD"
+
+      - label: "Estratto"
+        name: "estratto"
+        widget: "text"
+        required: false
+        hint: "Breve citazione o riassunto dell'articolo"
+
+      - label: "Link Esterno"
+        name: "link_esterno"
+        widget: "string"
+        required: false
+        hint: "URL all'articolo originale"
+
+      - label: "Immagine"
+        name: "immagine"
+        widget: "image"
+        required: false
+        media_folder: "/public/media/rassegna-stampa"
+        public_folder: "/media/rassegna-stampa"
+        hint: "Screenshot o immagine dell'articolo"
+
+      - label: "PDF Articolo"
+        name: "pdf"
+        widget: "file"
+        required: false
+        media_folder: "/public/media/rassegna-stampa/pdf"
+        public_folder: "/media/rassegna-stampa/pdf"
+        hint: "PDF dell'articolo (opzionale)"
+
+      - label: "Ordine"
+        name: "ordine"
+        widget: "number"
+        required: true
+        default: 100
+        value_type: "int"
+        min: 1
+        hint: "Numero per ordinamento manuale (più basso = prima)"
+
+      - label: "In evidenza"
+        name: "featured"
+        widget: "boolean"
+        default: false
+
+  # ============================================
+  # SETTINGS GLOBALI
+  # ============================================
+  - name: "settings"
+    label: "Impostazioni"
+    description: "Impostazioni globali del sito"
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "Impostazioni Generali"
+        file: "content/settings/general.md"
+        fields:
+          - label: "Nome Sito"
+            name: "site_name"
+            widget: "string"
+            default: "Debora Grataroli"
+
+          - label: "Tagline"
+            name: "tagline"
+            widget: "string"
+            required: false
+
+          - label: "Descrizione Sito"
+            name: "site_description"
+            widget: "text"
+            required: false
+
+          - label: "Logo"
+            name: "logo"
+            widget: "image"
+            required: false
+            media_folder: "/public/media"
+            public_folder: "/media"
+
+          - label: "Favicon"
+            name: "favicon"
+            widget: "image"
+            required: false
+            media_folder: "/public/media"
+            public_folder: "/media"
+
+      - name: "contact"
+        label: "Contatti"
+        file: "content/settings/contact.md"
+        fields:
+          - label: "Email"
+            name: "email"
+            widget: "string"
+            required: false
+            pattern: ['^[^\s@]+@[^\s@]+\.[^\s@]+$', "Inserisci un'email valida"]
+
+          - label: "Telefono"
+            name: "telefono"
+            widget: "string"
+            required: false
+
+          - label: "Indirizzo"
+            name: "indirizzo"
+            widget: "text"
+            required: false
+
+          - label: "Form Contatti Attivo"
+            name: "contact_form_enabled"
+            widget: "boolean"
+            default: true
+
+      - name: "social"
+        label: "Social Media"
+        file: "content/settings/social.md"
+        fields:
+          - label: "Instagram"
+            name: "instagram"
+            widget: "string"
+            required: false
+            hint: "URL completo profilo Instagram"
+
+          - label: "Facebook"
+            name: "facebook"
+            widget: "string"
+            required: false
+            hint: "URL completo pagina Facebook"
+
+          - label: "YouTube"
+            name: "youtube"
+            widget: "string"
+            required: false
+            hint: "URL completo canale YouTube"
+
+          - label: "Spotify"
+            name: "spotify"
+            widget: "string"
+            required: false
+            hint: "URL completo profilo artista Spotify"
+
+          - label: "TikTok"
+            name: "tiktok"
+            widget: "string"
+            required: false
+            hint: "URL completo profilo TikTok"
+
+          - label: "Twitter/X"
+            name: "twitter"
+            widget: "string"
+            required: false
+
+          - label: "LinkedIn"
+            name: "linkedin"
+            widget: "string"
+            required: false
+
+      - name: "colors"
+        label: "Colori Tema"
+        file: "content/settings/colors.md"
+        fields:
+          - label: "Colore Primario"
+            name: "primary_color"
+            widget: "color"
+            default: "#9b59b6"
+            enableAlpha: false
+
+          - label: "Colore Secondario"
+            name: "secondary_color"
+            widget: "color"
+            default: "#7b4397"
+            enableAlpha: false
+
+          - label: "Colore Accent"
+            name: "accent_color"
+            widget: "color"
+            default: "#c8a2d6"
+            enableAlpha: false
+
+          - label: "Colore Testo"
+            name: "text_color"
+            widget: "color"
+            default: "#1f2937"
+            enableAlpha: false
+
+          - label: "Colore Sfondo"
+            name: "background_color"
+            widget: "color"
+            default: "#ffffff"
+            enableAlpha: false
