@@ -1,10 +1,91 @@
 /**
- * Spacing system constants
+ * Spacing system constants - Design System
  * Consistent spacing values across the application
+ *
+ * Usage:
+ * - Import: import { SPACING } from '@/constants/spacing'
+ * - Access: SPACING.container.maxWidth, SPACING.sections.mobile
  */
 
+/**
+ * Main spacing configuration
+ */
+export const SPACING = {
+  /**
+   * Container settings
+   */
+  container: {
+    /** Maximum width of content container */
+    maxWidth: '1280px',
+    /** Centered container with padding */
+    centered: {
+      maxWidth: '1280px',
+      marginInline: 'auto',
+    },
+  },
+
+  /**
+   * Responsive padding
+   */
+  padding: {
+    /** Mobile padding (< 768px) */
+    mobile: '16px',
+    /** Tablet padding (768px - 1024px) */
+    tablet: '24px',
+    /** Desktop padding (> 1024px) */
+    desktop: '32px',
+  },
+
+  /**
+   * Section vertical spacing
+   */
+  sections: {
+    /** Mobile section spacing */
+    mobile: '64px',
+    /** Tablet section spacing */
+    tablet: '80px',
+    /** Desktop section spacing */
+    desktop: '96px',
+  },
+
+  /**
+   * Border radius values
+   */
+  borders: {
+    radius: {
+      /** Small elements (badges, tags) */
+      small: '4px',
+      /** Buttons */
+      buttons: '4px',
+      /** Cards, containers */
+      cards: '8px',
+      /** Large elements (modals, panels) */
+      large: '12px',
+      /** Pill shape (full rounded) */
+      full: '9999px',
+    },
+  },
+
+  /**
+   * Component-specific gaps
+   */
+  gaps: {
+    /** Grid gap for cards */
+    cards: '24px',
+    /** Gap between form elements */
+    form: '16px',
+    /** Gap in navigation */
+    nav: '32px',
+    /** Gap between stacked elements */
+    stack: '8px',
+  },
+} as const;
+
+/**
+ * Base spacing scale (in rem)
+ * Maps to Tailwind's default spacing
+ */
 export const spacing = {
-  // Base spacing scale (in pixels, converted to rem in usage)
   px: '1px',
   0: '0',
   0.5: '0.125rem',   // 2px
@@ -31,14 +112,18 @@ export const spacing = {
   32: '8rem',        // 128px
 } as const;
 
-// Section spacing for consistent vertical rhythm
+/**
+ * Section spacing for consistent vertical rhythm
+ */
 export const sectionSpacing = {
   mobile: '64px',    // 4rem
   tablet: '80px',    // 5rem
   desktop: '96px',   // 6rem
 } as const;
 
-// Container max widths
+/**
+ * Container max widths
+ */
 export const containerWidth = {
   sm: '640px',
   md: '768px',
@@ -47,14 +132,7 @@ export const containerWidth = {
   '2xl': '1536px',
 } as const;
 
-// Breakpoints (matching Tailwind)
-export const breakpoints = {
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-  '2xl': 1536,
-} as const;
-
+// Type exports
 export type SpacingKey = keyof typeof spacing;
-export type BreakpointKey = keyof typeof breakpoints;
+export type ContainerWidth = keyof typeof containerWidth;
+export type DeviceType = 'mobile' | 'tablet' | 'desktop';
