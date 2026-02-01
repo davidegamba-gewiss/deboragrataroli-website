@@ -9,6 +9,9 @@ backend:
   auth_endpoint: api/auth
   app_id: Ov23lie5ZAfI8YGAL9S0
 
+# Enable local backend for development (run: npm run cms)
+local_backend: true
+
 # Locale
 locale: 'it'
 
