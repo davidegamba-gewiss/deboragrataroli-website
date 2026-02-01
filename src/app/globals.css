@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base layer - Reset and defaults */
+@layer base {
+  :root {
+    /* Purple color palette */
+    --color-purple-dark: #7b4397;
+    --color-purple-medium: #9b59b6;
+    --color-purple-light: #c8a2d6;
+
+    /* Focus ring */
+    --focus-ring-color: #9b59b6;
+    --focus-ring-width: 2px;
+    --focus-ring-offset: 2px;
+
+    /* Transitions */
+    --transition-fast: 150ms;
+    --transition-default: 200ms;
+    --transition-slow: 300ms;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans text-gray-900 bg-white;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+  }
+
+  /* Typography defaults */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-semibold tracking-tight;
+  }
+
+  /* Focus states */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-purple-medium ring-offset-2;
+  }
+
+  /* Image defaults */
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  /* Link defaults */
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* Component layer - Reusable component styles */
+@layer components {
+  /* Container */
+  .container-custom {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+
+  /* Focus ring utility */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-medium focus-visible:ring-offset-2;
+  }
+
+  /* Button base styles */
+  .btn {
+    @apply inline-flex items-center justify-center font-medium transition-all duration-200;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-medium focus-visible:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-purple-medium text-white hover:bg-purple-dark;
+  }
+
+  .btn-secondary {
+    @apply btn bg-purple-light text-purple-dark hover:bg-purple-medium hover:text-white;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-purple-medium text-purple-medium hover:bg-purple-medium hover:text-white;
+  }
+
+  .btn-ghost {
+    @apply btn text-purple-medium hover:bg-purple-light/20;
+  }
+
+  /* Button sizes */
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm rounded;
+  }
+
+  .btn-md {
+    @apply px-4 py-2 text-base rounded-md;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg rounded-lg;
+  }
+
+  /* Typography components */
+  .text-display {
+    @apply font-playfair;
+  }
+
+  .text-accent {
+    @apply font-playfair italic;
+  }
+
+  /* Card component */
+  .card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden;
+  }
+
+  /* Link styles */
+  .link {
+    @apply text-purple-medium hover:text-purple-dark underline-offset-2 hover:underline;
+  }
+}
+
+/* Utility layer - Custom utilities */
+@layer utilities {
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  /* Text balance for better headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-dark via-purple-medium to-purple-light bg-clip-text text-transparent;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,5 @@
+/*
+ * This file is kept for backward compatibility
+ * Main styles are in src/app/globals.css
+ */
+@import '../app/globals.css';
