@@ -196,10 +196,16 @@ const config: Config = {
     plugin(function({ addUtilities }) {
       addUtilities({
         '.focus-ring': {
-          '@apply focus:outline-none focus:ring-2 focus:ring-purple-medium focus:ring-offset-2': {},
+          '&:focus': {
+            'outline': 'none',
+            'box-shadow': '0 0 0 2px #ffffff, 0 0 0 4px #9b59b6',
+          },
         },
         '.focus-ring-inset': {
-          '@apply focus:outline-none focus:ring-2 focus:ring-purple-medium focus:ring-inset': {},
+          '&:focus': {
+            'outline': 'none',
+            'box-shadow': 'inset 0 0 0 2px #9b59b6',
+          },
         },
       });
     }),
