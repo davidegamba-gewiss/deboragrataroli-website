@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "cms": "npx netlify-cms-proxy-server",
+    "dev:cms": "concurrently \"npm run dev\" \"npm run cms\""
   },
   "dependencies": {
     "framer-motion": "^11.3.8",
@@ -20,6 +22,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
+    "concurrently": "^9.2.1",
     "decap-cms-app": "^3.10.0",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.6",
