@@ -1,5 +1,5 @@
 ---
-title: Biografia
+title: Bio
 seo_description: La storia e il percorso artistico di Debora Grataroli
 hero_image: ""
 hero_subtitle: La mia storia
