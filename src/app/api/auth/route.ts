@@ -25,57 +25,44 @@ function renderAuthResult(status: 'success' | 'error', content: string): string 
   <p id="message">${status === 'success' ? 'Autenticazione in corso...' : content}</p>
   <script>
     (function() {
-      var status = "${status}";
-      var token = ${status === 'success' ? JSON.stringify(content) : 'null'};
       var message = ${JSON.stringify(message)};
       var messageEl = document.getElementById('message');
+      var hasOpener = !!window.opener;
 
-      function sendMessage() {
-        // Try multiple approaches to communicate with Decap CMS
+      console.log('OAuth callback loaded, hasOpener:', hasOpener);
 
-        // Approach 1: postMessage to opener (standard popup flow)
-        if (window.opener) {
-          console.log('Sending postMessage to opener');
-          window.opener.postMessage(message, '*');
-          messageEl.textContent = 'Autenticazione completata!';
-
-          // Close popup after message is sent
-          setTimeout(function() {
-            window.close();
-          }, 500);
-          return;
-        }
-
-        // Approach 2: postMessage to parent (iframe flow)
-        if (window.parent && window.parent !== window) {
-          console.log('Sending postMessage to parent');
-          window.parent.postMessage(message, '*');
-          messageEl.textContent = 'Autenticazione completata!';
-          return;
-        }
-
-        // Approach 3: Store in localStorage and redirect (fallback)
-        if (status === 'success' && token) {
-          console.log('Storing token and redirecting to admin');
-          try {
-            localStorage.setItem('netlify-cms-user', JSON.stringify({
-              token: token,
-              provider: 'github'
-            }));
-          } catch (e) {
-            console.error('Failed to store token:', e);
-          }
-          messageEl.textContent = 'Autenticazione completata! Reindirizzamento...';
-          window.location.href = '/admin/';
-          return;
-        }
-
-        // No valid communication method found
-        messageEl.textContent = 'Autenticazione completata. Torna manualmente alla pagina admin.';
+      if (!hasOpener) {
+        messageEl.textContent = 'Errore: finestra di autenticazione non valida. Torna a /admin/ e riprova.';
+        return;
       }
 
-      // Execute immediately
-      sendMessage();
+      // Decap CMS handshake protocol:
+      // 1. Popup receives message event listener
+      // 2. Popup sends "authorizing:github" to opener to signal ready
+      // 3. Opener responds with any message
+      // 4. Popup sends "authorization:github:success/error:..." with the result
+
+      function receiveMessage(e) {
+        console.log('Received message from opener:', e.data);
+        // When we receive any message from opener, send the auth result
+        window.removeEventListener('message', receiveMessage, false);
+
+        console.log('Sending auth result to opener:', message);
+        window.opener.postMessage(message, e.origin || '*');
+
+        messageEl.textContent = 'Autenticazione completata!';
+
+        setTimeout(function() {
+          window.close();
+        }, 1000);
+      }
+
+      window.addEventListener('message', receiveMessage, false);
+
+      // Signal to opener that we're ready for the handshake
+      console.log('Sending authorizing:github to opener');
+      window.opener.postMessage('authorizing:github', '*');
+
     })();
   </script>
 </body>
