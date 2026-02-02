@@ -1,106 +1,123 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { MobileMenu } from './MobileMenu';
-import type { NavItem } from '@/types';
+import { motion } from 'framer-motion';
+import type { HeaderProps } from '@/types/navigation';
 
-const navItems: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Chi sono', href: '/chi-sono' },
-  { label: 'Servizi', href: '/servizi' },
-  { label: 'Contatti', href: '/contatti' },
-];
+/**
+ * Header Component
+ *
+ * Sticky header with logo and animated hamburger menu.
+ * Features glass-morphism effect on scroll.
+ */
+export function Header({ menuOpen, setMenuOpen }: HeaderProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
 
-export function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Handle scroll for glass-morphism effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
+    // Check initial scroll position
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-      <nav className="container-custom">
-        <div className="flex items-center justify-between h-16 md:h-20">
+    <header
+      className={`
+        fixed top-0 left-0 right-0 z-50 h-16
+        transition-all duration-300 ease-in-out
+        ${isScrolled
+          ? 'bg-purple-dark/95 backdrop-blur-[10px] shadow-lg'
+          : 'bg-purple-dark/90'
+        }
+        border-b border-white/10
+      `}
+    >
+      <nav className="h-full px-4 md:px-8">
+        <div className="flex items-center justify-between h-full max-w-[1280px] mx-auto">
           {/* Logo */}
           <Link
             href="/"
-            className="text-xl md:text-2xl font-semibold text-purple-dark hover:text-purple-medium transition-colors focus-ring rounded"
+            className="text-lg md:text-xl font-bold text-white hover:text-purple-light transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2 focus:ring-offset-purple-dark rounded"
           >
             Debora Grataroli
           </Link>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="text-gray-700 hover:text-purple-medium font-medium transition-colors focus-ring rounded px-2 py-1"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          {/* Desktop CTA Button */}
-          <div className="hidden md:block">
-            <Link
-              href="/contatti"
-              className="btn-primary btn-md"
-            >
-              Prenota
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
+          {/* Hamburger Menu Button */}
           <button
             type="button"
-            onClick={toggleMobileMenu}
-            className="md:hidden p-2 text-gray-700 hover:text-purple-medium focus-ring rounded-lg"
-            aria-label={isMobileMenuOpen ? 'Chiudi menu' : 'Apri menu'}
-            aria-expanded={isMobileMenuOpen}
+            onClick={toggleMenu}
+            className="relative w-6 h-6 flex flex-col items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2 focus:ring-offset-purple-dark rounded"
+            aria-label="Menu"
+            aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            {/* Top line */}
+            <motion.span
+              className="absolute w-6 h-0.5 bg-white rounded-full"
+              initial={false}
+              animate={{
+                rotate: menuOpen ? 45 : 0,
+                y: menuOpen ? 0 : -8,
+              }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            />
+
+            {/* Middle line */}
+            <motion.span
+              className="absolute w-6 h-0.5 bg-white rounded-full"
+              initial={false}
+              animate={{
+                opacity: menuOpen ? 0 : 1,
+                scaleX: menuOpen ? 0 : 1,
+              }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            />
+
+            {/* Bottom line */}
+            <motion.span
+              className="absolute w-6 h-0.5 bg-white rounded-full"
+              initial={false}
+              animate={{
+                rotate: menuOpen ? -45 : 0,
+                y: menuOpen ? 0 : 8,
+              }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            />
           </button>
         </div>
       </nav>
-
-      {/* Mobile Menu */}
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        navItems={navItems}
-        onClose={closeMobileMenu}
-      />
     </header>
   );
 }
+
+/**
+ * Standalone Header with internal state management
+ * Use this when Header is not controlled by parent component
+ */
+export function HeaderStandalone() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <>
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      {/* Spacer to prevent content from going under fixed header */}
+      <div className="h-16" />
+    </>
+  );
+}
+
+export default Header;
