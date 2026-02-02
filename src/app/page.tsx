@@ -1,111 +1,183 @@
-import { Button } from '@/components/common/Button';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { PageLayout } from '@/components/layout/PageLayout';
+import { ROUTES } from '@/utils/routing';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'Debora Grataroli - Cantautrice e Pianista',
+  description:
+    'Debora Grataroli, cantautrice e pianista italiana. Scopri i miei brani originali, eventi live e la mia storia musicale.',
+};
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative py-section-mobile lg:py-section-desktop">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6">
-              Benvenuti nel sito di{' '}
-              <span className="text-gradient">Debora Grataroli</span>
-            </h1>
+    <PageLayout
+      hero={{
+        imageSrc: '/images/hero-home.jpg',
+        title: 'Debora Grataroli',
+        subtitle: 'Cantautrice e Pianista',
+        imageAlt: 'Debora Grataroli in concerto',
+      }}
+      showDecorative
+    >
+      {/* Intro Section */}
+      <section className="text-center mb-16 lg:mb-24">
+        <p className="text-xl md:text-2xl font-playfair italic text-gray-700 max-w-2xl mx-auto">
+          &ldquo;La musica è il linguaggio dell&apos;anima, ogni nota racconta una storia&rdquo;
+        </p>
+      </section>
 
-            <p className="text-lg md:text-xl text-gray-600 mb-8 font-playfair italic">
-              &ldquo;Una citazione o frase di ispirazione&rdquo;
-            </p>
+      {/* I Miei Brani Section */}
+      <section className="mb-16 lg:mb-24">
+        <h2 className="text-3xl md:text-4xl font-semibold text-center text-gray-900 mb-8">
+          I Miei Brani
+        </h2>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" size="lg">
-                Scopri di più
-              </Button>
-              <Button variant="outline" size="lg">
-                Contattami
-              </Button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+          {/* Brano Card 1 */}
+          <Link
+            href={ROUTES.BRANI_DETAIL('il-mio-primo-brano')}
+            className="group card p-6 hover:shadow-lg transition-all duration-300"
+          >
+            <div className="aspect-square bg-gradient-to-br from-purple-light to-purple-medium rounded-lg mb-4 flex items-center justify-center">
+              <span className="text-white text-6xl opacity-50">♪</span>
             </div>
+            <h3 className="text-xl font-semibold text-gray-900 group-hover:text-purple-medium transition-colors">
+              Il Mio Primo Brano
+            </h3>
+            <p className="text-gray-600 mt-2">
+              Un brano che racconta...
+            </p>
+          </Link>
+
+          {/* Brano Card 2 */}
+          <Link
+            href={ROUTES.BRANI_DETAIL('melodie-del-cuore')}
+            className="group card p-6 hover:shadow-lg transition-all duration-300"
+          >
+            <div className="aspect-square bg-gradient-to-br from-purple-medium to-purple-dark rounded-lg mb-4 flex items-center justify-center">
+              <span className="text-white text-6xl opacity-50">♪</span>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 group-hover:text-purple-medium transition-colors">
+              Melodie del Cuore
+            </h3>
+            <p className="text-gray-600 mt-2">
+              Una melodia che parla...
+            </p>
+          </Link>
+        </div>
+
+        <div className="text-center mt-8">
+          <Link
+            href={ROUTES.BRANI}
+            className="btn-primary btn-lg inline-flex items-center gap-2"
+          >
+            Scopri tutti i brani
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* Prossimi Eventi Section */}
+      <section className="mb-16 lg:mb-24 bg-gray-50 -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8 py-12 lg:py-16">
+        <h2 className="text-3xl md:text-4xl font-semibold text-center text-gray-900 mb-8">
+          Prossimi Eventi
+        </h2>
+
+        <div className="max-w-2xl mx-auto space-y-4">
+          {/* Evento Placeholder */}
+          <div className="bg-white rounded-lg p-6 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <p className="text-purple-medium font-semibold">15 Marzo 2026</p>
+              <h3 className="text-xl font-semibold text-gray-900">Concerto al Teatro Comunale</h3>
+              <p className="text-gray-600">Roma, Italia</p>
+            </div>
+            <Link
+              href={ROUTES.EVENTI}
+              className="btn-outline btn-md whitespace-nowrap"
+            >
+              Dettagli
+            </Link>
           </div>
         </div>
-      </section>
 
-      {/* Features Section */}
-      <section className="py-section-mobile lg:py-section-desktop bg-gray-50">
-        <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center text-gray-900 mb-12">
-            I miei servizi
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature Card 1 */}
-            <div className="card p-6 hover:shadow-lg transition-shadow duration-200">
-              <div className="w-12 h-12 bg-purple-light rounded-lg flex items-center justify-center mb-4">
-                <span className="text-purple-dark text-2xl">✦</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Servizio 1
-              </h3>
-              <p className="text-gray-600">
-                Descrizione del primo servizio offerto.
-              </p>
-            </div>
-
-            {/* Feature Card 2 */}
-            <div className="card p-6 hover:shadow-lg transition-shadow duration-200">
-              <div className="w-12 h-12 bg-purple-light rounded-lg flex items-center justify-center mb-4">
-                <span className="text-purple-dark text-2xl">✦</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Servizio 2
-              </h3>
-              <p className="text-gray-600">
-                Descrizione del secondo servizio offerto.
-              </p>
-            </div>
-
-            {/* Feature Card 3 */}
-            <div className="card p-6 hover:shadow-lg transition-shadow duration-200">
-              <div className="w-12 h-12 bg-purple-light rounded-lg flex items-center justify-center mb-4">
-                <span className="text-purple-dark text-2xl">✦</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Servizio 3
-              </h3>
-              <p className="text-gray-600">
-                Descrizione del terzo servizio offerto.
-              </p>
-            </div>
-          </div>
+        <div className="text-center mt-8">
+          <Link
+            href={ROUTES.EVENTI}
+            className="link font-medium"
+          >
+            Vedi tutti gli eventi →
+          </Link>
         </div>
       </section>
 
-      {/* Quote Section */}
-      <section className="py-section-mobile lg:py-section-desktop">
-        <div className="container-custom">
-          <blockquote className="max-w-2xl mx-auto text-center">
-            <p className="text-2xl md:text-3xl font-playfair italic text-gray-700 mb-4">
-              &ldquo;Inserisci qui una citazione significativa che rappresenti la tua filosofia.&rdquo;
-            </p>
-            <footer className="text-purple-medium font-medium">
-              — Debora Grataroli
-            </footer>
-          </blockquote>
-        </div>
-      </section>
+      {/* Seguimi Section */}
+      <section className="text-center">
+        <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
+          Seguimi
+        </h2>
+        <p className="text-gray-600 mb-8 max-w-xl mx-auto">
+          Resta aggiornato sui miei nuovi brani, eventi e contenuti esclusivi
+        </p>
 
-      {/* CTA Section */}
-      <section className="py-section-mobile lg:py-section-desktop bg-gradient-to-r from-purple-dark to-purple-medium">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-            Pronta a iniziare?
-          </h2>
-          <p className="text-lg text-white/90 mb-8 max-w-xl mx-auto">
-            Contattami per una consulenza personalizzata.
-          </p>
-          <Button variant="secondary" size="lg">
-            Contattami ora
-          </Button>
+        <div className="flex justify-center gap-6">
+          <a
+            href="https://instagram.com/deboragrataroli"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full bg-purple-light/20 flex items-center justify-center text-purple-medium hover:bg-purple-medium hover:text-white transition-all duration-300"
+            aria-label="Instagram"
+          >
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          </a>
+          <a
+            href="https://facebook.com/deboragrataroli"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full bg-purple-light/20 flex items-center justify-center text-purple-medium hover:bg-purple-medium hover:text-white transition-all duration-300"
+            aria-label="Facebook"
+          >
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+          </a>
+          <a
+            href="https://youtube.com/@deboragrataroli"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full bg-purple-light/20 flex items-center justify-center text-purple-medium hover:bg-purple-medium hover:text-white transition-all duration-300"
+            aria-label="YouTube"
+          >
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+          <a
+            href="https://tiktok.com/@deboragrataroli"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full bg-purple-light/20 flex items-center justify-center text-purple-medium hover:bg-purple-medium hover:text-white transition-all duration-300"
+            aria-label="TikTok"
+          >
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+            </svg>
+          </a>
+          <a
+            href="https://open.spotify.com/artist/deboragrataroli"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full bg-purple-light/20 flex items-center justify-center text-purple-medium hover:bg-purple-medium hover:text-white transition-all duration-300"
+            aria-label="Spotify"
+          >
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+            </svg>
+          </a>
         </div>
       </section>
-    </div>
+    </PageLayout>
   );
 }

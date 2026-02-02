@@ -62,7 +62,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
   { label: 'Esibizioni', href: '/esibizioni' },
   { label: 'I miei brani', href: '/brani' },
   { label: 'Contatti', href: '/contatti' },
-  { label: 'Parlano di me', href: '/rassegna-stampa' },
+  { label: 'Parlano di me', href: '/parlano-di-me' },
 ];
 
 /**
