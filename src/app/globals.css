@@ -125,6 +125,68 @@
   .link {
     @apply text-purple-medium hover:text-purple-dark underline-offset-2 hover:underline;
   }
+
+  /* Prose typography for rich text content */
+  .prose-custom {
+    @apply text-neutral-dark;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  @media (min-width: 768px) {
+    .prose-custom {
+      font-size: 1.125rem;
+    }
+  }
+
+  .prose-custom h2 {
+    @apply font-playfair text-2xl md:text-3xl font-semibold text-purple-dark mt-10 mb-4;
+  }
+
+  .prose-custom h3 {
+    @apply font-playfair text-xl md:text-2xl font-semibold text-purple-medium mt-8 mb-3;
+  }
+
+  .prose-custom p {
+    @apply mb-5;
+  }
+
+  .prose-custom a {
+    @apply text-purple-medium underline underline-offset-2 hover:text-purple-dark transition-colors;
+  }
+
+  .prose-custom strong {
+    @apply font-semibold text-neutral-dark;
+  }
+
+  .prose-custom em {
+    @apply italic;
+  }
+
+  .prose-custom ul,
+  .prose-custom ol {
+    @apply ml-6 mb-5 space-y-2;
+  }
+
+  .prose-custom ul {
+    @apply list-disc;
+  }
+
+  .prose-custom ol {
+    @apply list-decimal;
+  }
+
+  .prose-custom li {
+    @apply pl-1;
+  }
+
+  .prose-custom blockquote {
+    @apply my-8 pl-6 border-l-4 border-purple-light italic text-neutral-dark/80;
+  }
+
+  .prose-custom blockquote p {
+    @apply mb-0;
+  }
 }
 
 /* Utility layer - Custom utilities */
