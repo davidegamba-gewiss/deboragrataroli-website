@@ -28,7 +28,7 @@ export function HeroSection({
   return (
     <section
       aria-label={`Hero: ${title}`}
-      className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden"
+      className="relative w-full h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden"
     >
       {/* Loading skeleton */}
       {isLoading && !hasError && (
@@ -59,11 +59,9 @@ export function HeroSection({
         />
       )}
 
-      {/* Error fallback */}
+      {/* Error fallback - elegant gradient */}
       {hasError && (
-        <div className="absolute inset-0 bg-neutral-dark flex items-center justify-center">
-          <span className="text-white/50 text-sm">Immagine non disponibile</span>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-dark via-purple-medium to-purple-light" />
       )}
 
       {/* Gradient overlay */}
@@ -80,7 +78,7 @@ export function HeroSection({
         <h1
           className="
             font-playfair text-white text-center
-            text-[40px] md:text-[48px] lg:text-[56px]
+            text-[48px] md:text-[64px] lg:text-[72px]
             leading-tight font-semibold
             drop-shadow-lg
             max-w-4xl
@@ -93,8 +91,8 @@ export function HeroSection({
           <p
             className="
               mt-4 text-white/90 text-center
-              text-lg md:text-xl lg:text-2xl
-              font-sans font-light
+              text-xl md:text-2xl lg:text-[28px]
+              font-sans font-normal
               max-w-2xl
               drop-shadow-md
             "
