@@ -20,16 +20,22 @@ const nextConfig = {
     optimizePackageImports: ['framer-motion', 'react-icons'],
   },
 
-  // Redirects for Decap CMS admin
-  async redirects() {
-    return [
-      {
-        // Redirect /admin to /admin/ for proper static file serving
-        source: '/admin',
-        destination: '/admin/',
-        permanent: true,
-      },
-    ];
+  // Rewrites for Decap CMS admin (serve static files correctly)
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          // Serve index.html for /admin
+          source: '/admin',
+          destination: '/admin/index.html',
+        },
+        {
+          // Serve index.html for /admin/
+          source: '/admin/',
+          destination: '/admin/index.html',
+        },
+      ],
+    };
   },
 };
 
