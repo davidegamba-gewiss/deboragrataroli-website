@@ -19,6 +19,18 @@ const nextConfig = {
     // Optimize package imports
     optimizePackageImports: ['framer-motion', 'react-icons'],
   },
+
+  // Redirects for Decap CMS admin
+  async redirects() {
+    return [
+      {
+        // Redirect /admin to /admin/ for proper static file serving
+        source: '/admin',
+        destination: '/admin/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
