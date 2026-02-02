@@ -11,10 +11,13 @@ const nextConfig = {
     minimumCacheTTL: 60,
   },
 
+  // Transpile react-icons for Turbopack compatibility
+  transpilePackages: ['react-icons'],
+
   // Enable experimental features
   experimental: {
     // Optimize package imports
-    optimizePackageImports: ['framer-motion'],
+    optimizePackageImports: ['framer-motion', 'react-icons'],
   },
 };
 
