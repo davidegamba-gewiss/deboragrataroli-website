@@ -10,62 +10,72 @@ function getBaseUrl(request: NextRequest): string {
 }
 
 function renderAuthResult(status: 'success' | 'error', content: string): string {
+  // Decap CMS expects this exact message format
   const message = status === 'success'
     ? `authorization:github:success:${JSON.stringify({ token: content, provider: 'github' })}`
     : `authorization:github:error:${JSON.stringify({ error: content })}`;
 
-  // This HTML page handles OAuth callback communication with Decap CMS
-  // It sends the auth result back to the opener window (CMS admin panel)
   return `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>GitHub OAuth - ${status === 'success' ? 'Success' : 'Error'}</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background: #f5f5f5;
-    }
-    .message {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .success { color: #2e7d32; }
-    .error { color: #c62828; }
-  </style>
+  <title>GitHub OAuth</title>
 </head>
 <body>
-  <div class="message">
-    <p class="${status}">${status === 'success' ? 'Autenticazione completata. Chiusura in corso...' : content}</p>
-  </div>
+  <p id="message">${status === 'success' ? 'Autenticazione in corso...' : content}</p>
   <script>
     (function() {
+      var status = "${status}";
+      var token = ${status === 'success' ? JSON.stringify(content) : 'null'};
       var message = ${JSON.stringify(message)};
+      var messageEl = document.getElementById('message');
 
-      // Send message to opener (Decap CMS)
-      if (window.opener) {
-        window.opener.postMessage(message, '*');
+      function sendMessage() {
+        // Try multiple approaches to communicate with Decap CMS
 
-        // Try closing the window after a short delay
-        setTimeout(function() {
-          window.close();
-        }, 1000);
-      } else {
-        // If no opener, redirect to admin
-        document.querySelector('.message p').textContent =
-          'Autenticazione completata. Torna alla pagina admin.';
-        setTimeout(function() {
+        // Approach 1: postMessage to opener (standard popup flow)
+        if (window.opener) {
+          console.log('Sending postMessage to opener');
+          window.opener.postMessage(message, '*');
+          messageEl.textContent = 'Autenticazione completata!';
+
+          // Close popup after message is sent
+          setTimeout(function() {
+            window.close();
+          }, 500);
+          return;
+        }
+
+        // Approach 2: postMessage to parent (iframe flow)
+        if (window.parent && window.parent !== window) {
+          console.log('Sending postMessage to parent');
+          window.parent.postMessage(message, '*');
+          messageEl.textContent = 'Autenticazione completata!';
+          return;
+        }
+
+        // Approach 3: Store in localStorage and redirect (fallback)
+        if (status === 'success' && token) {
+          console.log('Storing token and redirecting to admin');
+          try {
+            localStorage.setItem('netlify-cms-user', JSON.stringify({
+              token: token,
+              provider: 'github'
+            }));
+          } catch (e) {
+            console.error('Failed to store token:', e);
+          }
+          messageEl.textContent = 'Autenticazione completata! Reindirizzamento...';
           window.location.href = '/admin/';
-        }, 2000);
+          return;
+        }
+
+        // No valid communication method found
+        messageEl.textContent = 'Autenticazione completata. Torna manualmente alla pagina admin.';
       }
+
+      // Execute immediately
+      sendMessage();
     })();
   </script>
 </body>
