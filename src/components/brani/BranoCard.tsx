@@ -29,7 +29,9 @@ export default function BranoCard({
           src={cover}
           alt={`Cover di ${titolo}`}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
+          quality={80}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:brightness-95"
         />
       </div>

@@ -61,9 +61,10 @@ export function BranoCard({ titolo, slug, cover, categoria }: BranoCardProps) {
             src={cover}
             alt={`Cover di ${titolo}`}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
             loading="lazy"
+            quality={80}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-300 group-hover:scale-110"
             onError={() => setImageError(true)}
           />
         )}
