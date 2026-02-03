@@ -60,7 +60,7 @@ export function Header({ menuOpen, setMenuOpen }: HeaderProps) {
           <button
             type="button"
             onClick={toggleMenu}
-            className="relative w-6 h-6 flex flex-col items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2 focus:ring-offset-purple-dark rounded"
+            className="relative w-12 h-12 -mr-3 flex flex-col items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2 focus:ring-offset-purple-dark rounded"
             aria-label="Menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"

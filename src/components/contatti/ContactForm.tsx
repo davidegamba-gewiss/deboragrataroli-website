@@ -333,7 +333,8 @@ export default function ContactForm({
           aria-invalid={touched.nome && !!errors.nome}
           aria-describedby={errors.nome ? 'nome-error' : undefined}
           className={`
-            w-full px-4 py-2.5 border rounded-lg transition-colors
+            w-full px-4 py-3 border rounded-lg transition-colors
+            text-base
             focus:ring-2 focus:ring-purple-medium focus:border-transparent
             ${
               touched.nome && errors.nome
@@ -388,7 +389,8 @@ export default function ContactForm({
           aria-invalid={touched.email && !!errors.email}
           aria-describedby={errors.email ? 'email-error' : undefined}
           className={`
-            w-full px-4 py-2.5 border rounded-lg transition-colors
+            w-full px-4 py-3 border rounded-lg transition-colors
+            text-base
             focus:ring-2 focus:ring-purple-medium focus:border-transparent
             ${
               touched.email && errors.email
@@ -435,7 +437,8 @@ export default function ContactForm({
           value={formData.oggetto}
           onChange={handleChange}
           className="
-            w-full px-4 py-2.5 border border-gray-300 rounded-lg
+            w-full px-4 py-3 border border-gray-300 rounded-lg
+            text-base
             hover:border-gray-400 transition-colors
             focus:ring-2 focus:ring-purple-medium focus:border-transparent
             bg-white
@@ -486,7 +489,8 @@ export default function ContactForm({
             errors.messaggio ? 'messaggio-error messaggio-hint' : 'messaggio-hint'
           }
           className={`
-            w-full px-4 py-2.5 border rounded-lg transition-colors resize-none
+            w-full px-4 py-3 border rounded-lg transition-colors resize-none
+            text-base
             focus:ring-2 focus:ring-purple-medium focus:border-transparent
             ${
               touched.messaggio && errors.messaggio

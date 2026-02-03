@@ -40,7 +40,7 @@ export default function VideoFilters({
           onChange={(e) =>
             onAnnoChange(e.target.value ? Number(e.target.value) : null)
           }
-          className="w-full rounded border border-gray-300 bg-neutral-light/50 px-4 py-2.5 text-sm text-neutral-dark transition-colors hover:border-purple-medium focus:border-purple-medium focus:outline-none focus:ring-2 focus:ring-purple-light/50"
+          className="w-full rounded border border-gray-300 bg-neutral-light/50 px-4 py-3 text-base text-neutral-dark transition-colors hover:border-purple-medium focus:border-purple-medium focus:outline-none focus:ring-2 focus:ring-purple-light/50"
         >
           <option value="">Tutti gli anni</option>
           {anni.map((anno) => (
@@ -67,7 +67,7 @@ export default function VideoFilters({
               e.target.value ? (e.target.value as CategoriaEsibizione) : null
             )
           }
-          className="w-full rounded border border-gray-300 bg-neutral-light/50 px-4 py-2.5 text-sm text-neutral-dark transition-colors hover:border-purple-medium focus:border-purple-medium focus:outline-none focus:ring-2 focus:ring-purple-light/50"
+          className="w-full rounded border border-gray-300 bg-neutral-light/50 px-4 py-3 text-base text-neutral-dark transition-colors hover:border-purple-medium focus:border-purple-medium focus:outline-none focus:ring-2 focus:ring-purple-light/50"
         >
           <option value="">Tutte le categorie</option>
           {categorie.map((cat) => (
