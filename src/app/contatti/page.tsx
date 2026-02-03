@@ -1,23 +1,11 @@
 'use client';
 
-import type { FormEvent } from 'react';
-import { useState } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { useGlobalSettings } from '@/context/GlobalSettingsContext';
+import { ContactForm } from '@/components/contatti';
 
 export default function ContattiPage() {
   const settings = useGlobalSettings();
-  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormStatus('sending');
-
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus('sent');
-    }, 1000);
-  };
 
   return (
     <PageLayout
@@ -120,81 +108,7 @@ export default function ContattiPage() {
             Inviami un messaggio
           </h2>
 
-          {formStatus === 'sent' ? (
-            <div className="p-6 bg-green-50 border border-green-200 rounded-lg">
-              <p className="text-green-700 font-medium">
-                Messaggio inviato con successo!
-              </p>
-              <p className="text-green-600 text-sm mt-1">
-                Ti risponderò il prima possibile.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">
-                  Nome *
-                </label>
-                <input
-                  type="text"
-                  id="nome"
-                  name="nome"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-colors"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-colors"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="oggetto" className="block text-sm font-medium text-gray-700 mb-1">
-                  Oggetto
-                </label>
-                <select
-                  id="oggetto"
-                  name="oggetto"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-colors"
-                >
-                  <option value="info">Informazioni generali</option>
-                  <option value="evento">Richiesta per evento</option>
-                  <option value="collaborazione">Collaborazione</option>
-                  <option value="altro">Altro</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="messaggio" className="block text-sm font-medium text-gray-700 mb-1">
-                  Messaggio *
-                </label>
-                <textarea
-                  id="messaggio"
-                  name="messaggio"
-                  rows={5}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-colors resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={formStatus === 'sending'}
-                className="btn-primary btn-lg w-full disabled:opacity-50"
-              >
-                {formStatus === 'sending' ? 'Invio in corso...' : 'Invia messaggio'}
-              </button>
-            </form>
-          )}
+          <ContactForm />
         </div>
       </div>
     </PageLayout>

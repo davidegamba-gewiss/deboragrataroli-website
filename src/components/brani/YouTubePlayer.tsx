@@ -1,7 +1,6 @@
 'use client';
 
 import YouTubePlayerCommon from '@/components/common/YouTubePlayer';
-import type { YouTubePlayerProps as CommonProps } from '@/components/common/YouTubePlayer';
 
 // Re-export props interface for backward compatibility
 export interface YouTubePlayerProps {
