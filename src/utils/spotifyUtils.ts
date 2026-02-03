@@ -25,7 +25,8 @@ export function extractSpotifyId(url: string): string {
     const match = url.match(pattern);
     if (match && match[1]) {
       // Remove query parameters if present
-      return match[1].split('?')[0];
+      const id = match[1].split('?')[0];
+      return id ?? '';
     }
   }
 
