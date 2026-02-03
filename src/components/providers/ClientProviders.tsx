@@ -1,6 +1,9 @@
 'use client';
 
 import { GlobalSettingsProvider } from '@/context/GlobalSettingsContext';
+import { CookieProvider } from '@/context/CookieContext';
+import CookieBanner from '@/components/common/CookieBanner';
+import CookiePreferencesModal from '@/components/common/CookiePreferencesModal';
 import type { ReactNode } from 'react';
 
 interface ClientProvidersProps {
@@ -14,14 +17,19 @@ interface ClientProvidersProps {
  * Use this in layout.tsx to provide global state to all pages.
  *
  * Includes:
+ * - CookieProvider (GDPR cookie consent management)
  * - GlobalSettingsProvider (contact info, social links)
- * - Future providers can be added here
+ * - CookieBanner and CookiePreferencesModal components
  */
 export function ClientProviders({ children }: ClientProvidersProps) {
   return (
-    <GlobalSettingsProvider>
-      {children}
-    </GlobalSettingsProvider>
+    <CookieProvider>
+      <GlobalSettingsProvider>
+        {children}
+        <CookieBanner />
+        <CookiePreferencesModal />
+      </GlobalSettingsProvider>
+    </CookieProvider>
   );
 }
 

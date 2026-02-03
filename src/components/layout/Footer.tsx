@@ -2,6 +2,7 @@
 
 import { FaInstagram, FaFacebook, FaYoutube, FaTiktok, FaSpotify } from 'react-icons/fa';
 import { useGlobalSettings } from '@/context/GlobalSettingsContext';
+import { useCookieConsent } from '@/context/CookieContext';
 import type { SocialLink, SocialPlatform } from '@/types/footer';
 
 /**
@@ -29,6 +30,7 @@ const SocialIcons: Record<SocialPlatform, React.ComponentType<{ className?: stri
  */
 export function Footer() {
   const settings = useGlobalSettings();
+  const { setShowPreferencesModal, showBanner } = useCookieConsent();
 
   // Build social links array from settings
   const socialLinks: SocialLink[] = [
@@ -154,6 +156,55 @@ export function Footer() {
         >
           © 2026 Debora Grataroli. Tutti i diritti riservati.
         </p>
+      </div>
+
+      {/* Legal links row */}
+      <div
+        className="
+          max-w-[1280px] mx-auto
+          flex flex-wrap items-center justify-center
+          gap-4 mt-6 pt-4
+          border-t border-white/10
+        "
+      >
+        <a
+          href="/privacy-policy"
+          className="
+            text-xs text-[#a0a0a0]
+            hover:text-purple-medium
+            transition-colors duration-200
+          "
+        >
+          Privacy Policy
+        </a>
+        <span className="text-[#a0a0a0] text-xs">|</span>
+        <a
+          href="/cookie-policy"
+          className="
+            text-xs text-[#a0a0a0]
+            hover:text-purple-medium
+            transition-colors duration-200
+          "
+        >
+          Cookie Policy
+        </a>
+        <span className="text-[#a0a0a0] text-xs">|</span>
+        <button
+          type="button"
+          onClick={() => {
+            showBanner();
+            setShowPreferencesModal(true);
+          }}
+          className="
+            text-xs text-[#a0a0a0]
+            hover:text-purple-medium
+            transition-colors duration-200
+            cursor-pointer
+            bg-transparent border-none
+          "
+        >
+          Gestisci Cookie
+        </button>
       </div>
     </footer>
   );
