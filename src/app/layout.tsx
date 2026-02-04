@@ -55,9 +55,16 @@ export default function RootLayout({
         <JsonLd data={[websiteSchema, musicianSchema]} />
       </head>
       <body className="min-h-screen flex flex-col bg-white antialiased overflow-x-hidden">
+        {/* Skip to main content link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-purple-dark focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:outline-none focus:ring-2 focus:ring-purple-light"
+        >
+          Salta al contenuto principale
+        </a>
         <ClientProviders>
           <NavigationWrapper />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
           <Footer />
         </ClientProviders>
       </body>
