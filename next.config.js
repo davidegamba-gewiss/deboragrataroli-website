@@ -21,6 +21,8 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     // Sizes for smaller images (thumbnails, icons)
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Quality presets used in the app
+    qualities: [75, 80, 85],
     // Cache optimized images for 1 year
     minimumCacheTTL: 60 * 60 * 24 * 365,
     // Allow SVG images with security policy
