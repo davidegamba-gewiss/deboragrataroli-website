@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { HeroSection } from '@/components/common/HeroSection';
 import { IntroSection, FeaturedBrani, FollowSection } from '@/components/home';
 import { generatePageMetadata, SITE_CONFIG } from '@/lib/seo';
+import { getHomePage } from '@/lib/content';
 
 export const metadata: Metadata = {
   ...generatePageMetadata({
@@ -15,19 +16,27 @@ export const metadata: Metadata = {
   title: SITE_CONFIG.title,
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Load content from CMS
+  const pageContent = await getHomePage();
+
+  // Use CMS content or defaults
+  const heroSubtitle = pageContent?.frontmatter.hero_subtitle || 'Cantautrice e Pianista';
+  const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-home.jpg';
+  const htmlContent = pageContent?.htmlContent || '';
+
   return (
     <>
       {/* Hero Section */}
       <HeroSection
-        imageSrc="/images/hero-home.jpg"
+        imageSrc={heroImage}
         title="Debora Grataroli"
-        subtitle="Cantautrice e Pianista"
+        subtitle={heroSubtitle}
         imageAlt="Debora Grataroli in concerto"
       />
 
       {/* Introduction Section */}
-      <IntroSection />
+      <IntroSection htmlContent={htmlContent} />
 
       {/* Featured Brani Section */}
       <FeaturedBrani />

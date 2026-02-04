@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { HeroSection } from '@/components/common/HeroSection';
 import { BiografiaContent, DecorativeImage } from '@/components/biografia';
 import { generatePageMetadata } from '@/lib/seo';
+import { getBiografiaPage } from '@/lib/content';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Biografia',
@@ -12,18 +13,32 @@ export const metadata: Metadata = generatePageMetadata({
   type: 'profile',
 });
 
-export default function BiografiaPage() {
+export default async function BiografiaPage() {
+  // Load content from CMS
+  const pageContent = await getBiografiaPage();
+
+  // Use CMS content or defaults
+  const title = pageContent?.frontmatter.title || 'BIOGRAFIA';
+  const heroSubtitle = pageContent?.frontmatter.hero_subtitle || '';
+  const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-biografia.jpg';
+  const htmlContent = pageContent?.htmlContent || '';
+
   return (
     <>
       {/* Hero Section */}
       <HeroSection
-        imageSrc="/images/hero-biografia.jpg"
-        title="BIOGRAFIA"
+        imageSrc={heroImage}
+        title={title}
+        subtitle={heroSubtitle}
         imageAlt="Debora Grataroli"
       />
 
       {/* Biography Content */}
-      <BiografiaContent title="La mia storia" showTitle />
+      <BiografiaContent
+        title="La mia storia"
+        showTitle
+        htmlContent={htmlContent}
+      />
 
       {/* Decorative Image */}
       <DecorativeImage
