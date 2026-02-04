@@ -54,7 +54,7 @@ export default function RootLayout({
         {/* Structured Data (JSON-LD) */}
         <JsonLd data={[websiteSchema, musicianSchema]} />
       </head>
-      <body className="min-h-screen flex flex-col bg-white antialiased">
+      <body className="min-h-screen flex flex-col bg-white antialiased overflow-x-hidden">
         <ClientProviders>
           <NavigationWrapper />
           <main className="flex-1">{children}</main>

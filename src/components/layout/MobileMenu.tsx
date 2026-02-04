@@ -163,7 +163,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               {/* Social Links Section */}
               <div className="border-t border-gray-200 p-6">
                 <p className="text-sm text-gray-500 mb-4 font-medium">Seguimi sui social</p>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   {SOCIAL_LINKS.map((social, index) => (
                     <a
                       key={social.platform}
@@ -171,7 +171,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-purple-dark hover:text-purple-medium hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2 rounded"
+                      className="flex items-center justify-center w-12 h-12 text-purple-dark hover:text-purple-medium hover:bg-purple-light/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2 rounded-lg"
                       aria-label={social.label}
                     >
                       {SocialIcons[social.platform]}
