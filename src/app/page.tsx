@@ -1,17 +1,18 @@
 import type { Metadata } from 'next';
 import { HeroSection } from '@/components/common/HeroSection';
 import { IntroSection, FeaturedBrani, FollowSection } from '@/components/home';
+import { generatePageMetadata, SITE_CONFIG } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Debora Grataroli - Cantautrice e Pianista',
-  description:
-    'Debora Grataroli, cantautrice e pianista italiana. Scopri i miei brani originali, eventi live e la mia storia musicale.',
-  keywords: ['Debora Grataroli', 'cantautrice', 'pianista', 'musica italiana'],
-  openGraph: {
+  ...generatePageMetadata({
     title: 'Debora Grataroli - Cantautrice e Pianista',
-    description: 'Scopri i miei brani, concerti e la mia storia musicale',
-    type: 'website',
-  },
+    description:
+      'Debora Grataroli, cantautrice e pianista italiana. Scopri i brani originali, eventi live, esibizioni e la storia musicale di una delle voci emergenti della musica italiana.',
+    path: '/',
+    keywords: ['cantautrice italiana', 'pianista', 'musica originale', 'concerti', 'artista emergente'],
+  }),
+  // Override title to not use template for homepage
+  title: SITE_CONFIG.title,
 };
 
 export default function HomePage() {

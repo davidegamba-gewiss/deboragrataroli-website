@@ -1,18 +1,15 @@
 import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { VideoGallery } from '@/components/esibizioni';
+import { generatePageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Esibizioni - Debora Grataroli',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Esibizioni Live',
   description:
-    'Guarda le esibizioni live, performance studio e cover di Debora Grataroli. Video YouTube organizzati per anno e categoria.',
-  keywords: ['esibizioni', 'video', 'live', 'Debora Grataroli'],
-  openGraph: {
-    title: 'Esibizioni - Debora Grataroli',
-    description: 'Guarda le mie esibizioni live',
-    type: 'website',
-  },
-};
+    'Guarda le esibizioni live, performance studio e cover di Debora Grataroli. Video YouTube organizzati per anno e categoria. Concerti, spettacoli e performance dal vivo.',
+  path: '/esibizioni',
+  keywords: ['esibizioni live', 'video concerti', 'performance', 'youtube', 'cover musicali'],
+});
 
 export default function EsibizioniPage() {
   return (

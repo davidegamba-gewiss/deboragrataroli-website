@@ -1,0 +1,45 @@
+# robots.txt for Debora Grataroli website
+# https://deboragrataroli.it
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://deboragrataroli.it/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+
+# Disallow Next.js internal routes
+Disallow: /_next/
+Disallow: /static/
+
+# Allow important static assets
+Allow: /_next/static/
+Allow: /images/
+Allow: /fonts/
+
+# Crawl delay (optional, for polite crawling)
+# Crawl-delay: 1
+
+# Specific bot directives
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block bad bots (optional)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

@@ -2,18 +2,15 @@ import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { EventiFuturi, EventiPassati } from '@/components/eventi';
 import { getEventiFuturi, getEventiPassati } from '@/utils/eventiData';
+import { generatePageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Eventi - Debora Grataroli',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Eventi e Concerti',
   description:
-    'Scopri i prossimi concerti e esibizioni di Debora Grataroli. Prossimi eventi, date e location.',
-  keywords: ['eventi', 'concerti', 'Debora Grataroli', 'esibizioni'],
-  openGraph: {
-    title: 'Eventi - Debora Grataroli',
-    description: 'Prossimi concerti e tour',
-    type: 'website',
-  },
-};
+    'Scopri i prossimi concerti e esibizioni di Debora Grataroli. Calendario eventi, date, location e informazioni per assistere ai live.',
+  path: '/eventi',
+  keywords: ['concerti', 'eventi musicali', 'live', 'tour', 'calendario concerti'],
+});
 
 export default function EventiPage() {
   const eventiFuturi = getEventiFuturi();

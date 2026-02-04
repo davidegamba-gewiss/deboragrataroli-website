@@ -2,18 +2,16 @@ import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { StampaGrid } from '@/components/stampa';
 import { getArticoliStampa } from '@/utils/stampaData';
+import { generatePageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Rassegna Stampa - Debora Grataroli',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Parlano di Me',
   description:
-    'Leggi gli articoli e le menzioni stampa di Debora Grataroli. Scopri cosa dicono di lei i media italiani.',
-  keywords: ['rassegna stampa', 'articoli', 'media', 'Debora Grataroli'],
-  openGraph: {
-    title: 'Rassegna Stampa - Debora Grataroli',
-    description: 'Articoli e menzioni stampa',
-    type: 'website',
-  },
-};
+    'Rassegna stampa e articoli su Debora Grataroli. Scopri cosa dicono i media italiani, interviste, recensioni e menzioni dalla stampa musicale.',
+  path: '/parlano-di-me',
+  keywords: ['rassegna stampa', 'articoli', 'interviste', 'recensioni', 'media musicali'],
+  type: 'article',
+});
 
 export default function ParlanoDiMePage() {
   const articoli = getArticoliStampa();

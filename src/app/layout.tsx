@@ -1,9 +1,15 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { ClientProviders } from '@/components/providers/ClientProviders';
 import { NavigationWrapper } from '@/components/layout/NavigationWrapper';
 import { Footer } from '@/components/layout/Footer';
+import {
+  generateBaseMetadata,
+  generateWebsiteSchema,
+  generateMusicianSchema,
+  JsonLd,
+} from '@/lib/seo';
 
 // Configure Inter font (primary font)
 const inter = Inter({
@@ -22,25 +28,15 @@ const playfair = Playfair_Display({
   style: ['normal', 'italic'],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Debora Grataroli',
-    template: '%s | Debora Grataroli',
-  },
-  description: 'Sito ufficiale di Debora Grataroli',
-  keywords: ['Debora Grataroli'],
-  authors: [{ name: 'Debora Grataroli' }],
-  creator: 'Debora Grataroli',
-  metadataBase: new URL('https://deboragrataroli.com'),
-  openGraph: {
-    type: 'website',
-    locale: 'it_IT',
-    siteName: 'Debora Grataroli',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+// Generate base metadata from SEO library
+export const metadata: Metadata = generateBaseMetadata();
+
+// Viewport configuration
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#7b4397',
 };
 
 export default function RootLayout({
@@ -48,8 +44,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Generate structured data for the entire site
+  const websiteSchema = generateWebsiteSchema();
+  const musicianSchema = generateMusicianSchema();
+
   return (
     <html lang="it" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        {/* Structured Data (JSON-LD) */}
+        <JsonLd data={[websiteSchema, musicianSchema]} />
+      </head>
       <body className="min-h-screen flex flex-col bg-white antialiased">
         <ClientProviders>
           <NavigationWrapper />

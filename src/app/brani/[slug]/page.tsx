@@ -5,6 +5,7 @@ import { PageLayout } from '@/components/layout/PageLayout';
 import { BranoDetailLayout } from '@/components/brani';
 import { getBrano, getAllBraniSlugs } from '@/utils/braniData';
 import { ROUTES } from '@/utils/routing';
+import { generatePageMetadata, generateSongSchema, generateBreadcrumbSchema, JsonLd } from '@/lib/seo';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -23,20 +24,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!brano) {
     return {
-      title: 'Brano non trovato - Debora Grataroli',
+      title: 'Brano non trovato',
+      robots: { index: false, follow: false },
     };
   }
 
-  return {
-    title: `${brano.titolo} - Debora Grataroli`,
-    description: brano.descrizione,
-    openGraph: {
-      title: brano.titolo,
-      description: brano.descrizione,
-      images: [{ url: brano.cover }],
-      type: 'music.song',
+  return generatePageMetadata({
+    title: brano.titolo,
+    description: brano.descrizione || `Ascolta "${brano.titolo}" di Debora Grataroli. ${brano.categoria || 'Brano originale'}.`,
+    path: `/brani/${slug}`,
+    keywords: [brano.titolo, brano.categoria || 'brano', 'canzone italiana'],
+    image: {
+      url: brano.cover,
+      alt: `Cover di ${brano.titolo}`,
     },
-  };
+    type: 'music.song',
+  });
 }
 
 export default async function BranoDetailPage({ params }: PageProps) {
@@ -47,8 +50,25 @@ export default async function BranoDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  // Generate structured data
+  const songSchema = generateSongSchema({
+    name: brano.titolo,
+    url: `/brani/${slug}`,
+    image: brano.cover,
+    album: brano.categoria,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Brani', url: '/brani' },
+    { name: brano.titolo, url: `/brani/${slug}` },
+  ]);
+
   return (
     <PageLayout showDecorative>
+      {/* Structured Data */}
+      <JsonLd data={[songSchema, breadcrumbSchema]} />
+
       {/* Back Link */}
       <nav className="mb-8">
         <Link

@@ -2,18 +2,16 @@ import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BranoListGrid } from '@/components/brani';
 import { getAllBrani } from '@/utils/braniData';
+import { generatePageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Brani - Debora Grataroli',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'I Miei Brani',
   description:
-    'Scopri il catalogo completo dei brani originali di Debora Grataroli. Ascolta musica italiana di qualità.',
-  keywords: ['brani', 'canzoni', 'musica', 'Debora Grataroli'],
-  openGraph: {
-    title: 'Brani - Debora Grataroli',
-    description: 'Catalogo brani originali',
-    type: 'website',
-  },
-};
+    'Scopri il catalogo completo dei brani originali di Debora Grataroli. Ascolta musica italiana di qualità, dalle ballad romantiche ai brani più energici.',
+  path: '/brani',
+  keywords: ['brani originali', 'canzoni italiane', 'musica cantautoriale', 'discografia'],
+  type: 'music.album',
+});
 
 export default function BraniPage() {
   const brani = getAllBrani();

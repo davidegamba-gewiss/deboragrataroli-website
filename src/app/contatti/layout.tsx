@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Contatti - Debora Grataroli',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Contatti',
   description:
-    'Contatta Debora Grataroli per collaborazioni, eventi e informazioni.',
-};
+    'Contatta Debora Grataroli per collaborazioni, eventi musicali e informazioni. Compila il form o scrivi direttamente via email.',
+  path: '/contatti',
+  keywords: ['contatti', 'collaborazioni', 'eventi', 'booking', 'email'],
+});
 
 export default function ContattiLayout({
   children,
