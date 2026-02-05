@@ -24,7 +24,9 @@ export function initializeGoogleAnalytics(): void {
   if (typeof window === 'undefined') return;
   if (isInitialized) return;
   if (GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
-    console.log('[GA] Analytics not configured - skipping initialization');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[GA] Analytics not configured - skipping initialization');
+    }
     return;
   }
 
@@ -50,7 +52,9 @@ export function initializeGoogleAnalytics(): void {
     });
 
     isInitialized = true;
-    console.log('[GA] Google Analytics initialized');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[GA] Google Analytics initialized');
+    }
   } catch (error) {
     console.error('[GA] Failed to initialize Google Analytics:', error);
   }
@@ -98,7 +102,9 @@ export function disableGoogleAnalytics(): void {
   const optOutKey = `ga-disable-${GA_MEASUREMENT_ID}`;
   (window as unknown as Record<string, boolean>)[optOutKey] = true;
 
-  console.log('[GA] Google Analytics disabled');
+  if (process.env.NODE_ENV === 'development') {
+    console.log('[GA] Google Analytics disabled');
+  }
 }
 
 /**

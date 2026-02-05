@@ -29,8 +29,6 @@ function renderAuthResult(status: 'success' | 'error', content: string): string 
       var messageEl = document.getElementById('message');
       var hasOpener = !!window.opener;
 
-      console.log('OAuth callback loaded, hasOpener:', hasOpener);
-
       if (!hasOpener) {
         messageEl.textContent = 'Errore: finestra di autenticazione non valida. Torna a /admin/ e riprova.';
         return;
@@ -43,24 +41,13 @@ function renderAuthResult(status: 'success' | 'error', content: string): string 
       // 4. Popup sends "authorization:github:success/error:..." with the result
 
       function receiveMessage(e) {
-        console.log('Received message from opener:', e.data);
-        // When we receive any message from opener, send the auth result
         window.removeEventListener('message', receiveMessage, false);
-
-        console.log('Sending auth result to opener:', message);
         window.opener.postMessage(message, e.origin || '*');
-
         messageEl.textContent = 'Autenticazione completata!';
-
-        setTimeout(function() {
-          window.close();
-        }, 1000);
+        setTimeout(function() { window.close(); }, 1000);
       }
 
       window.addEventListener('message', receiveMessage, false);
-
-      // Signal to opener that we're ready for the handshake
-      console.log('Sending authorizing:github to opener');
       window.opener.postMessage('authorizing:github', '*');
 
     })();
