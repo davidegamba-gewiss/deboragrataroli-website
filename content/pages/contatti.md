@@ -1,8 +1,8 @@
 ---
-title: Contatti
+title: CONTATTI
 seo_description: Contatta Debora Grataroli per collaborazioni e informazioni
 hero_image: ""
-hero_subtitle: Restiamo in contatto
+hero_subtitle: ""
 ---
 
 Compila il form per contattarmi.
