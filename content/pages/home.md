@@ -1,6 +1,6 @@
 ---
 title: DEBORA GRATAROLI
-seo_description: Debora Grataroli - Sito web ufficiale
+seo_description: DEBORA GRATAROLI - Sito web ufficiale
 hero_image: ""
 hero_subtitle: Cantautrice e pianista
 ---
