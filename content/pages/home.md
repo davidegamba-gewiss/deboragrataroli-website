@@ -1,7 +1,6 @@
 ---
-title: Home
+title: Debora Grataroli
 seo_description: Debora Grataroli - Sito web ufficiale
-hero_image: /media/pages/picture_test-2.png
-hero_subtitle: Cantante
+hero_image: /media/pages/progetto-senza-titolo-14-.png
+hero_subtitle: Cantautrice e pianista
 ---
-Hello world! This is a Test by Davide Gamba
