@@ -32,4 +32,4 @@ Alcuni riconoscimenti ottenuti nei concorsi canori sono i seguenti:
 * 22 febbraio 2025 - ospite "Like A Star", Clusone (BG)
 * 10 maggio 2025 - ospite "Fuori La Voce", Vall'Imagna (BG)
 
-  ![]()
+  ![](/media/progetto-senza-titolo-9-1-.png)
