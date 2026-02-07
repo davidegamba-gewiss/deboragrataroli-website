@@ -1,7 +1,7 @@
 ---
 title: Biografia
 seo_description: ""
-hero_image: /media/pages/progetto-senza-titolo-24-.png
+hero_image: /media/pages/progetto-senza-titolo-27-.png
 hero_subtitle: ""
 ---
 Sono Debora Grataroli, cantautrice e pianista nata nel 2006 e cresciuta in provincia di Bergamo. La passione per la musica fa parte di me fin da quando sono bambina: ho iniziato a coltivarla cantando nel coro della mia parrocchia, facendo anche la solista in alcuni brani. A nove anni sono salita per la prima volta su un palco durante un concorso del mio paese, un’esperienza che ha segnato l’inizio della mia avventura nei concorsi canori, che ho sempre mantenuto negli anni. 
