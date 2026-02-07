@@ -8,4 +8,4 @@ In questo sito troverete tutte le informazioni necessarie per conoscere meglio c
 
 Buon viaggio musicale!
 
-![]()
+![](/media/progetto-senza-titolo-9-1-.png)
