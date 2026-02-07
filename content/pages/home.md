@@ -1,6 +1,6 @@
 ---
-title: DEBORA GRATAROLI
-seo_description: DEBORA GRATAROLI - Sito web ufficiale
+title: Debora Grataroli
+seo_description: Debora Grataroli - Sito web ufficiale
 hero_image: /media/pages/progetto-senza-titolo-14-.png
 hero_subtitle: ""
 ---
