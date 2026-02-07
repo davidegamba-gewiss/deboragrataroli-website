@@ -1,5 +1,5 @@
 ---
-instagram: ""
+instagram: https://www.instagram.com/
 facebook: ""
 youtube: ""
 spotify: ""
