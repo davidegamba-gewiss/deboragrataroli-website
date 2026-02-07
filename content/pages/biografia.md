@@ -6,7 +6,7 @@ hero_subtitle: ""
 ---
 Sono Debora Grataroli, cantautrice e pianista nata nel 2006 e cresciuta in provincia di Bergamo. La passione per la musica fa parte di me fin da quando sono bambina: ho iniziato a coltivarla cantando nel coro della mia parrocchia, facendo anche la solista in alcuni brani. A nove anni sono salita per la prima volta su un palco durante un concorso del mio paese, un’esperienza che ha segnato l’inizio della mia avventura nei concorsi canori, che ho sempre mantenuto negli anni. 
 
-A undici anni ho iniziato a studiare canto con Greta Caserta e, l’anno successivo, anche pianoforte con Luca Marcassoli, proseguendo poi con Alessandro Lupo Pasini e attualmente con Fidel Fogaroli. Dal 2023 porto in scena concerti con pianoforte e voce in diverse zone della Bergamasca: bar, locali, ristoranti, piazze e feste di paese. In questi contesti ho interpretato i più grandi successi della musica italiana e internazionale.   Nel 2025 invece, ho scelto di dedicare i miei concerti al cantautorato italiano, rendendo omaggio ad artisti come Battisti, Battiato, Baglioni, Celentano e molti altr.
+A undici anni ho iniziato a studiare canto con Greta Caserta e, l’anno successivo, anche pianoforte con Luca Marcassoli, proseguendo poi con Alessandro Lupo Pasini e attualmente con Fidel Fogaroli. Dal 2023 porto in scena concerti con pianoforte e voce in diverse zone della Bergamasca: bar, locali, ristoranti, piazze e feste di paese. In questi contesti ho interpretato i più grandi successi della musica italiana e internazionale.   Nel 2025 invece, ho scelto di dedicare i miei concerti al cantautorato italiano, rendendo omaggio ad artisti come Battisti, Battiato, Baglioni, Celentano e molti altri.
 
 ## La mia carriera
 
@@ -31,7 +31,5 @@ Alcuni riconoscimenti ottenuti nei concorsi canori sono i seguenti:
 * 16 giugno 2024 - terza classificata "Canta Bergamo", Cene (BG)
 * 22 febbraio 2025 - ospite "Like A Star", Clusone (BG)
 * 10 maggio 2025 - ospite "Fuori La Voce", Vall'Imagna (BG) 
-
-
 
 ![](/media/progetto-senza-titolo-9-1-.png)
