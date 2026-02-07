@@ -30,6 +30,8 @@ Alcuni riconoscimenti ottenuti nei concorsi canori sono i seguenti:
 * 25 maggio 2024 - vittoria "Fuori La Voce", Vall'Imagna (BG)
 * 16 giugno 2024 - terza classificata "Canta Bergamo", Cene (BG)
 * 22 febbraio 2025 - ospite "Like A Star", Clusone (BG)
-* 10 maggio 2025 - ospite "Fuori La Voce", Vall'Imagna (BG)
+* 10 maggio 2025 - ospite "Fuori La Voce", Vall'Imagna (BG) 
 
-  ![](/media/progetto-senza-titolo-9-1-.png)
+
+
+![](/media/progetto-senza-titolo-9-1-.png)
