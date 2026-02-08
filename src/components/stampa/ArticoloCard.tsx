@@ -41,7 +41,7 @@ export default function ArticoloCard({
       </div>
 
       {/* Content */}
-      <div className="flex h-full flex-col p-6">
+      <div className="flex flex-col p-6">
         {/* Testata & Date */}
         <div className="mb-3 flex items-center justify-between">
           <span className="text-xs font-semibold uppercase tracking-wider text-purple-medium">
