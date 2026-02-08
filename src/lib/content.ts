@@ -416,6 +416,44 @@ export async function getFeaturedArticoli(): Promise<ContentItem<ArticoloFrontma
   return allArticoli.filter((articolo) => articolo.frontmatter.featured);
 }
 
+/**
+ * ArticoloStampaData format for components (matches existing component props)
+ */
+export interface ArticoloStampaDataFormat {
+  id: string;
+  titolo: string;
+  testata: string;
+  dataPubblicazione: string;
+  estratto: string;
+  immagine: string;
+  linkEsterno?: string;
+  ordine: number;
+}
+
+/**
+ * Convert CMS articolo content to ArticoloStampaData format for components
+ */
+export function cmsArticoloToData(item: ContentItem<ArticoloFrontmatter>): ArticoloStampaDataFormat {
+  return {
+    id: item.slug,
+    titolo: item.frontmatter.title,
+    testata: item.frontmatter.testata,
+    dataPubblicazione: item.frontmatter.data_pubblicazione,
+    estratto: item.frontmatter.estratto || '',
+    immagine: item.frontmatter.immagine || '/images/stampa/default.jpg',
+    linkEsterno: item.frontmatter.link_esterno,
+    ordine: item.frontmatter.ordine || 999,
+  };
+}
+
+/**
+ * Get all articoli in component-friendly format
+ */
+export async function getAllArticoliData(): Promise<ArticoloStampaDataFormat[]> {
+  const cmsItems = await getAllArticoli();
+  return cmsItems.map(cmsArticoloToData);
+}
+
 // ============================================
 // SETTINGS LOADERS
 // ============================================

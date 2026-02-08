@@ -10,6 +10,7 @@ import {
   generateMusicianSchema,
   JsonLd,
 } from '@/lib/seo';
+import { getSocialSettings, getContactSettings } from '@/lib/content';
 
 // Configure Inter font (primary font)
 const inter = Inter({
@@ -39,7 +40,7 @@ export const viewport: Viewport = {
   themeColor: '#7b4397',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -47,6 +48,23 @@ export default function RootLayout({
   // Generate structured data for the entire site
   const websiteSchema = generateWebsiteSchema();
   const musicianSchema = generateMusicianSchema();
+
+  // Load settings from CMS
+  const [socialSettings, contactSettings] = await Promise.all([
+    getSocialSettings(),
+    getContactSettings(),
+  ]);
+
+  // Map CMS settings to GlobalSettings format
+  const cmsSettings = {
+    emailContatto: contactSettings.email,
+    telefonoContatto: contactSettings.telefono,
+    socialInstagram: socialSettings.instagram,
+    socialFacebook: socialSettings.facebook,
+    socialYoutube: socialSettings.youtube,
+    socialTiktok: socialSettings.tiktok,
+    socialSpotify: socialSettings.spotify,
+  };
 
   return (
     <html lang="it" className={`${inter.variable} ${playfair.variable}`}>
@@ -62,7 +80,7 @@ export default function RootLayout({
         >
           Salta al contenuto principale
         </a>
-        <ClientProviders>
+        <ClientProviders settings={cmsSettings}>
           <NavigationWrapper />
           <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
           <Footer />

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { StampaGrid } from '@/components/stampa';
-import { getArticoliStampa } from '@/utils/stampaData';
+import { getAllArticoliData } from '@/lib/content';
 import { generatePageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -13,8 +13,8 @@ export const metadata: Metadata = generatePageMetadata({
   type: 'article',
 });
 
-export default function ParlanoDiMePage() {
-  const articoli = getArticoliStampa();
+export default async function ParlanoDiMePage() {
+  const articoli = await getAllArticoliData();
 
   return (
     <PageLayout

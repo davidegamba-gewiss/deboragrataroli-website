@@ -1,6 +1,6 @@
 'use client';
 
-import { GlobalSettingsProvider } from '@/context/GlobalSettingsContext';
+import { GlobalSettingsProvider, type GlobalSettings } from '@/context/GlobalSettingsContext';
 import { CookieProvider } from '@/context/CookieContext';
 import CookieBanner from '@/components/common/CookieBanner';
 import CookiePreferencesModal from '@/components/common/CookiePreferencesModal';
@@ -8,6 +8,8 @@ import type { ReactNode } from 'react';
 
 interface ClientProvidersProps {
   children: ReactNode;
+  /** Settings loaded from CMS (passed from server component) */
+  settings?: Partial<GlobalSettings>;
 }
 
 /**
@@ -18,13 +20,13 @@ interface ClientProvidersProps {
  *
  * Includes:
  * - CookieProvider (GDPR cookie consent management)
- * - GlobalSettingsProvider (contact info, social links)
+ * - GlobalSettingsProvider (contact info, social links from CMS)
  * - CookieBanner and CookiePreferencesModal components
  */
-export function ClientProviders({ children }: ClientProvidersProps) {
+export function ClientProviders({ children, settings }: ClientProvidersProps) {
   return (
     <CookieProvider>
-      <GlobalSettingsProvider>
+      <GlobalSettingsProvider settings={settings}>
         {children}
         <CookieBanner />
         <CookiePreferencesModal />

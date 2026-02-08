@@ -1,10 +1,10 @@
 'use client';
 
 import ArticoloCard from './ArticoloCard';
-import type { ArticoloStampaData } from '@/data/stampa';
+import type { ArticoloStampaDataFormat } from '@/lib/content';
 
 export interface StampaGridProps {
-  articoli: ArticoloStampaData[];
+  articoli: ArticoloStampaDataFormat[];
 }
 
 export default function StampaGrid({ articoli }: StampaGridProps) {
