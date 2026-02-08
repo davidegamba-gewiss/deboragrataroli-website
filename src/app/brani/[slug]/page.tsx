@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BranoDetailLayout } from '@/components/brani';
-import { getBrano, getAllBraniSlugs } from '@/utils/braniData';
+import { getBranoData, getAllBraniSlugs } from '@/lib/content';
 import { ROUTES } from '@/utils/routing';
 import { generatePageMetadata, generateSongSchema, generateBreadcrumbSchema, JsonLd } from '@/lib/seo';
 
@@ -13,14 +13,14 @@ interface PageProps {
 
 // Generate static paths for all brani
 export async function generateStaticParams() {
-  const slugs = getAllBraniSlugs();
+  const slugs = await getAllBraniSlugs();
   return slugs.map((slug) => ({ slug }));
 }
 
 // Dynamic metadata based on brano
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const brano = getBrano(slug);
+  const brano = await getBranoData(slug);
 
   if (!brano) {
     return {
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BranoDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const brano = getBrano(slug);
+  const brano = await getBranoData(slug);
 
   if (!brano) {
     notFound();

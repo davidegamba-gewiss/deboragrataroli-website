@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { getAllBrani } from '@/utils/braniData';
+import { getAllBraniData } from '@/lib/content';
 import { SITE_CONFIG } from '@/lib/seo';
 
 /**
@@ -8,7 +8,7 @@ import { SITE_CONFIG } from '@/lib/seo';
  * Generates sitemap.xml with all static and dynamic pages.
  * Next.js automatically serves this at /sitemap.xml
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_CONFIG.url;
   const currentDate = new Date();
 
@@ -58,8 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Dynamic pages: individual brani
-  const brani = getAllBrani();
+  // Dynamic pages: individual brani from CMS
+  const brani = await getAllBraniData();
   const braniPages: MetadataRoute.Sitemap = brani.map((brano) => ({
     url: `${baseUrl}/brani/${brano.slug}`,
     lastModified: currentDate,

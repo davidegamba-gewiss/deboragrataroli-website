@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BranoListGrid } from '@/components/brani';
-import { getAllBrani } from '@/utils/braniData';
+import { getAllBraniData } from '@/lib/content';
 import { generatePageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -13,8 +13,8 @@ export const metadata: Metadata = generatePageMetadata({
   type: 'music.album',
 });
 
-export default function BraniPage() {
-  const brani = getAllBrani();
+export default async function BraniPage() {
+  const brani = await getAllBraniData();
 
   return (
     <PageLayout

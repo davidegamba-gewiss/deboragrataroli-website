@@ -268,6 +268,67 @@ export async function getBrano(slug: string): Promise<ContentItem<BranoFrontmatt
   return getContentFile<BranoFrontmatter>('brani', slug);
 }
 
+/**
+ * BranoData format for components (matches existing component props)
+ */
+export interface BranoDataFormat {
+  id: string;
+  slug: string;
+  titolo: string;
+  cover: string;
+  categoria: string;
+  youtubeUrl: string;
+  spotifyUrl: string;
+  descrizione: string;
+  lyrics: string;
+  imagineExtra?: string;
+  featured?: boolean;
+}
+
+/**
+ * Convert CMS brano content to BranoData format for components
+ */
+export function cmsBranoToData(item: ContentItem<BranoFrontmatter>): BranoDataFormat {
+  return {
+    id: item.slug,
+    slug: item.slug,
+    titolo: item.frontmatter.title,
+    cover: item.frontmatter.cover || '/images/brani/default.jpg',
+    categoria: item.frontmatter.categoria || 'singolo',
+    youtubeUrl: item.frontmatter.youtube_url || '',
+    spotifyUrl: item.frontmatter.spotify_url || '',
+    descrizione: item.frontmatter.descrizione || '',
+    lyrics: item.frontmatter.lyrics || '',
+    imagineExtra: item.frontmatter.immagine_extra,
+    featured: item.frontmatter.featured,
+  };
+}
+
+/**
+ * Get all brani in component-friendly format
+ */
+export async function getAllBraniData(): Promise<BranoDataFormat[]> {
+  const cmsItems = await getAllBraniFromCMS();
+  return cmsItems.map(cmsBranoToData);
+}
+
+/**
+ * Get a single brano in component-friendly format
+ */
+export async function getBranoData(slug: string): Promise<BranoDataFormat | null> {
+  const item = await getBrano(slug);
+  if (!item) return null;
+  return cmsBranoToData(item);
+}
+
+/**
+ * Get all brani slugs for static generation
+ */
+export async function getAllBraniSlugs(): Promise<string[]> {
+  const items = await getAllBraniFromCMS();
+  return items.map((item) => item.slug);
+}
+
 // ============================================
 // EVENTI CONTENT LOADERS
 // ============================================
