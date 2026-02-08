@@ -65,6 +65,11 @@ export default function ArticoloCard({
           {estratto}
         </p>
 
+        {/* Debug: Show link status */}
+        <div className="mb-2 text-xs text-red-500">
+          Debug: linkEsterno = {linkEsterno ? `"${linkEsterno}"` : 'undefined/null'}
+        </div>
+
         {/* Read Article Button */}
         {linkEsterno && (
           <a
