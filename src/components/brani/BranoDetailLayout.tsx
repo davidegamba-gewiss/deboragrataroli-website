@@ -3,10 +3,10 @@
 import Image from 'next/image';
 import YouTubePlayer from './YouTubePlayer';
 import SpotifyPlayer from './SpotifyPlayer';
-import type { BranoData } from '@/data/brani';
+import type { BranoDataFormat } from '@/lib/content';
 
 export interface BranoDetailLayoutProps {
-  brano: BranoData;
+  brano: BranoDataFormat;
 }
 
 export default function BranoDetailLayout({ brano }: BranoDetailLayoutProps) {
@@ -61,9 +61,9 @@ export default function BranoDetailLayout({ brano }: BranoDetailLayoutProps) {
           <h2 className="text-lg font-semibold text-purple-dark mb-4">
             Descrizione
           </h2>
-          <p className="text-neutral-dark leading-relaxed">
+          <div className="text-neutral-dark leading-relaxed whitespace-pre-line">
             {brano.descrizione}
-          </p>
+          </div>
         </section>
       )}
 

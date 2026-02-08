@@ -1,38 +1,37 @@
 import Link from 'next/link';
 import { BranoCard } from './BranoCard';
 import { ROUTES } from '@/utils/routing';
+import { getAllBraniData, type BranoDataFormat } from '@/lib/content';
 
-/**
- * Featured brani data (hardcoded for now, will be from CMS later)
- */
-const featuredBrani = [
-  {
-    id: '1',
-    titolo: 'La Mia Canzone',
-    slug: 'la-mia-canzone',
-    cover: '/images/placeholder-cover-1.jpg',
-    categoria: 'Album Originale',
-  },
-  {
-    id: '2',
-    titolo: 'Brano Live',
-    slug: 'brano-live',
-    cover: '/images/placeholder-cover-2.jpg',
-    categoria: 'Performance Live',
-  },
-];
+interface FeaturedBraniProps {
+  /** Pre-loaded brani data (for server component usage) */
+  brani?: BranoDataFormat[];
+}
 
 /**
  * FeaturedBrani Component
  *
  * Section displaying featured songs with a grid layout.
+ * Loads brani marked as "featured" from the CMS.
  *
  * Features:
+ * - Loads featured brani from CMS
  * - Responsive grid (1-2-3 columns)
  * - BranoCard components
  * - Link to all songs page
  */
-export function FeaturedBrani() {
+export async function FeaturedBrani({ brani }: FeaturedBraniProps) {
+  // Load brani from CMS if not provided
+  const allBrani = brani ?? await getAllBraniData();
+
+  // Filter to only featured brani
+  const featuredBrani = allBrani.filter((b) => b.featured === true);
+
+  // If no featured brani, don't render the section
+  if (featuredBrani.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 lg:py-24 px-4 md:px-8 bg-white">
       <div className="max-w-[1280px] mx-auto">

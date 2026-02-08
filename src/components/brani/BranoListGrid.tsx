@@ -1,10 +1,10 @@
 'use client';
 
 import BranoCard from './BranoCard';
-import type { BranoData } from '@/data/brani';
+import type { BranoDataFormat } from '@/lib/content';
 
 export interface BranoListGridProps {
-  brani: BranoData[];
+  brani: BranoDataFormat[];
 }
 
 export default function BranoListGrid({ brani }: BranoListGridProps) {
