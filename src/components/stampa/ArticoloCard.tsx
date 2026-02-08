@@ -65,24 +65,22 @@ export default function ArticoloCard({
           {estratto}
         </p>
 
-        {/* Debug: Show link status */}
-        <div className="mb-2 text-xs text-red-500">
-          Debug: linkEsterno = {linkEsterno ? `"${linkEsterno}"` : 'undefined/null'}
-        </div>
-
-        {/* Read Article Button */}
-        {linkEsterno && (
-          <a
-            href={linkEsterno}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded border border-purple-medium px-4 py-2.5 text-xs font-semibold text-purple-medium transition-colors duration-200 hover:bg-purple-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-light/50"
-            aria-label={`Leggi l'articolo "${titolo}" su ${testata}`}
-          >
-            Leggi l&apos;articolo
-            <FaExternalLinkAlt className="h-3 w-3" aria-hidden="true" />
-          </a>
-        )}
+        {/* Read Article Button - always show if link exists */}
+        <a
+          href={linkEsterno || '#'}
+          target={linkEsterno ? '_blank' : undefined}
+          rel={linkEsterno ? 'noopener noreferrer' : undefined}
+          className={`inline-flex items-center justify-center gap-2 rounded border px-4 py-2.5 text-xs font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-light/50 ${
+            linkEsterno
+              ? 'border-purple-medium text-purple-medium hover:bg-purple-medium hover:text-white'
+              : 'border-gray-300 text-gray-400 cursor-not-allowed'
+          }`}
+          aria-label={linkEsterno ? `Leggi l'articolo "${titolo}" su ${testata}` : 'Link non disponibile'}
+          onClick={linkEsterno ? undefined : (e) => e.preventDefault()}
+        >
+          {linkEsterno ? <>Leggi l&apos;articolo</> : 'Link non disponibile'}
+          <FaExternalLinkAlt className="h-3 w-3" aria-hidden="true" />
+        </a>
       </div>
     </article>
   );
