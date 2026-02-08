@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { FaPlay } from 'react-icons/fa';
 import { getYouTubeThumbnail, getYouTubeWatchUrl } from '@/utils/esibizioniData';
-import type { CategoriaEsibizione } from '@/data/esibizioni';
+import type { CategoriaEsibizioneDisplay } from '@/lib/content';
 
 export interface VideoCardProps {
   id: string;
@@ -11,7 +11,7 @@ export interface VideoCardProps {
   youtubeUrl: string;
   descrizione?: string;
   anno: number;
-  categoria: CategoriaEsibizione;
+  categoria: CategoriaEsibizioneDisplay;
   playlist?: string;
 }
 

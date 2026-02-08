@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { VideoGallery } from '@/components/esibizioni';
+import { getAllEsibizioniData } from '@/lib/content';
 import { generatePageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -11,7 +12,9 @@ export const metadata: Metadata = generatePageMetadata({
   keywords: ['esibizioni live', 'video concerti', 'performance', 'youtube', 'cover musicali'],
 });
 
-export default function EsibizioniPage() {
+export default async function EsibizioniPage() {
+  const esibizioni = await getAllEsibizioniData();
+
   return (
     <PageLayout
       hero={{
@@ -33,7 +36,7 @@ export default function EsibizioniPage() {
         </header>
 
         {/* Video Gallery with Filters */}
-        <VideoGallery />
+        <VideoGallery esibizioni={esibizioni} />
       </section>
     </PageLayout>
   );

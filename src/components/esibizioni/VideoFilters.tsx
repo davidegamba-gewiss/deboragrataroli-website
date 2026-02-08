@@ -1,15 +1,15 @@
 'use client';
 
 import { FaUndo } from 'react-icons/fa';
-import type { CategoriaEsibizione } from '@/data/esibizioni';
+import type { CategoriaEsibizioneDisplay } from '@/lib/content';
 
 export interface VideoFiltersProps {
   anni: number[];
-  categorie: CategoriaEsibizione[];
+  categorie: CategoriaEsibizioneDisplay[];
   selectedAnno: number | null;
-  selectedCategoria: CategoriaEsibizione | null;
+  selectedCategoria: CategoriaEsibizioneDisplay | null;
   onAnnoChange: (anno: number | null) => void;
-  onCategoriaChange: (categoria: CategoriaEsibizione | null) => void;
+  onCategoriaChange: (categoria: CategoriaEsibizioneDisplay | null) => void;
   onReset: () => void;
 }
 
@@ -64,7 +64,7 @@ export default function VideoFilters({
           value={selectedCategoria ?? ''}
           onChange={(e) =>
             onCategoriaChange(
-              e.target.value ? (e.target.value as CategoriaEsibizione) : null
+              e.target.value ? (e.target.value as CategoriaEsibizioneDisplay) : null
             )
           }
           className="w-full rounded border border-gray-300 bg-neutral-light/50 px-4 py-3 text-base text-neutral-dark transition-colors hover:border-purple-medium focus:border-purple-medium focus:outline-none focus:ring-2 focus:ring-purple-light/50"

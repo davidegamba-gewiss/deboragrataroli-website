@@ -390,6 +390,81 @@ export async function getEsibizioniByCategory(
 }
 
 // ============================================
+// ESIBIZIONI DATA FORMAT (for components)
+// ============================================
+
+export type CategoriaEsibizioneDisplay = 'Live' | 'Studio' | 'Cover' | 'Acustico' | 'TV/Radio';
+
+export interface EsibizioneDataFormat {
+  id: string;
+  titolo: string;
+  youtubeUrl: string;
+  descrizione?: string;
+  anno: number;
+  categoria: CategoriaEsibizioneDisplay;
+  playlist?: string;
+  thumbnail?: string;
+  featured?: boolean;
+}
+
+/**
+ * Map CMS categoria to display categoria
+ */
+function mapCategoriaEsibizione(categoria: EsibizioneFrontmatter['categoria']): CategoriaEsibizioneDisplay {
+  const mapping: Record<EsibizioneFrontmatter['categoria'], CategoriaEsibizioneDisplay> = {
+    live: 'Live',
+    studio: 'Studio',
+    cover: 'Cover',
+    acustico: 'Acustico',
+    tv_radio: 'TV/Radio',
+  };
+  return mapping[categoria] || 'Live';
+}
+
+/**
+ * Convert CMS esibizione to component data format
+ */
+export function cmsEsibizioneToData(item: ContentItem<EsibizioneFrontmatter>): EsibizioneDataFormat {
+  return {
+    id: item.slug,
+    titolo: item.frontmatter.title,
+    youtubeUrl: item.frontmatter.youtube_url,
+    descrizione: item.frontmatter.descrizione,
+    anno: item.frontmatter.anno,
+    categoria: mapCategoriaEsibizione(item.frontmatter.categoria),
+    playlist: item.frontmatter.playlist,
+    thumbnail: item.frontmatter.thumbnail,
+    featured: item.frontmatter.featured,
+  };
+}
+
+/**
+ * Get all esibizioni in component data format
+ */
+export async function getAllEsibizioniData(): Promise<EsibizioneDataFormat[]> {
+  const cmsItems = await getAllEsibizioni();
+  return cmsItems.map(cmsEsibizioneToData);
+}
+
+/**
+ * Get unique years from esibizioni (descending order)
+ */
+export async function getEsibizioniAnniUnici(): Promise<number[]> {
+  const esibizioni = await getAllEsibizioniData();
+  const anni = new Set(esibizioni.map((e) => e.anno));
+  return Array.from(anni).sort((a, b) => b - a);
+}
+
+/**
+ * Get unique categories from esibizioni
+ */
+export async function getEsibizioniCategorie(): Promise<CategoriaEsibizioneDisplay[]> {
+  const esibizioni = await getAllEsibizioniData();
+  const categorie = new Set(esibizioni.map((e) => e.categoria));
+  return Array.from(categorie);
+}
+
+// ============================================
 // RASSEGNA STAMPA CONTENT LOADERS
 // ============================================
 

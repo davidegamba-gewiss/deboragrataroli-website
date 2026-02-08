@@ -3,21 +3,34 @@
 import { useState, useMemo } from 'react';
 import VideoCard from './VideoCard';
 import VideoFilters from './VideoFilters';
-import { filtraVideo, getAnniUnici, getCategorie } from '@/utils/esibizioniData';
-import type { CategoriaEsibizione } from '@/data/esibizioni';
+import type { EsibizioneDataFormat, CategoriaEsibizioneDisplay } from '@/lib/content';
 
-export default function VideoGallery() {
+export interface VideoGalleryProps {
+  esibizioni: EsibizioneDataFormat[];
+}
+
+export default function VideoGallery({ esibizioni }: VideoGalleryProps) {
   const [selectedAnno, setSelectedAnno] = useState<number | null>(null);
   const [selectedCategoria, setSelectedCategoria] =
-    useState<CategoriaEsibizione | null>(null);
+    useState<CategoriaEsibizioneDisplay | null>(null);
 
-  const anni = useMemo(() => getAnniUnici(), []);
-  const categorie = useMemo(() => getCategorie(), []);
+  const anni = useMemo(() => {
+    const uniqueAnni = new Set(esibizioni.map((e) => e.anno));
+    return Array.from(uniqueAnni).sort((a, b) => b - a);
+  }, [esibizioni]);
 
-  const videoFiltrati = useMemo(
-    () => filtraVideo(selectedAnno, selectedCategoria),
-    [selectedAnno, selectedCategoria]
-  );
+  const categorie = useMemo(() => {
+    const uniqueCategorie = new Set(esibizioni.map((e) => e.categoria));
+    return Array.from(uniqueCategorie);
+  }, [esibizioni]);
+
+  const videoFiltrati = useMemo(() => {
+    return esibizioni.filter((v) => {
+      const matchAnno = !selectedAnno || v.anno === selectedAnno;
+      const matchCategoria = !selectedCategoria || v.categoria === selectedCategoria;
+      return matchAnno && matchCategoria;
+    });
+  }, [esibizioni, selectedAnno, selectedCategoria]);
 
   const handleReset = () => {
     setSelectedAnno(null);

@@ -4,3 +4,4 @@ export { default as VideoGallery } from './VideoGallery';
 
 export type { VideoCardProps } from './VideoCard';
 export type { VideoFiltersProps } from './VideoFilters';
+export type { VideoGalleryProps } from './VideoGallery';
