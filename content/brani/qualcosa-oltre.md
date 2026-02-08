@@ -3,6 +3,7 @@ title: Qualcosa Oltre
 cover: /media/brani/brani_02.png
 youtube_url: https://youtu.be/0O5Sy4rSwhM?si=eJjjrTJEltjXsgka
 categoria: singolo
+data_pubblicazione: 2025-05-25
 descrizione: >-
   “Qualcosa oltre”, il mio secondo brano, nasce due anni dopo, il 5 marzo 2023,
   in uno dei momenti più bui della mia vita. Se il primo brano era stato un
