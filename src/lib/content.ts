@@ -440,7 +440,7 @@ export function cmsArticoloToData(item: ContentItem<ArticoloFrontmatter>): Artic
     testata: item.frontmatter.testata,
     dataPubblicazione: item.frontmatter.data_pubblicazione,
     estratto: item.frontmatter.estratto || '',
-    immagine: item.frontmatter.immagine || '/images/stampa/default.jpg',
+    immagine: item.frontmatter.immagine || '/images/stampa/default.png',
     linkEsterno: item.frontmatter.link_esterno,
     ordine: item.frontmatter.ordine || 999,
   };
