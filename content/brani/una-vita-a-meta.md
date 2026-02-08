@@ -3,11 +3,13 @@ title: Una Vita a Metà
 cover: /media/brani/brani_01.png
 youtube_url: https://youtu.be/XOUI8jXcKrI?si=OHMTOCaeaaptP4D9
 categoria: singolo
+data_pubblicazione: 2024-04-08
 descrizione: >-
-  
-
-
-  “Una vita a metà” è il mio primo singolo, e rappresenta il momento in cui la musica è diventata per me un rifugio e una possibilità di rinascita. Ho iniziato a scriverlo nel 2021, durante il primo anno di liceo, quando portavo ancora addosso il peso di anni faticosi segnati dal bullismo subito alle scuole medie. Mi sentivo sbagliata, fuori posto e non credevo in me stessa.
+  “Una vita a metà” è il mio primo singolo, e rappresenta il momento in cui la
+  musica è diventata per me un rifugio e una possibilità di rinascita. Ho
+  iniziato a scriverlo nel 2021, durante il primo anno di liceo, quando portavo
+  ancora addosso il peso di anni faticosi segnati dal bullismo subito alle
+  scuole medie. Mi sentivo sbagliata, fuori posto e non credevo in me stessa.
 
 
   In quel periodo avevo iniziato a chiudermi sempre di più, a non mangiare e a farmi del male. È stata la mia insegnante di canto, Greta Caserta, la prima persona con cui ho trovato il coraggio di parlare. È stata lei a spronarmi a trasformare tutto quel dolore in musica, a scrivere ciò che non riuscivo a dire a voce.  
@@ -54,5 +56,5 @@ lyrics: |-
   Un giorno mi amerò e mi accetterò
   Un giorno supererò le mie paure 
   Un giorno vincerò io
-featured: false
+featured: true
 ---
