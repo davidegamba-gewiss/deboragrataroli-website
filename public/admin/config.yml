@@ -199,7 +199,7 @@ collections:
     description: "Gestione degli eventi e concerti"
     folder: "content/eventi"
     create: true
-    slug: "{{fields.anno_gruppo}}-{{fields.luogo}}"
+    slug: "{{anno_gruppo}}-{{luogo}}"
     identifier_field: "luogo"
     extension: "md"
     format: "frontmatter"
