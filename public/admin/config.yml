@@ -191,54 +191,66 @@ collections:
         hint: "Mostra questo brano in evidenza nella home"
 
   # ============================================
-  # EVENTI
+  # CONCERTI (Eventi e Date Live)
   # ============================================
-  - name: "eventi"
-    label: "Eventi"
-    label_singular: "Evento"
-    description: "Gestione degli eventi e concerti"
-    folder: "content/eventi"
+  - name: "concerti"
+    label: "Concerti"
+    label_singular: "Concerto"
+    description: "Gestione dei concerti e date live"
+    folder: "content/concerti"
     create: true
     slug: "{{slug}}"
     extension: "md"
     format: "frontmatter"
-    summary: "{{title}}"
+    sortable_fields: ['data_evento', 'title', 'luogo']
+    summary: "{{title}} - {{luogo}} ({{data_evento}})"
     editor:
-      preview: false
+      preview: true
     fields:
-      - label: "Titolo Evento"
+      - label: "Titolo"
         name: "title"
         widget: "string"
         required: true
+        hint: "Nome dell'evento (es. Concerto di Primavera)"
 
       - label: "Luogo"
         name: "luogo"
         widget: "string"
         required: true
+        hint: "Nome della venue (es. Teatro Comunale)"
 
       - label: "Città"
         name: "citta"
         widget: "string"
         required: true
 
-      - label: "Data"
-        name: "data"
+      - label: "Data Evento"
+        name: "data_evento"
         widget: "datetime"
         required: true
         date_format: "DD/MM/YYYY"
-        time_format: "HH:mm"
-        format: "YYYY-MM-DDTHH:mm:ssZ"
+        format: "YYYY-MM-DD"
 
-      - label: "Anno Gruppo"
-        name: "anno_gruppo"
-        widget: "string"
-        required: true
-        default: "2026"
-
-      - label: "Nome Tour"
-        name: "nome_tour"
+      - label: "Orario"
+        name: "orario"
         widget: "string"
         required: false
+        hint: "Orario di inizio (es. 21:00)"
+
+      - label: "Anno"
+        name: "anno"
+        widget: "number"
+        required: true
+        value_type: "int"
+        min: 2000
+        max: 2100
+        hint: "Anno per raggruppamento"
+
+      - label: "Tour"
+        name: "tour"
+        widget: "string"
+        required: false
+        hint: "Nome del tour (opzionale)"
 
       - label: "Descrizione"
         name: "descrizione"
@@ -255,11 +267,11 @@ collections:
         widget: "string"
         required: false
 
-      - label: "Stato"
-        name: "stato"
-        widget: "string"
-        required: true
-        default: "confermato"
+      - label: "Confermato"
+        name: "confermato"
+        widget: "boolean"
+        default: true
+        hint: "L'evento è confermato?"
 
   # ============================================
   # ESIBIZIONI

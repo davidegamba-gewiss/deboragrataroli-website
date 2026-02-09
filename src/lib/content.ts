@@ -51,20 +51,20 @@ export interface BranoFrontmatter {
 }
 
 /**
- * Evento frontmatter structure
+ * Concerto frontmatter structure (new format)
  */
-export interface EventoFrontmatter {
+export interface ConcertoFrontmatter {
   title: string;
   luogo: string;
   citta: string;
-  data: string;
-  anno_gruppo: string;
-  nome_tour?: string;
+  data_evento: string;
+  orario?: string;
+  anno: number;
+  tour?: string;
   descrizione?: string;
-  immagine?: string;
   link_biglietti?: string;
   prezzo?: string;
-  stato: string;
+  confermato: boolean;
 }
 
 /**
@@ -330,44 +330,44 @@ export async function getAllBraniSlugs(): Promise<string[]> {
 }
 
 // ============================================
-// EVENTI CONTENT LOADERS
+// CONCERTI CONTENT LOADERS
 // ============================================
 
 /**
- * Get all eventi
+ * Get all concerti
  */
-export async function getAllEventi(): Promise<ContentItem<EventoFrontmatter>[]> {
-  const items = await getCollectionItems<EventoFrontmatter>('eventi');
+export async function getAllConcerti(): Promise<ContentItem<ConcertoFrontmatter>[]> {
+  const items = await getCollectionItems<ConcertoFrontmatter>('concerti');
   // Sort by date (newest first)
   return items.sort((a, b) => {
-    return new Date(b.frontmatter.data).getTime() - new Date(a.frontmatter.data).getTime();
+    return new Date(b.frontmatter.data_evento).getTime() - new Date(a.frontmatter.data_evento).getTime();
   });
 }
 
 /**
- * Get upcoming eventi (future events)
+ * Get upcoming concerti (future events)
  */
-export async function getUpcomingEventi(): Promise<ContentItem<EventoFrontmatter>[]> {
-  const allEventi = await getAllEventi();
+export async function getUpcomingConcerti(): Promise<ContentItem<ConcertoFrontmatter>[]> {
+  const allConcerti = await getAllConcerti();
   const now = new Date();
-  return allEventi
-    .filter((evento) => new Date(evento.frontmatter.data) >= now)
+  return allConcerti
+    .filter((concerto) => new Date(concerto.frontmatter.data_evento) >= now)
     .sort((a, b) => {
-      return new Date(a.frontmatter.data).getTime() - new Date(b.frontmatter.data).getTime();
+      return new Date(a.frontmatter.data_evento).getTime() - new Date(b.frontmatter.data_evento).getTime();
     });
 }
 
 /**
- * Get past eventi
+ * Get past concerti
  */
-export async function getPastEventi(): Promise<ContentItem<EventoFrontmatter>[]> {
-  const allEventi = await getAllEventi();
+export async function getPastConcerti(): Promise<ContentItem<ConcertoFrontmatter>[]> {
+  const allConcerti = await getAllConcerti();
   const now = new Date();
-  return allEventi.filter((evento) => new Date(evento.frontmatter.data) < now);
+  return allConcerti.filter((concerto) => new Date(concerto.frontmatter.data_evento) < now);
 }
 
 // ============================================
-// EVENTI DATA FORMAT (for components)
+// EVENTI DATA FORMAT (for components - unchanged interface)
 // ============================================
 
 export interface EventoDataFormat {
@@ -380,48 +380,41 @@ export interface EventoDataFormat {
   descrizione: string;
   annoGruppo: number;
   nomeTour?: string;
-  immagine?: string;
   linkBiglietti?: string;
   prezzo?: string;
-  stato: string;
+  confermato: boolean;
 }
 
 /**
- * Convert CMS evento to component data format
+ * Convert CMS concerto to EventoDataFormat for components
  */
-export function cmsEventoToData(item: ContentItem<EventoFrontmatter>): EventoDataFormat {
-  const dataDate = new Date(item.frontmatter.data);
-  const ora = dataDate.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
-  const isoString = dataDate.toISOString();
-  const dataString = isoString.split('T')[0] ?? isoString.slice(0, 10);
-
+export function cmsConcertoToData(item: ContentItem<ConcertoFrontmatter>): EventoDataFormat {
   return {
     id: item.slug,
     titolo: item.frontmatter.title,
     luogo: item.frontmatter.luogo,
     citta: item.frontmatter.citta,
-    data: dataString,
-    ora: ora,
+    data: item.frontmatter.data_evento,
+    ora: item.frontmatter.orario || '21:00',
     descrizione: item.frontmatter.descrizione || '',
-    annoGruppo: parseInt(item.frontmatter.anno_gruppo, 10),
-    nomeTour: item.frontmatter.nome_tour,
-    immagine: item.frontmatter.immagine,
+    annoGruppo: item.frontmatter.anno,
+    nomeTour: item.frontmatter.tour,
     linkBiglietti: item.frontmatter.link_biglietti,
     prezzo: item.frontmatter.prezzo,
-    stato: item.frontmatter.stato,
+    confermato: item.frontmatter.confermato !== false,
   };
 }
 
 /**
- * Get all eventi in component data format
+ * Get all concerti in component data format
  */
 export async function getAllEventiData(): Promise<EventoDataFormat[]> {
-  const cmsItems = await getAllEventi();
-  return cmsItems.map(cmsEventoToData);
+  const cmsItems = await getAllConcerti();
+  return cmsItems.map(cmsConcertoToData);
 }
 
 /**
- * Get future eventi in component data format
+ * Get future concerti in component data format
  */
 export async function getEventiFuturiData(): Promise<EventoDataFormat[]> {
   const allEventi = await getAllEventiData();
@@ -429,7 +422,7 @@ export async function getEventiFuturiData(): Promise<EventoDataFormat[]> {
   oggi.setHours(0, 0, 0, 0);
 
   return allEventi
-    .filter((e) => new Date(e.data) >= oggi && e.stato !== 'annullato')
+    .filter((e) => new Date(e.data) >= oggi && e.confermato)
     .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
 }
 
@@ -443,7 +436,7 @@ export interface EventiPassatiGroup {
 }
 
 /**
- * Get past eventi grouped by year/tour
+ * Get past concerti grouped by year/tour
  */
 export async function getEventiPassatiData(): Promise<EventiPassatiGroup[]> {
   const allEventi = await getAllEventiData();
