@@ -199,8 +199,7 @@ collections:
     description: "Gestione degli eventi e concerti"
     folder: "content/eventi"
     create: true
-    slug: "{{slug}}"
-    identifier_field: "luogo"
+    slug: "{{uuid_short}}"
     extension: "md"
     format: "frontmatter"
     sortable_fields: ['data', 'luogo']
