@@ -38,61 +38,300 @@ logo_url: /media/logo.png
 # Collections
 collections:
   # ============================================
-  # PAGINE
+  # PAGINE (tutte le pagine del sito)
   # ============================================
   - name: "pages"
     label: "Pagine"
-    label_singular: "Pagina"
-    description: "Gestione delle pagine principali del sito"
-    folder: "content/pages"
-    create: false
-    slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
+    description: "Gestione di tutte le pagine del sito"
     editor:
       preview: true
-    fields:
-      - label: "Titolo"
-        name: "title"
-        widget: "string"
-        required: true
-        hint: "Il titolo della pagina"
+    files:
+      - name: "home"
+        label: "Home"
+        file: "content/pages/home.md"
+        fields:
+          - label: "Titolo"
+            name: "title"
+            widget: "string"
+            required: true
 
-      - label: "Descrizione SEO"
-        name: "seo_description"
-        widget: "text"
-        required: false
-        hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
-        pattern: ['^.{0,160}$', "Massimo 160 caratteri"]
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
 
-      - label: "Immagine Hero"
-        name: "hero_image"
-        widget: "image"
-        required: false
-        media_folder: "/public/media/pages"
-        public_folder: "/media/pages"
-        hint: "Immagine principale della pagina"
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
 
-      - label: "Sottotitolo Hero"
-        name: "hero_subtitle"
-        widget: "string"
-        required: false
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
 
-      - label: "Contenuto"
-        name: "body"
-        widget: "markdown"
-        required: false
-        buttons:
-          - bold
-          - italic
-          - link
-          - heading-two
-          - heading-three
-          - quote
-          - bulleted-list
-          - numbered-list
-        editor_components:
-          - image
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+      - name: "biografia"
+        label: "Biografia"
+        file: "content/pages/biografia.md"
+        fields:
+          - label: "Titolo"
+            name: "title"
+            widget: "string"
+            required: true
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+      - name: "brani-page"
+        label: "Pagina Brani"
+        file: "content/pages/brani.md"
+        fields:
+          - label: "Titolo"
+            name: "title"
+            widget: "string"
+            required: true
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+      - name: "concerti-page"
+        label: "Pagina Concerti/Eventi"
+        file: "content/pages/concerti.md"
+        fields:
+          - label: "Titolo"
+            name: "title"
+            widget: "string"
+            required: true
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+      - name: "esibizioni-page"
+        label: "Pagina Esibizioni"
+        file: "content/pages/esibizioni.md"
+        fields:
+          - label: "Titolo"
+            name: "title"
+            widget: "string"
+            required: true
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+      - name: "rassegna-stampa-page"
+        label: "Pagina Rassegna Stampa"
+        file: "content/pages/rassegna-stampa.md"
+        fields:
+          - label: "Titolo"
+            name: "title"
+            widget: "string"
+            required: true
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+      - name: "contatti"
+        label: "Contatti"
+        file: "content/pages/contatti.md"
+        fields:
+          - label: "Titolo"
+            name: "title"
+            widget: "string"
+            required: true
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
 
   # ============================================
   # BRANI
@@ -430,183 +669,6 @@ collections:
         name: "featured"
         widget: "boolean"
         default: false
-
-  # ============================================
-  # IMPOSTAZIONI PAGINE SEZIONI
-  # ============================================
-  - name: "section-pages"
-    label: "Pagine Sezioni"
-    description: "Impostazioni per le pagine delle sezioni (Brani, Concerti, Esibizioni, Rassegna Stampa)"
-    editor:
-      preview: true
-    files:
-      - name: "brani-page"
-        label: "Pagina Brani"
-        file: "content/section-pages/brani.md"
-        fields:
-          - label: "Titolo Pagina"
-            name: "title"
-            widget: "string"
-            required: true
-            default: "Brani"
-
-          - label: "Descrizione SEO"
-            name: "seo_description"
-            widget: "text"
-            required: false
-            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
-
-          - label: "Immagine Hero"
-            name: "hero_image"
-            widget: "image"
-            required: false
-            media_folder: "/public/media/pages"
-            public_folder: "/media/pages"
-
-          - label: "Sottotitolo Hero"
-            name: "hero_subtitle"
-            widget: "string"
-            required: false
-
-          - label: "Contenuto"
-            name: "body"
-            widget: "markdown"
-            required: false
-            buttons:
-              - bold
-              - italic
-              - link
-              - heading-two
-              - heading-three
-              - quote
-              - bulleted-list
-              - numbered-list
-
-      - name: "concerti-page"
-        label: "Pagina Concerti/Eventi"
-        file: "content/section-pages/concerti.md"
-        fields:
-          - label: "Titolo Pagina"
-            name: "title"
-            widget: "string"
-            required: true
-            default: "Eventi"
-
-          - label: "Descrizione SEO"
-            name: "seo_description"
-            widget: "text"
-            required: false
-            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
-
-          - label: "Immagine Hero"
-            name: "hero_image"
-            widget: "image"
-            required: false
-            media_folder: "/public/media/pages"
-            public_folder: "/media/pages"
-
-          - label: "Sottotitolo Hero"
-            name: "hero_subtitle"
-            widget: "string"
-            required: false
-
-          - label: "Contenuto"
-            name: "body"
-            widget: "markdown"
-            required: false
-            buttons:
-              - bold
-              - italic
-              - link
-              - heading-two
-              - heading-three
-              - quote
-              - bulleted-list
-              - numbered-list
-
-      - name: "esibizioni-page"
-        label: "Pagina Esibizioni"
-        file: "content/section-pages/esibizioni.md"
-        fields:
-          - label: "Titolo Pagina"
-            name: "title"
-            widget: "string"
-            required: true
-            default: "Esibizioni"
-
-          - label: "Descrizione SEO"
-            name: "seo_description"
-            widget: "text"
-            required: false
-            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
-
-          - label: "Immagine Hero"
-            name: "hero_image"
-            widget: "image"
-            required: false
-            media_folder: "/public/media/pages"
-            public_folder: "/media/pages"
-
-          - label: "Sottotitolo Hero"
-            name: "hero_subtitle"
-            widget: "string"
-            required: false
-
-          - label: "Contenuto"
-            name: "body"
-            widget: "markdown"
-            required: false
-            buttons:
-              - bold
-              - italic
-              - link
-              - heading-two
-              - heading-three
-              - quote
-              - bulleted-list
-              - numbered-list
-
-      - name: "rassegna-stampa-page"
-        label: "Pagina Rassegna Stampa"
-        file: "content/section-pages/rassegna-stampa.md"
-        fields:
-          - label: "Titolo Pagina"
-            name: "title"
-            widget: "string"
-            required: true
-            default: "Rassegna Stampa"
-
-          - label: "Descrizione SEO"
-            name: "seo_description"
-            widget: "text"
-            required: false
-            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
-
-          - label: "Immagine Hero"
-            name: "hero_image"
-            widget: "image"
-            required: false
-            media_folder: "/public/media/pages"
-            public_folder: "/media/pages"
-
-          - label: "Sottotitolo Hero"
-            name: "hero_subtitle"
-            widget: "string"
-            required: false
-
-          - label: "Contenuto"
-            name: "body"
-            widget: "markdown"
-            required: false
-            buttons:
-              - bold
-              - italic
-              - link
-              - heading-two
-              - heading-three
-              - quote
-              - bulleted-list
-              - numbered-list
 
   # ============================================
   # SETTINGS GLOBALI
