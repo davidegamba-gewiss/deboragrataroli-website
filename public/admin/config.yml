@@ -199,45 +199,29 @@ collections:
     description: "Gestione degli eventi e concerti"
     folder: "content/eventi"
     create: true
-    slug: "{{uuid_short}}"
+    slug: "{{slug}}"
     extension: "md"
     format: "frontmatter"
-    sortable_fields: ['data', 'luogo']
-    summary: "{{luogo}} - {{citta}}"
+    summary: "{{title}}"
     editor:
-      preview: true
+      preview: false
     fields:
+      - label: "Titolo Evento"
+        name: "title"
+        widget: "string"
+        required: true
+
       - label: "Luogo"
         name: "luogo"
         widget: "string"
         required: true
-        hint: "Nome della venue/location (campo obbligatorio)"
 
       - label: "Città"
         name: "citta"
         widget: "string"
         required: true
-        hint: "Città dell'evento (campo obbligatorio)"
 
-      - label: "Titolo Evento"
-        name: "title"
-        widget: "string"
-        required: false
-        hint: "Campo opzionale - nome descrittivo dell'evento"
-
-      - label: "Anno (per raggruppamento)"
-        name: "anno_gruppo"
-        widget: "select"
-        required: true
-        hint: "Anno per raggruppare gli eventi"
-        options:
-          - { label: "2024", value: "2024" }
-          - { label: "2025", value: "2025" }
-          - { label: "2026", value: "2026" }
-          - { label: "2027", value: "2027" }
-        default: "2025"
-
-      - label: "Data e Ora"
+      - label: "Data"
         name: "data"
         widget: "datetime"
         required: true
@@ -245,46 +229,36 @@ collections:
         time_format: "HH:mm"
         format: "YYYY-MM-DDTHH:mm:ssZ"
 
+      - label: "Anno Gruppo"
+        name: "anno_gruppo"
+        widget: "string"
+        required: true
+        default: "2026"
+
       - label: "Nome Tour"
         name: "nome_tour"
         widget: "string"
         required: false
-        hint: "Nome del tour (opzionale)"
 
       - label: "Descrizione"
         name: "descrizione"
-        widget: "markdown"
+        widget: "text"
         required: false
-        minimal: true
-
-      - label: "Immagine Evento"
-        name: "immagine"
-        widget: "image"
-        required: false
-        media_folder: "/public/media/eventi"
-        public_folder: "/media/eventi"
 
       - label: "Link Biglietti"
         name: "link_biglietti"
         widget: "string"
         required: false
-        hint: "URL per acquisto biglietti"
 
       - label: "Prezzo"
         name: "prezzo"
         widget: "string"
         required: false
-        hint: "Indicazione prezzo (es. 'Ingresso libero', '15€')"
 
       - label: "Stato"
         name: "stato"
-        widget: "select"
+        widget: "string"
         required: true
-        options:
-          - { label: "Confermato", value: "confermato" }
-          - { label: "Sold Out", value: "sold_out" }
-          - { label: "Annullato", value: "annullato" }
-          - { label: "Rimandato", value: "rimandato" }
         default: "confermato"
 
   # ============================================

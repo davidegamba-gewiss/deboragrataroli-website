@@ -54,7 +54,7 @@ export interface BranoFrontmatter {
  * Evento frontmatter structure
  */
 export interface EventoFrontmatter {
-  title?: string; // Optional in CMS
+  title: string;
   luogo: string;
   citta: string;
   data: string;
@@ -64,7 +64,7 @@ export interface EventoFrontmatter {
   immagine?: string;
   link_biglietti?: string;
   prezzo?: string;
-  stato: 'confermato' | 'sold_out' | 'annullato' | 'rimandato';
+  stato: string;
 }
 
 /**
@@ -383,7 +383,7 @@ export interface EventoDataFormat {
   immagine?: string;
   linkBiglietti?: string;
   prezzo?: string;
-  stato: 'confermato' | 'sold_out' | 'annullato' | 'rimandato';
+  stato: string;
 }
 
 /**
@@ -397,7 +397,7 @@ export function cmsEventoToData(item: ContentItem<EventoFrontmatter>): EventoDat
 
   return {
     id: item.slug,
-    titolo: item.frontmatter.title || item.frontmatter.luogo,
+    titolo: item.frontmatter.title,
     luogo: item.frontmatter.luogo,
     citta: item.frontmatter.citta,
     data: dataString,
