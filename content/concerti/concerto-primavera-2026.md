@@ -1,6 +1,6 @@
 ---
-title: Concerto
-luogo: Chiostro SS. Trinità
+title: Chiostro SS. Trinità
+luogo: Serina
 citta: Serina (BG)
 data_evento: 2025-08-30
 orario: 20:45
