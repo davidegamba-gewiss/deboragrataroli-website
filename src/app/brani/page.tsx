@@ -1,39 +1,55 @@
 import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BranoListGrid } from '@/components/brani';
-import { getAllBraniData } from '@/lib/content';
+import { getAllBraniData, getBraniPage } from '@/lib/content';
 import { generatePageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = generatePageMetadata({
-  title: 'I Miei Brani',
-  description:
-    'Scopri il catalogo completo dei brani originali di Debora Grataroli. Ascolta musica italiana di qualità, dalle ballad romantiche ai brani più energici.',
-  path: '/brani',
-  keywords: ['brani originali', 'canzoni italiane', 'musica cantautoriale', 'discografia'],
-  type: 'music.album',
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const pageContent = await getBraniPage();
+  return generatePageMetadata({
+    title: pageContent?.frontmatter.title || 'I Miei Brani',
+    description:
+      pageContent?.frontmatter.seo_description ||
+      'Scopri il catalogo completo dei brani originali di Debora Grataroli.',
+    path: '/brani',
+    keywords: ['brani originali', 'canzoni italiane', 'musica cantautoriale', 'discografia'],
+    type: 'music.album',
+  });
+}
 
 export default async function BraniPage() {
-  const brani = await getAllBraniData();
+  const [brani, pageContent] = await Promise.all([getAllBraniData(), getBraniPage()]);
+
+  const title = pageContent?.frontmatter.title || 'I Miei Brani';
+  const subtitle = pageContent?.frontmatter.hero_subtitle || 'Ascolta la mia musica';
+  const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-brani.jpg';
 
   return (
     <PageLayout
       hero={{
-        imageSrc: '/images/hero-brani.jpg',
-        title: 'I Miei Brani',
-        subtitle: 'Ascolta la mia musica',
-        imageAlt: 'Spartiti musicali',
+        imageSrc: heroImage,
+        title: title,
+        subtitle: subtitle,
+        imageAlt: title,
       }}
     >
       <section className="py-16 lg:py-24">
         {/* Section Header */}
         <header className="text-center mb-12">
           <h2 className="font-playfair text-4xl md:text-5xl font-semibold text-purple-dark mb-4">
-            I Miei Brani
+            {title}
           </h2>
-          <p className="text-neutral-dark/70 text-base md:text-lg max-w-2xl mx-auto">
-            Scopri il catalogo completo dei miei brani originali
-          </p>
+          {pageContent?.htmlContent && (
+            <div
+              className="text-neutral-dark/70 text-base md:text-lg max-w-2xl mx-auto prose prose-purple"
+              dangerouslySetInnerHTML={{ __html: pageContent.htmlContent }}
+            />
+          )}
+          {!pageContent?.htmlContent && (
+            <p className="text-neutral-dark/70 text-base md:text-lg max-w-2xl mx-auto">
+              Scopri il catalogo completo dei miei brani originali
+            </p>
+          )}
         </header>
 
         {/* Brani Grid */}

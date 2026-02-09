@@ -234,6 +234,34 @@ export async function getContattiPage(): Promise<ContentItem<PageFrontmatter> | 
   return getPage('contatti');
 }
 
+/**
+ * Get brani section page content
+ */
+export async function getBraniPage(): Promise<ContentItem<PageFrontmatter> | null> {
+  return getPage('brani');
+}
+
+/**
+ * Get concerti/eventi section page content
+ */
+export async function getConcertiPage(): Promise<ContentItem<PageFrontmatter> | null> {
+  return getPage('concerti');
+}
+
+/**
+ * Get esibizioni section page content
+ */
+export async function getEsibizioniPage(): Promise<ContentItem<PageFrontmatter> | null> {
+  return getPage('esibizioni');
+}
+
+/**
+ * Get rassegna stampa section page content
+ */
+export async function getRassegnaStampaPage(): Promise<ContentItem<PageFrontmatter> | null> {
+  return getPage('rassegna-stampa');
+}
+
 // ============================================
 // BRANI CONTENT LOADERS
 // ============================================

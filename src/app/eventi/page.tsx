@@ -1,41 +1,58 @@
 import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { EventiFuturi, EventiPassati } from '@/components/eventi';
-import { getEventiFuturiData, getEventiPassatiData } from '@/lib/content';
+import { getEventiFuturiData, getEventiPassatiData, getConcertiPage } from '@/lib/content';
 import { generatePageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = generatePageMetadata({
-  title: 'Eventi e Concerti',
-  description:
-    'Scopri i prossimi concerti e esibizioni di Debora Grataroli. Calendario eventi, date, location e informazioni per assistere ai live.',
-  path: '/eventi',
-  keywords: ['concerti', 'eventi musicali', 'live', 'tour', 'calendario concerti'],
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const pageContent = await getConcertiPage();
+  return generatePageMetadata({
+    title: pageContent?.frontmatter.title || 'Eventi e Concerti',
+    description:
+      pageContent?.frontmatter.seo_description ||
+      'Scopri i prossimi concerti e esibizioni di Debora Grataroli.',
+    path: '/eventi',
+    keywords: ['concerti', 'eventi musicali', 'live', 'tour', 'calendario concerti'],
+  });
+}
 
 export default async function EventiPage() {
-  const [eventiFuturi, eventiPassati] = await Promise.all([
+  const [eventiFuturi, eventiPassati, pageContent] = await Promise.all([
     getEventiFuturiData(),
     getEventiPassatiData(),
+    getConcertiPage(),
   ]);
+
+  const title = pageContent?.frontmatter.title || 'Eventi e Concerti';
+  const subtitle = pageContent?.frontmatter.hero_subtitle || 'Scopri dove e quando mi esibisco';
+  const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-eventi.jpg';
 
   return (
     <PageLayout
       hero={{
-        imageSrc: '/images/hero-eventi.jpg',
-        title: 'Eventi e Concerti',
-        subtitle: 'Scopri dove e quando mi esibisco',
-        imageAlt: 'Debora Grataroli in concerto',
+        imageSrc: heroImage,
+        title: title,
+        subtitle: subtitle,
+        imageAlt: title,
       }}
     >
       <section className="py-16 lg:py-24">
         {/* Section Header */}
         <header className="text-center mb-12">
           <h2 className="font-playfair text-4xl md:text-5xl font-semibold text-purple-dark mb-4">
-            Eventi e Concerti
+            {title}
           </h2>
-          <p className="text-neutral-dark/70 text-base md:text-lg max-w-2xl mx-auto">
-            Scopri dove e quando mi esibisco
-          </p>
+          {pageContent?.htmlContent && (
+            <div
+              className="text-neutral-dark/70 text-base md:text-lg max-w-2xl mx-auto prose prose-purple"
+              dangerouslySetInnerHTML={{ __html: pageContent.htmlContent }}
+            />
+          )}
+          {!pageContent?.htmlContent && (
+            <p className="text-neutral-dark/70 text-base md:text-lg max-w-2xl mx-auto">
+              {subtitle}
+            </p>
+          )}
         </header>
 
         {/* Future Events */}
