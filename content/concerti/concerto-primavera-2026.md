@@ -1,13 +1,13 @@
 ---
-title: Concerto di Primavera 2026
-luogo: Teatro Comunal
-citta: Bergamo
-data_evento: 2026-04-15
-orario: 21:00
-anno: 2026
-tour: Tour Primavera
-descrizione: Un concerto speciale per celebrare la primavera.
-link_biglietti: https://example.com/biglietti
-prezzo: 15€
+title: Concerto
+luogo: Chiostro SS. Trinità
+citta: Serina (BG)
+data_evento: 2025-08-30
+orario: 20:45
+anno: 2025
+tour: Omaggio ai grandi cantautori italiani
+descrizione: Che brava la Debora!
+link_biglietti: ""
+prezzo: ""
 confermato: true
 ---
