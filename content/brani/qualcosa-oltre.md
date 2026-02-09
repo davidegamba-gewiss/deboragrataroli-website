@@ -78,5 +78,6 @@ lyrics: |-
 
   Come glielo spieghi 
   Che non potrà finire qui, così
+immagine_extra: /media/brani/progetto-senza-titolo-29-.png
 featured: true
 ---
