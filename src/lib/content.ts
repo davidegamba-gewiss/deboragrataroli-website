@@ -54,9 +54,9 @@ export interface BranoFrontmatter {
  * Evento frontmatter structure
  */
 export interface EventoFrontmatter {
-  title: string;
+  title?: string; // Optional in CMS
   luogo: string;
-  citta?: string;
+  citta: string;
   data: string;
   anno_gruppo: string;
   nome_tour?: string;
@@ -364,6 +364,122 @@ export async function getPastEventi(): Promise<ContentItem<EventoFrontmatter>[]>
   const allEventi = await getAllEventi();
   const now = new Date();
   return allEventi.filter((evento) => new Date(evento.frontmatter.data) < now);
+}
+
+// ============================================
+// EVENTI DATA FORMAT (for components)
+// ============================================
+
+export interface EventoDataFormat {
+  id: string;
+  titolo: string;
+  luogo: string;
+  citta?: string;
+  data: string;
+  ora: string;
+  descrizione: string;
+  annoGruppo: number;
+  nomeTour?: string;
+  immagine?: string;
+  linkBiglietti?: string;
+  prezzo?: string;
+  stato: 'confermato' | 'sold_out' | 'annullato' | 'rimandato';
+}
+
+/**
+ * Convert CMS evento to component data format
+ */
+export function cmsEventoToData(item: ContentItem<EventoFrontmatter>): EventoDataFormat {
+  const dataDate = new Date(item.frontmatter.data);
+  const ora = dataDate.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+  const isoString = dataDate.toISOString();
+  const dataString = isoString.split('T')[0] ?? isoString.slice(0, 10);
+
+  return {
+    id: item.slug,
+    titolo: item.frontmatter.title || item.frontmatter.luogo,
+    luogo: item.frontmatter.luogo,
+    citta: item.frontmatter.citta,
+    data: dataString,
+    ora: ora,
+    descrizione: item.frontmatter.descrizione || '',
+    annoGruppo: parseInt(item.frontmatter.anno_gruppo, 10),
+    nomeTour: item.frontmatter.nome_tour,
+    immagine: item.frontmatter.immagine,
+    linkBiglietti: item.frontmatter.link_biglietti,
+    prezzo: item.frontmatter.prezzo,
+    stato: item.frontmatter.stato,
+  };
+}
+
+/**
+ * Get all eventi in component data format
+ */
+export async function getAllEventiData(): Promise<EventoDataFormat[]> {
+  const cmsItems = await getAllEventi();
+  return cmsItems.map(cmsEventoToData);
+}
+
+/**
+ * Get future eventi in component data format
+ */
+export async function getEventiFuturiData(): Promise<EventoDataFormat[]> {
+  const allEventi = await getAllEventiData();
+  const oggi = new Date();
+  oggi.setHours(0, 0, 0, 0);
+
+  return allEventi
+    .filter((e) => new Date(e.data) >= oggi && e.stato !== 'annullato')
+    .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
+}
+
+/**
+ * Past events group interface
+ */
+export interface EventiPassatiGroup {
+  anno: number;
+  nomeTour?: string;
+  eventi: EventoDataFormat[];
+}
+
+/**
+ * Get past eventi grouped by year/tour
+ */
+export async function getEventiPassatiData(): Promise<EventiPassatiGroup[]> {
+  const allEventi = await getAllEventiData();
+  const oggi = new Date();
+  oggi.setHours(0, 0, 0, 0);
+
+  const passati = allEventi.filter((e) => new Date(e.data) < oggi);
+
+  // Group by year and tour
+  const groupMap = new Map<string, EventiPassatiGroup>();
+
+  passati.forEach((evento) => {
+    const anno = evento.annoGruppo;
+    const nomeTour = evento.nomeTour || 'Altri Eventi';
+    const key = `${anno}-${nomeTour}`;
+
+    if (!groupMap.has(key)) {
+      groupMap.set(key, {
+        anno,
+        nomeTour,
+        eventi: [],
+      });
+    }
+
+    groupMap.get(key)!.eventi.push(evento);
+  });
+
+  // Sort events within each group by date descending
+  groupMap.forEach((group) => {
+    group.eventi.sort(
+      (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime()
+    );
+  });
+
+  // Convert to array and sort by year descending
+  return Array.from(groupMap.values()).sort((a, b) => b.anno - a.anno);
 }
 
 // ============================================

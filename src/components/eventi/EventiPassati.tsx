@@ -1,7 +1,7 @@
 'use client';
 
 import EventoCard from './EventoCard';
-import type { EventiPassatiGroup } from '@/utils/eventiData';
+import type { EventiPassatiGroup } from '@/lib/content';
 
 export interface EventiPassatiProps {
   gruppi: EventiPassatiGroup[];

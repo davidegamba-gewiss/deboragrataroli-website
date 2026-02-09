@@ -1,10 +1,10 @@
 'use client';
 
 import EventoCard from './EventoCard';
-import type { EventoData } from '@/data/eventi';
+import type { EventoDataFormat } from '@/lib/content';
 
 export interface EventiFuturiProps {
-  eventi: EventoData[];
+  eventi: EventoDataFormat[];
 }
 
 export default function EventiFuturi({ eventi }: EventiFuturiProps) {

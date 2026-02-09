@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { EventiFuturi, EventiPassati } from '@/components/eventi';
-import { getEventiFuturi, getEventiPassati } from '@/utils/eventiData';
+import { getEventiFuturiData, getEventiPassatiData } from '@/lib/content';
 import { generatePageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -12,9 +12,11 @@ export const metadata: Metadata = generatePageMetadata({
   keywords: ['concerti', 'eventi musicali', 'live', 'tour', 'calendario concerti'],
 });
 
-export default function EventiPage() {
-  const eventiFuturi = getEventiFuturi();
-  const eventiPassati = getEventiPassati();
+export default async function EventiPage() {
+  const [eventiFuturi, eventiPassati] = await Promise.all([
+    getEventiFuturiData(),
+    getEventiPassatiData(),
+  ]);
 
   return (
     <PageLayout
