@@ -337,16 +337,6 @@ collections:
         required: false
         hint: "Nome della playlist di appartenenza (opzionale)"
 
-      - label: "Evento collegato"
-        name: "evento"
-        widget: "relation"
-        required: false
-        collection: "eventi"
-        search_fields: ["title", "luogo"]
-        value_field: "{{slug}}"
-        display_fields: ["title", "luogo"]
-        hint: "Collega a un evento specifico"
-
       - label: "In evidenza"
         name: "featured"
         widget: "boolean"
