@@ -104,7 +104,7 @@ export function Footer() {
               text-sm text-white font-sans
               hover:text-purple-medium hover:underline
               transition-colors duration-200
-              focus:outline-none focus:ring-2 focus:ring-purple-medium/50 focus:ring-offset-2 focus:ring-offset-black
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-medium/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black
               rounded
             "
           >
@@ -132,7 +132,7 @@ export function Footer() {
                       text-white
                       hover:text-purple-medium hover:scale-[1.15]
                       transition-all duration-200
-                      focus:outline-none focus:ring-2 focus:ring-purple-medium/50 focus:ring-offset-2 focus:ring-offset-black
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-medium/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black
                       rounded
                     "
                   >
@@ -173,6 +173,8 @@ export function Footer() {
             text-xs text-[#a0a0a0]
             hover:text-purple-medium
             transition-colors duration-200
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-medium/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black
+            rounded
           "
         >
           Privacy Policy
@@ -184,6 +186,8 @@ export function Footer() {
             text-xs text-[#a0a0a0]
             hover:text-purple-medium
             transition-colors duration-200
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-medium/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black
+            rounded
           "
         >
           Cookie Policy
@@ -199,8 +203,10 @@ export function Footer() {
             text-xs text-[#a0a0a0]
             hover:text-purple-medium
             transition-colors duration-200
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-medium/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black
             cursor-pointer
             bg-transparent border-none
+            rounded
           "
         >
           Gestisci Cookie

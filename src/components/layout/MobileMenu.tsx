@@ -145,7 +145,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                           block py-4 px-6 text-base font-normal
                           border-b border-gray-200
                           transition-colors duration-200
-                          focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple
+                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-purple
                           ${isActive
                             ? 'bg-gray-100 font-semibold border-l-4 border-l-purple-medium pl-5 text-neutral-dark'
                             : 'text-neutral-dark hover:bg-gray-50'
@@ -171,7 +171,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center w-12 h-12 text-purple-dark hover:text-purple-medium hover:bg-purple-light/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2 rounded-lg"
+                      className="flex items-center justify-center w-12 h-12 text-purple-dark hover:text-purple-medium hover:bg-purple-light/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 rounded-lg"
                       aria-label={social.label}
                     >
                       {SocialIcons[social.platform]}

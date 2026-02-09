@@ -51,7 +51,7 @@ export function Header({ menuOpen, setMenuOpen }: HeaderProps) {
           {/* Logo */}
           <Link
             href="/"
-            className="text-lg md:text-xl font-bold text-white hover:text-purple-light transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2 focus:ring-offset-purple-dark rounded"
+            className="text-lg md:text-xl font-bold text-white hover:text-purple-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-purple-dark rounded"
           >
             Debora Grataroli
           </Link>
@@ -60,7 +60,7 @@ export function Header({ menuOpen, setMenuOpen }: HeaderProps) {
           <button
             type="button"
             onClick={toggleMenu}
-            className="relative w-12 h-12 -mr-3 flex flex-col items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2 focus:ring-offset-purple-dark rounded"
+            className="relative w-12 h-12 -mr-3 flex flex-col items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-purple-dark rounded"
             aria-label="Menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
