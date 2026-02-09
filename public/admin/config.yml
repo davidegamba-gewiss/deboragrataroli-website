@@ -203,22 +203,11 @@ collections:
     identifier_field: "luogo"
     extension: "md"
     format: "frontmatter"
-    sortable_fields: ['data', 'title', 'anno_gruppo']
-    view_groups:
-      - label: "Anno"
-        field: "anno_gruppo"
-      - label: "Tour"
-        field: "nome_tour"
-    summary: "{{data | date('DD/MM/YYYY')}} - {{title}} @ {{luogo}}"
+    sortable_fields: ['data', 'luogo']
+    summary: "{{luogo}} - {{citta}}"
     editor:
       preview: true
     fields:
-      - label: "Titolo Evento"
-        name: "title"
-        widget: "string"
-        required: false
-        hint: "Campo opzionale - nome descrittivo dell'evento"
-
       - label: "Luogo"
         name: "luogo"
         widget: "string"
@@ -228,13 +217,20 @@ collections:
       - label: "Città"
         name: "citta"
         widget: "string"
+        required: true
+        hint: "Città dell'evento (campo obbligatorio)"
+
+      - label: "Titolo Evento"
+        name: "title"
+        widget: "string"
         required: false
+        hint: "Campo opzionale - nome descrittivo dell'evento"
 
       - label: "Anno (per raggruppamento)"
         name: "anno_gruppo"
         widget: "select"
         required: true
-        hint: "Anno per raggruppare gli eventi - campo obbligatorio"
+        hint: "Anno per raggruppare gli eventi"
         options:
           - { label: "2024", value: "2024" }
           - { label: "2025", value: "2025" }
