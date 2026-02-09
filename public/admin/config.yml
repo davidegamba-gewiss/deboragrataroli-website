@@ -432,6 +432,183 @@ collections:
         default: false
 
   # ============================================
+  # IMPOSTAZIONI PAGINE SEZIONI
+  # ============================================
+  - name: "section-pages"
+    label: "Pagine Sezioni"
+    description: "Impostazioni per le pagine delle sezioni (Brani, Concerti, Esibizioni, Rassegna Stampa)"
+    editor:
+      preview: true
+    files:
+      - name: "brani-page"
+        label: "Pagina Brani"
+        file: "content/section-pages/brani.md"
+        fields:
+          - label: "Titolo Pagina"
+            name: "title"
+            widget: "string"
+            required: true
+            default: "Brani"
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+      - name: "concerti-page"
+        label: "Pagina Concerti/Eventi"
+        file: "content/section-pages/concerti.md"
+        fields:
+          - label: "Titolo Pagina"
+            name: "title"
+            widget: "string"
+            required: true
+            default: "Eventi"
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+      - name: "esibizioni-page"
+        label: "Pagina Esibizioni"
+        file: "content/section-pages/esibizioni.md"
+        fields:
+          - label: "Titolo Pagina"
+            name: "title"
+            widget: "string"
+            required: true
+            default: "Esibizioni"
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+      - name: "rassegna-stampa-page"
+        label: "Pagina Rassegna Stampa"
+        file: "content/section-pages/rassegna-stampa.md"
+        fields:
+          - label: "Titolo Pagina"
+            name: "title"
+            widget: "string"
+            required: true
+            default: "Rassegna Stampa"
+
+          - label: "Descrizione SEO"
+            name: "seo_description"
+            widget: "text"
+            required: false
+            hint: "Descrizione per i motori di ricerca (max 160 caratteri)"
+
+          - label: "Immagine Hero"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            media_folder: "/public/media/pages"
+            public_folder: "/media/pages"
+
+          - label: "Sottotitolo Hero"
+            name: "hero_subtitle"
+            widget: "string"
+            required: false
+
+          - label: "Contenuto"
+            name: "body"
+            widget: "markdown"
+            required: false
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - quote
+              - bulleted-list
+              - numbered-list
+
+  # ============================================
   # SETTINGS GLOBALI
   # ============================================
   - name: "settings"
