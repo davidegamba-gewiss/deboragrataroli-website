@@ -1,6 +1,6 @@
 ---
 title: Biografia
-seo_description: ""
+seo_description: Biografia di Debora Grataroli
 hero_image: /media/pages/progetto-senza-titolo-28-.png
 hero_subtitle: Scopri la mia storia
 ---
