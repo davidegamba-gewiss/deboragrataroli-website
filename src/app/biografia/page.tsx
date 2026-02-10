@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { HeroSection } from '@/components/common/HeroSection';
-import { BiografiaContent, DecorativeImage } from '@/components/biografia';
+import { BiografiaContent } from '@/components/biografia';
 import { generatePageMetadata } from '@/lib/seo';
 import { getBiografiaPage } from '@/lib/content';
 
@@ -38,12 +38,6 @@ export default async function BiografiaPage() {
         title="La mia storia"
         showTitle
         htmlContent={htmlContent}
-      />
-
-      {/* Decorative Image */}
-      <DecorativeImage
-        src="/images/biografia-decorative.jpg"
-        alt="Debora Grataroli al pianoforte"
       />
     </>
   );
