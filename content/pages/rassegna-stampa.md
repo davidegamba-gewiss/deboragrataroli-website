@@ -4,4 +4,6 @@ seo_description: Articoli, interviste e menzioni di Debora Grataroli sulla stamp
 hero_image: /media/pages/progetto-senza-titolo-20-.png
 hero_subtitle: ""
 ---
-Tanti sono stati gli articoli che hanno scritto sulle mie vittorie e uscite discografiche. Di seguito potete trovare i link!
+Tanti sono stati gli articoli che hanno scritto sulle mie vittorie e uscite discografiche.
+
+ Di seguito potete trovare i link!
