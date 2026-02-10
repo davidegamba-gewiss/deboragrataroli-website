@@ -1,0 +1,11 @@
+---
+title: Paganì
+luogo: San Pellegrino Terme
+citta: San Pellegrino Terme (BG)
+data_evento: 2025-07-18
+orario: 18:00
+anno: 2025
+tour: Omaggio ai grandi cantautori italiani
+descrizione: Un omaggio ai cantautori che hanno segnato la storia della musica italiana
+confermato: true
+---
