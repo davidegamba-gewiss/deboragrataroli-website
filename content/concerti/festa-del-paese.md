@@ -1,5 +1,5 @@
 ---
-title: Festa del paese
+title: Festa di paese
 luogo: Santa Croce
 citta: San Pellegrino Terme (BG)
 data_evento: 2025-08-09
