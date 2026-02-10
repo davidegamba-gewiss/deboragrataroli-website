@@ -1,5 +1,5 @@
 ---
-title: Sala polivalente
+title: Sala Polivalente
 luogo: "San Giovanni Bianco "
 citta: San Giovanni Bianco (BG)
 data_evento: 2024-11-16
