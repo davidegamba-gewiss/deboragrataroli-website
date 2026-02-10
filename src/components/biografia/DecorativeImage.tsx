@@ -46,12 +46,6 @@ export function DecorativeImage({ src, alt, className = '' }: DecorativeImagePro
               onError={() => setHasError(true)}
             />
           )}
-
-          {/* Subtle overlay for visual polish */}
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
-            aria-hidden="true"
-          />
         </div>
       </div>
     </section>
