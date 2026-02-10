@@ -1,7 +1,7 @@
 ---
 title: Contatti
 seo_description: Contatta Debora Grataroli per collaborazioni e informazioni
-hero_image: ""
+hero_image: /media/pages/progetto-senza-titolo-22-.png
 hero_subtitle: ""
 ---
 
