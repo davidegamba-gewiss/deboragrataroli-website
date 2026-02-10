@@ -5,12 +5,20 @@ import { createContext, useContext, type ReactNode } from 'react';
 /**
  * Global Settings Interface
  *
- * Contains site-wide settings like contact info and social links.
- * Will be expanded in Phase 3 to read from CMS.
+ * Contains site-wide settings including general info, contact, and social links.
+ * Loaded from CMS settings collections.
  */
 export interface GlobalSettings {
+  // General settings
+  siteName?: string;
+  tagline?: string;
+  siteDescription?: string;
+  logo?: string;
+  favicon?: string;
+  // Contact settings
   emailContatto: string;
   telefonoContatto?: string;
+  // Social settings
   socialInstagram?: string;
   socialFacebook?: string;
   socialYoutube?: string;
@@ -23,6 +31,9 @@ export interface GlobalSettings {
  * These serve as fallbacks when CMS data is not available
  */
 const defaultSettings: GlobalSettings = {
+  siteName: 'Debora Grataroli',
+  tagline: 'Cantautrice e Pianista',
+  siteDescription: 'Sito ufficiale di Debora Grataroli, cantautrice e pianista italiana.',
   emailContatto: 'debora.grataroli@gmail.com',
   socialInstagram: 'https://instagram.com/deboragrataroli',
   socialFacebook: 'https://facebook.com/deboragrataroli',

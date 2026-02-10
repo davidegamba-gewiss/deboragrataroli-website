@@ -5,12 +5,12 @@ import { ClientProviders } from '@/components/providers/ClientProviders';
 import { NavigationWrapper } from '@/components/layout/NavigationWrapper';
 import { Footer } from '@/components/layout/Footer';
 import {
-  generateBaseMetadata,
   generateWebsiteSchema,
   generateMusicianSchema,
   JsonLd,
+  SITE_CONFIG,
 } from '@/lib/seo';
-import { getSocialSettings, getContactSettings } from '@/lib/content';
+import { getSocialSettings, getContactSettings, getGeneralSettings } from '@/lib/content';
 
 // Configure Inter font (primary font)
 const inter = Inter({
@@ -29,8 +29,58 @@ const playfair = Playfair_Display({
   style: ['normal', 'italic'],
 });
 
-// Generate base metadata from SEO library
-export const metadata: Metadata = generateBaseMetadata();
+// Generate dynamic metadata from CMS
+export async function generateMetadata(): Promise<Metadata> {
+  const generalSettings = await getGeneralSettings();
+
+  const siteName = generalSettings.site_name || SITE_CONFIG.name;
+  const siteDescription = generalSettings.site_description || SITE_CONFIG.description;
+  const tagline = generalSettings.tagline || 'Cantautrice e Pianista';
+
+  return {
+    metadataBase: new URL(SITE_CONFIG.url),
+    title: {
+      default: `${siteName} - ${tagline}`,
+      template: `%s | ${siteName}`,
+    },
+    description: siteDescription,
+    keywords: [...SITE_CONFIG.keywords],
+    authors: [{ name: siteName }],
+    creator: siteName,
+    publisher: siteName,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: SITE_CONFIG.locale,
+      url: SITE_CONFIG.url,
+      siteName: siteName,
+      title: `${siteName} - ${tagline}`,
+      description: siteDescription,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${siteName} - ${tagline}`,
+      description: siteDescription,
+      creator: SITE_CONFIG.twitterHandle,
+    },
+    icons: generalSettings.favicon
+      ? {
+          icon: generalSettings.favicon,
+          apple: generalSettings.favicon,
+        }
+      : undefined,
+  };
+}
 
 // Viewport configuration
 export const viewport: Viewport = {
@@ -49,16 +99,25 @@ export default async function RootLayout({
   const websiteSchema = generateWebsiteSchema();
   const musicianSchema = generateMusicianSchema();
 
-  // Load settings from CMS
-  const [socialSettings, contactSettings] = await Promise.all([
+  // Load all settings from CMS
+  const [socialSettings, contactSettings, generalSettings] = await Promise.all([
     getSocialSettings(),
     getContactSettings(),
+    getGeneralSettings(),
   ]);
 
   // Map CMS settings to GlobalSettings format
   const cmsSettings = {
+    // General settings
+    siteName: generalSettings.site_name,
+    tagline: generalSettings.tagline,
+    siteDescription: generalSettings.site_description,
+    logo: generalSettings.logo,
+    favicon: generalSettings.favicon,
+    // Contact settings
     emailContatto: contactSettings.email,
     telefonoContatto: contactSettings.telefono,
+    // Social settings
     socialInstagram: socialSettings.instagram,
     socialFacebook: socialSettings.facebook,
     socialYoutube: socialSettings.youtube,
@@ -82,7 +141,9 @@ export default async function RootLayout({
         </a>
         <ClientProviders settings={cmsSettings}>
           <NavigationWrapper />
-          <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
+          <main id="main-content" className="flex-1" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
         </ClientProviders>
       </body>
