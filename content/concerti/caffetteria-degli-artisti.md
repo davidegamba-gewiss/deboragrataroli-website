@@ -1,5 +1,5 @@
 ---
-title: Caffetteria degli artisti
+title: Caffetteria Degli Artisti
 luogo: "San Pellegrino Terme "
 citta: "San Pellegrino Terme (BG) "
 data_evento: 2024-08-12
