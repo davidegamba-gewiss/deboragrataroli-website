@@ -1,5 +1,5 @@
 ---
-title: Paganì
+title: Paganì Antichi Sapori
 luogo: San Pellegrino Terme
 citta: San Pellegrino Terme (BG)
 data_evento: 2025-07-18
