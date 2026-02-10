@@ -1,5 +1,5 @@
 ---
-title: Into the woods
+title: Into The Woods
 luogo: Torre Boldone
 citta: Torre Boldone (BG)
 data_evento: 2024-08-20
