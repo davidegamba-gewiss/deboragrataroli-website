@@ -1,5 +1,5 @@
 ---
-title: Feste del paese
+title: Festa di paese
 luogo: San Pellegrino Terme
 citta: San Pellegrino Terme (BG)
 data_evento: 2025-07-20
