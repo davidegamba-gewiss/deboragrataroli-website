@@ -4,7 +4,7 @@ luogo: San Giovanni Bianco
 citta: San Giovanni Bianco (BG)
 data_evento: 2024-11-16
 orario: 20:45
-anno: 2023
+anno: 2024
 tour: "Note d'inCanto "
 descrizione: I più grandi successi della musica italiana e straniera
 confermato: true
