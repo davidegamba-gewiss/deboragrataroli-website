@@ -19,15 +19,15 @@ Nel 2021 ho iniziato a scrivere i miei brani, curandone sia il testo sia la musi
 Alcuni riconoscimenti ottenuti nei concorsi canori sono i seguenti:
 
 * 23 marzo 2019 - vittoria “Fuori La Voce”, Sant'Omobono Terme (BG)
-* 14 maggio 2022- vittoria "Fuori La Voce", Sant’Omobono Terme (BG)
+* 14 maggio 2022 - vittoria "Fuori La Voce", Sant’Omobono Terme (BG)
 * 21 luglio 2022 - vittoria "The voice contest", Almenno San Bartolomeo (BG)
 * 28 agosto 2022 - vittoria "Selvino’s got talent", Selvino (BG)
-* 3 settembre 2022 - seconda classificata , "Calcinate's got talent", Calcinate (BG)
+* 3 settembre 2022 - seconda classificata, "Calcinate's got talent", Calcinate (BG)
 * 25 febbraio 2023 - vittoria "Sampe's got talent", San Pellegrino Terme (BG)
 * 14 maggio 2023 - premio della critica "Canta Bergamo", Cene (BG)
 * 27 maggio 2023 - terza classificata "Fuori La Voce", Sant’Omobono (BG)
 * 8 dicembre 2023 - terza classificata "Canta Che Ti Passa", Casnigo (BG)
 * 25 maggio 2024 - vittoria "Fuori La Voce", Sant’Omobono Terme (BG)
 * 16 giugno 2024 - terza classificata "Canta Bergamo", Cene (BG)
-* 22 febbraio 2025 - ospite "Like A Star", Clusone (BG)
+* 22 febbraio 2025 - ospite "Like a Star", Clusone (BG)
 * 10 maggio 2025 - ospite "Fuori La Voce", Sant’Omobono Terme (BG)
