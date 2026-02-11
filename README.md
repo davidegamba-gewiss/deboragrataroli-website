@@ -167,4 +167,4 @@ Configura in Vercel Dashboard → Settings → Environment Variables:
 
 ## License
 
-Tutti i diritti riservati © Debora Grataroli
+Sito web sviluppato da Davide Gamba, tutti i diritti sono riservati.
