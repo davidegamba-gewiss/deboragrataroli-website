@@ -101,7 +101,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             aria-label="Menu di navigazione"
           >
             {/* Navigation Links */}
-            <nav className="flex flex-col">
+            <nav className="flex flex-col h-full">
               <ul>
                 {NAVIGATION_ITEMS.map((item, index) => {
                   const isActive = isActivePath(item.href);
@@ -130,8 +130,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 })}
               </ul>
 
-              {/* Social Links Section */}
-              <div className="border-t border-gray-200 p-6 pb-8">
+              {/* Social Links Section - positioned at bottom */}
+              <div className="mt-auto border-t border-gray-200 p-6">
                 <p className="text-sm text-gray-500 mb-4 font-medium">Seguimi sui social</p>
                 <div className="flex items-center flex-wrap gap-3">
                   {SOCIAL_LINKS.map((social, index) => (
