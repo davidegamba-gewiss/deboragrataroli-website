@@ -9,7 +9,7 @@ import { NAVIGATION_ITEMS, SOCIAL_LINKS } from '@/types/navigation';
 import type { SocialPlatform } from '@/types/footer';
 
 /**
- * Social Icons mapping using react-icons (consistent with Footer)
+ * Social Icons mapping using react-icons library (consistent with Footer)
  */
 const SocialIcons: Record<SocialPlatform, React.ComponentType<{ className?: string }>> = {
   instagram: FaInstagram,
