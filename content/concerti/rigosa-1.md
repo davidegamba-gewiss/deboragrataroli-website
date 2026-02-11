@@ -8,6 +8,6 @@ anno: 2025
 tour: Omaggio ai grandi cantautori italiani
 descrizione: Omaggio ai cantautori che hanno segnato la storia della musica
   italiana, per esempio Battisti, Baglioni, Celentano, De Gregori, Battiato e
-  tanti altri
+  tanti altri.
 confermato: true
 ---
