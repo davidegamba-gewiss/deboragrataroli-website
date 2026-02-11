@@ -95,13 +95,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed left-0 top-16 z-40 h-[calc(100vh-64px)] w-[80%] md:w-80 bg-white shadow-xl overflow-y-auto"
+            className="fixed left-0 top-16 z-40 h-[calc(100vh-64px)] w-[80%] md:w-80 bg-white shadow-xl grid grid-rows-[1fr_auto]"
             role="dialog"
             aria-modal="true"
             aria-label="Menu di navigazione"
           >
-            {/* Navigation Links */}
-            <nav className="flex flex-col min-h-full">
+            {/* Navigation Links - scrollable area */}
+            <nav className="overflow-y-auto">
               <ul>
                 {NAVIGATION_ITEMS.map((item, index) => {
                   const isActive = isActivePath(item.href);
@@ -129,31 +129,31 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   );
                 })}
               </ul>
-
-              {/* Social Links Section - positioned at bottom */}
-              <div className="mt-auto border-t border-gray-200 p-6 pb-8" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom, 2rem))' }}>
-                <p className="text-sm text-gray-500 mb-4 font-medium">Seguimi sui social</p>
-                <div className="flex items-center flex-wrap gap-3">
-                  {SOCIAL_LINKS.map((social, index) => (
-                    <a
-                      key={social.platform}
-                      ref={index === SOCIAL_LINKS.length - 1 ? lastFocusableRef : undefined}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center w-11 h-11 text-[#4a1d6a] hover:text-[#7c3aed] hover:bg-purple-100 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 rounded-lg"
-                      aria-label={social.label}
-                    >
-                      {social.platform === 'instagram' && <FaInstagram className="w-6 h-6" />}
-                      {social.platform === 'facebook' && <FaFacebook className="w-6 h-6" />}
-                      {social.platform === 'youtube' && <FaYoutube className="w-6 h-6" />}
-                      {social.platform === 'tiktok' && <FaTiktok className="w-6 h-6" />}
-                      {social.platform === 'spotify' && <FaSpotify className="w-6 h-6" />}
-                    </a>
-                  ))}
-                </div>
-              </div>
             </nav>
+
+            {/* Social Links Section - fixed at bottom */}
+            <div className="border-t border-gray-200 p-6 bg-white">
+              <p className="text-sm text-gray-500 mb-4 font-medium">Seguimi sui social</p>
+              <div className="flex items-center flex-wrap gap-3">
+                {SOCIAL_LINKS.map((social, index) => (
+                  <a
+                    key={social.platform}
+                    ref={index === SOCIAL_LINKS.length - 1 ? lastFocusableRef : undefined}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-11 h-11 text-[#4a1d6a] hover:text-[#7c3aed] hover:bg-purple-100 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 rounded-lg"
+                    aria-label={social.label}
+                  >
+                    {social.platform === 'instagram' && <FaInstagram className="w-6 h-6" />}
+                    {social.platform === 'facebook' && <FaFacebook className="w-6 h-6" />}
+                    {social.platform === 'youtube' && <FaYoutube className="w-6 h-6" />}
+                    {social.platform === 'tiktok' && <FaTiktok className="w-6 h-6" />}
+                    {social.platform === 'spotify' && <FaSpotify className="w-6 h-6" />}
+                  </a>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </>
       )}
