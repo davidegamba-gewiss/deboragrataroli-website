@@ -6,18 +6,6 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaInstagram, FaFacebook, FaYoutube, FaTiktok, FaSpotify } from 'react-icons/fa';
 import { NAVIGATION_ITEMS, SOCIAL_LINKS } from '@/types/navigation';
-import type { SocialPlatform } from '@/types/footer';
-
-/**
- * Social Icons mapping using react-icons library (consistent with Footer)
- */
-const SocialIcons: Record<SocialPlatform, React.ComponentType<{ className?: string }>> = {
-  instagram: FaInstagram,
-  facebook: FaFacebook,
-  youtube: FaYoutube,
-  tiktok: FaTiktok,
-  spotify: FaSpotify,
-};
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -113,8 +101,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             aria-label="Menu di navigazione"
           >
             {/* Navigation Links */}
-            <nav className="flex flex-col h-full">
-              <ul className="flex-1">
+            <nav className="flex flex-col">
+              <ul>
                 {NAVIGATION_ITEMS.map((item, index) => {
                   const isActive = isActivePath(item.href);
                   return (
@@ -143,25 +131,26 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </ul>
 
               {/* Social Links Section */}
-              <div className="border-t border-gray-200 p-6">
+              <div className="border-t border-gray-200 p-6 pb-8">
                 <p className="text-sm text-gray-500 mb-4 font-medium">Seguimi sui social</p>
-                <div className="flex items-center flex-wrap gap-2">
-                  {SOCIAL_LINKS.map((social, index) => {
-                    const IconComponent = SocialIcons[social.platform as SocialPlatform];
-                    return (
-                      <a
-                        key={social.platform}
-                        ref={index === SOCIAL_LINKS.length - 1 ? lastFocusableRef : undefined}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center w-12 h-12 text-purple-dark hover:text-purple-medium hover:bg-purple-light/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 rounded-lg"
-                        aria-label={social.label}
-                      >
-                        <IconComponent className="w-6 h-6" />
-                      </a>
-                    );
-                  })}
+                <div className="flex items-center flex-wrap gap-3">
+                  {SOCIAL_LINKS.map((social, index) => (
+                    <a
+                      key={social.platform}
+                      ref={index === SOCIAL_LINKS.length - 1 ? lastFocusableRef : undefined}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-11 h-11 text-[#4a1d6a] hover:text-[#7c3aed] hover:bg-purple-100 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 rounded-lg"
+                      aria-label={social.label}
+                    >
+                      {social.platform === 'instagram' && <FaInstagram className="w-6 h-6" />}
+                      {social.platform === 'facebook' && <FaFacebook className="w-6 h-6" />}
+                      {social.platform === 'youtube' && <FaYoutube className="w-6 h-6" />}
+                      {social.platform === 'tiktok' && <FaTiktok className="w-6 h-6" />}
+                      {social.platform === 'spotify' && <FaSpotify className="w-6 h-6" />}
+                    </a>
+                  ))}
                 </div>
               </div>
             </nav>
