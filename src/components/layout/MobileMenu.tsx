@@ -5,7 +5,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaInstagram, FaFacebook, FaYoutube, FaTiktok, FaSpotify } from 'react-icons/fa';
-import { NAVIGATION_ITEMS, SOCIAL_LINKS } from '@/types/navigation';
+import { NAVIGATION_ITEMS } from '@/types/navigation';
+import { useGlobalSettings } from '@/context/GlobalSettingsContext';
+
+interface SocialLink {
+  platform: string;
+  url: string;
+  label: string;
+  icon: JSX.Element;
+}
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -20,9 +28,54 @@ interface MobileMenuProps {
  */
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const pathname = usePathname();
+  const settings = useGlobalSettings();
   const menuRef = useRef<HTMLDivElement>(null);
   const firstFocusableRef = useRef<HTMLAnchorElement>(null);
   const lastFocusableRef = useRef<HTMLAnchorElement>(null);
+
+  // Build social links from CMS settings
+  const socialLinks: SocialLink[] = [];
+
+  if (settings.socialInstagram) {
+    socialLinks.push({
+      platform: 'instagram',
+      url: settings.socialInstagram,
+      label: 'Seguici su Instagram',
+      icon: <FaInstagram className="w-5 h-5" />,
+    });
+  }
+  if (settings.socialFacebook) {
+    socialLinks.push({
+      platform: 'facebook',
+      url: settings.socialFacebook,
+      label: 'Seguici su Facebook',
+      icon: <FaFacebook className="w-5 h-5" />,
+    });
+  }
+  if (settings.socialYoutube) {
+    socialLinks.push({
+      platform: 'youtube',
+      url: settings.socialYoutube,
+      label: 'Seguici su YouTube',
+      icon: <FaYoutube className="w-5 h-5" />,
+    });
+  }
+  if (settings.socialTiktok) {
+    socialLinks.push({
+      platform: 'tiktok',
+      url: settings.socialTiktok,
+      label: 'Seguici su TikTok',
+      icon: <FaTiktok className="w-5 h-5" />,
+    });
+  }
+  if (settings.socialSpotify) {
+    socialLinks.push({
+      platform: 'spotify',
+      url: settings.socialSpotify,
+      label: 'Ascoltaci su Spotify',
+      icon: <FaSpotify className="w-5 h-5" />,
+    });
+  }
 
   // Focus trap
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
@@ -135,21 +188,17 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <div className="border-t border-gray-200 px-6 pt-4 pb-6 bg-white" style={{ paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}>
               <p className="text-sm text-gray-500 mb-3 font-medium">Seguimi sui social</p>
               <div className="flex items-center gap-2">
-                {SOCIAL_LINKS.map((social, index) => (
+                {socialLinks.map((social, index) => (
                   <a
                     key={social.platform}
-                    ref={index === SOCIAL_LINKS.length - 1 ? lastFocusableRef : undefined}
+                    ref={index === socialLinks.length - 1 ? lastFocusableRef : undefined}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center w-10 h-10 text-[#4a1d6a] hover:text-[#7c3aed] hover:bg-purple-100 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 rounded-lg"
                     aria-label={social.label}
                   >
-                    {social.platform === 'instagram' && <FaInstagram className="w-5 h-5" />}
-                    {social.platform === 'facebook' && <FaFacebook className="w-5 h-5" />}
-                    {social.platform === 'youtube' && <FaYoutube className="w-5 h-5" />}
-                    {social.platform === 'tiktok' && <FaTiktok className="w-5 h-5" />}
-                    {social.platform === 'spotify' && <FaSpotify className="w-5 h-5" />}
+                    {social.icon}
                   </a>
                 ))}
               </div>
