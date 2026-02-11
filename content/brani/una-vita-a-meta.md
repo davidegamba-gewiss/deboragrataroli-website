@@ -50,9 +50,9 @@ lyrics: |-
   Lascio che la vita faccia il suo corso
   Senza essere mai essere me stessa
   Rimanendo immobile davanti alla felicità
-  Ma forse un giorno non avrò più paura della vita
+  Ma forse un giorno non avrò più timore della vita
   Non avrò più paura di vivere 
-  Un giorno mi amerò e mi accetterò
+  Mi amerò e mi accetterò
   Un giorno supererò le mie paure 
   Un giorno vincerò io
 featured: true
