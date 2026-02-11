@@ -10,9 +10,9 @@ A undici anni ho iniziato a studiare canto con Greta Caserta e, l’anno success
 
 ## La mia carriera
 
-Nel corso degli anni ho partecipato a numerosi concorsi canori sia come ospite, sia in veste di concorrente, ottenendo vittorie, premi della critica e vari riconoscimenti. Ho avuto anche l’opportunità di raccontare la mia storia attraverso interviste su giornali, radio e televisioni, tra cui *La Voce delle Valli*, *Val Brembana Mag*,  *Val Brembana Web*, la radio *Story Time* e il programma televisivo *CASA 94* di SeiLaTv, con sede a Bergamo. 
+Nel corso degli anni ho partecipato a numerosi concorsi canori sia come ospite, sia in veste di concorrente, ottenendo vittorie, premi della critica e vari riconoscimenti. Ho avuto anche l’opportunità di raccontare la mia storia attraverso interviste su giornali, radio e televisioni, tra cui La Voce delle Valli, Val Brembana Mag, Val Brembana Web, la radio Story Time e il programma televisivo CASA 94 di SeiLaTv, con sede a Bergamo. Inoltre nel 2024 ho partecipato come concorrente al concorso “Like A Star” a Clusone (BG), trasmesso in diretta televisiva sul canale Antenna 2 Tv; nel 2025 invece, ho avuto l'opportunità di partecipare come ospite della serata.
 
-Nel 2021 ho iniziato a scrivere i miei brani, curandone sia il testo sia la musica. L’8 aprile 2024 ho pubblicato il mio primo singolo, “Una vita a metà”, registrato presso il "Musical Studio" di Samuele Salvi, seguito il 25 maggio 2025 dal mio secondo brano, “Qualcosa oltre”, inciso nello studio di registrazione di Giovanni Colombo. Attualmente sto lavorando alla realizzazione del mio primo album e proseguo gli studi presso il Conservatorio Donizetti di Bergamo.
+Nel 2021 ho iniziato a scrivere i miei brani, curandone sia il testo sia la musica.  L’8 aprile 2024 ho pubblicato il mio primo singolo, “Una vita a metà”, registrato presso il “Musical Studio" di Samuele Salvi, seguito il 25 maggio 2025 dal mio secondo brano, “Qualcosa oltre”, inciso nello studio di registrazione di Giovanni Colombo. Attualmente sto lavorando alla realizzazione del mio primo album e proseguo gli studi presso il Conservatorio Donizetti di Bergamo.
 
 ### Premi e riconoscimenti
 
