@@ -176,32 +176,51 @@ export async function POST(request: NextRequest) {
     }
 
     // Send to Web3Forms
-    const web3Response = await fetch(WEB3FORMS_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_ACCESS_KEY,
-        name: sanitizedData.nome,
-        email: sanitizedData.email,
-        subject: `${sanitizedData.oggetto} - Sito Web Debora Grataroli`,
-        message: sanitizedData.messaggio,
-        from_name: 'Sito Web Debora Grataroli',
-        // Additional Web3Forms options
-        botcheck: false, // We handle spam ourselves with honeypot
-        replyto: sanitizedData.email,
-      }),
-    });
+    let web3Response;
+    try {
+      web3Response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: sanitizedData.nome,
+          email: sanitizedData.email,
+          subject: `${sanitizedData.oggetto} - Sito Web Debora Grataroli`,
+          message: sanitizedData.messaggio,
+          from_name: 'Sito Web Debora Grataroli',
+          botcheck: false,
+          replyto: sanitizedData.email,
+        }),
+      });
+    } catch (fetchError) {
+      console.error('Web3Forms fetch error:', fetchError);
+      return NextResponse.json(
+        { error: 'Impossibile contattare il servizio email. Riprova più tardi.' },
+        { status: 502 }
+      );
+    }
 
-    const web3Data = await web3Response.json();
+    let web3Data;
+    try {
+      web3Data = await web3Response.json();
+    } catch (jsonError) {
+      console.error('Web3Forms response parse error:', jsonError);
+      return NextResponse.json(
+        { error: 'Risposta non valida dal servizio email.' },
+        { status: 502 }
+      );
+    }
 
     if (!web3Response.ok || !web3Data.success) {
       console.error('Web3Forms error:', web3Data);
+      // Provide more specific error message
+      const errorMsg = web3Data?.message || 'Errore durante l\'invio del messaggio.';
       return NextResponse.json(
-        { error: 'Errore durante l\'invio del messaggio. Riprova più tardi.' },
-        { status: 500 }
+        { error: errorMsg },
+        { status: web3Response.status >= 400 ? web3Response.status : 500 }
       );
     }
 
