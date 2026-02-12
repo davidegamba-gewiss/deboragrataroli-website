@@ -463,18 +463,14 @@ collections:
         widget: "string"
         required: true
 
-      - label: "Data Evento"
+      - label: "Data e ora evento"
         name: "data_evento"
         widget: "datetime"
         required: true
         date_format: "DD/MM/YYYY"
-        format: "YYYY-MM-DD"
-
-      - label: "Orario"
-        name: "orario"
-        widget: "string"
-        required: false
-        hint: "Orario di inizio (es. 21:00)"
+        time_format: "HH:mm"
+        format: "YYYY-MM-DDTHH:mm"
+        hint: "Seleziona data e orario dell'evento"
 
       - label: "Anno"
         name: "anno"

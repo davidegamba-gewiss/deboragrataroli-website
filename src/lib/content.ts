@@ -51,14 +51,15 @@ export interface BranoFrontmatter {
 }
 
 /**
- * Concerto frontmatter structure (new format)
+ * Concerto frontmatter structure
+ * data_evento is now a single datetime field in ISO format: YYYY-MM-DDTHH:mm
  */
 export interface ConcertoFrontmatter {
   title: string;
   luogo: string;
   citta: string;
+  /** Single datetime field: YYYY-MM-DDTHH:mm (e.g., "2025-06-02T16:00") */
   data_evento: string;
-  orario?: string;
   anno: number;
   tour?: string;
   descrizione?: string;
@@ -414,16 +415,34 @@ export interface EventoDataFormat {
 }
 
 /**
+ * Parse datetime string (YYYY-MM-DDTHH:mm) into date and time parts
+ * Returns { date: "YYYY-MM-DD", time: "HH:mm" }
+ */
+function parseDatetime(datetime: string): { date: string; time: string } {
+  const tIndex = datetime.indexOf('T');
+  if (tIndex !== -1) {
+    const date = datetime.substring(0, tIndex);
+    const time = datetime.substring(tIndex + 1) || '21:00';
+    return { date, time };
+  }
+  // Fallback for old format (date only)
+  return { date: datetime, time: '21:00' };
+}
+
+/**
  * Convert CMS concerto to EventoDataFormat for components
+ * Parses the single datetime field into separate date and time for display
  */
 export function cmsConcertoToData(item: ContentItem<ConcertoFrontmatter>): EventoDataFormat {
+  const { date, time } = parseDatetime(item.frontmatter.data_evento);
+
   return {
     id: item.slug,
     titolo: item.frontmatter.title,
     luogo: item.frontmatter.luogo,
     citta: item.frontmatter.citta,
-    data: item.frontmatter.data_evento,
-    ora: item.frontmatter.orario || '21:00',
+    data: date,
+    ora: time,
     descrizione: item.frontmatter.descrizione || '',
     annoGruppo: item.frontmatter.anno,
     nomeTour: item.frontmatter.tour,
