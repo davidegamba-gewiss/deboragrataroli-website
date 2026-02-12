@@ -12,6 +12,10 @@ import {
   type ContactFormData,
 } from '@/utils/formValidation';
 
+// Web3Forms API endpoint and access key (safe to expose client-side)
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_ACCESS_KEY = 'da74b411-20ae-40c8-afc0-610b08af3219';
+
 export type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export interface ContactFormProps {
@@ -176,24 +180,31 @@ export default function ContactForm({
       setSubmitError('');
 
       try {
-        const response = await fetch('/api/contact', {
+        // Get subject label for email
+        const subjectLabel = subjectOptions.find(o => o.value === formData.oggetto)?.label || 'Contatto';
+
+        // Submit directly to Web3Forms (client-side submission is recommended)
+        const response = await fetch(WEB3FORMS_ENDPOINT, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            Accept: 'application/json',
           },
           body: JSON.stringify({
-            nome: sanitizeInput(formData.nome),
+            access_key: WEB3FORMS_ACCESS_KEY,
+            name: sanitizeInput(formData.nome),
             email: sanitizeInput(formData.email),
-            oggetto: formData.oggetto,
-            messaggio: sanitizeInput(formData.messaggio),
-            website: formData.website, // Include honeypot for server-side check
+            subject: `${subjectLabel} - Sito Web Debora Grataroli`,
+            message: sanitizeInput(formData.messaggio),
+            from_name: 'Sito Web Debora Grataroli',
+            replyto: sanitizeInput(formData.email),
           }),
         });
 
         const data = await response.json();
 
-        if (!response.ok) {
-          throw new Error(data.error || 'Errore durante l\'invio del messaggio');
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || 'Errore durante l\'invio del messaggio');
         }
 
         setStatus('success');
