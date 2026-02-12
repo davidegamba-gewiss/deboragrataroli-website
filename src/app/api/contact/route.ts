@@ -89,8 +89,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check content type
+    const contentType = request.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      console.error('Invalid content-type:', contentType);
+      return NextResponse.json(
+        { error: 'Content-Type deve essere application/json' },
+        { status: 400 }
+      );
+    }
+
     // Parse request body
-    const body: ContactRequestBody = await request.json();
+    let body: ContactRequestBody;
+    try {
+      body = await request.json();
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError);
+      return NextResponse.json(
+        { error: 'Formato richiesta non valido' },
+        { status: 400 }
+      );
+    }
 
     // Check honeypot (spam check)
     if (body.website && body.website.length > 0) {
@@ -193,19 +212,26 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Contact form error:', error);
 
-    // Check for JSON parse errors
-    if (error instanceof SyntaxError) {
-      return NextResponse.json(
-        { error: 'Richiesta non valida' },
-        { status: 400 }
-      );
-    }
-
     return NextResponse.json(
       { error: 'Si è verificato un errore. Riprova più tardi.' },
       { status: 500 }
     );
   }
+}
+
+// CORS headers for API responses
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+// Handle CORS preflight requests
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: corsHeaders,
+  });
 }
 
 // Handle unsupported methods
