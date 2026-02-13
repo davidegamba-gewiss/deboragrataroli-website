@@ -1,6 +1,6 @@
 ---
 title: Piazza di Santa Croce
-luogo: "Santa Croce "
+luogo: "San Pellegrino Terme "
 citta: San Pellegrino Terme (BG)
 data_evento: 2023-08-19T20:45
 anno: 2023
