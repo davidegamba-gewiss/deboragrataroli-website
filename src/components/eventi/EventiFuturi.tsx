@@ -5,13 +5,17 @@ import type { EventoDataFormat } from '@/lib/content';
 
 export interface EventiFuturiProps {
   eventi: EventoDataFormat[];
+  /** Section title from CMS */
+  title?: string;
 }
 
-export default function EventiFuturi({ eventi }: EventiFuturiProps) {
+export default function EventiFuturi({ eventi, title }: EventiFuturiProps) {
+  const sectionTitle = title && title.trim() ? title : 'Prossimi Eventi';
+
   return (
     <section className="mb-16">
       <h2 className="text-2xl font-semibold text-neutral-dark mb-8">
-        Prossimi Eventi
+        {sectionTitle}
       </h2>
 
       {eventi.length === 0 ? (

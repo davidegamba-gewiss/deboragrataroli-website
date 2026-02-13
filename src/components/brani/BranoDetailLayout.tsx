@@ -7,9 +7,19 @@ import type { BranoDataFormat } from '@/lib/content';
 
 export interface BranoDetailLayoutProps {
   brano: BranoDataFormat;
+  /** Label for description section from CMS */
+  descriptionLabel?: string;
+  /** Label for lyrics section from CMS */
+  lyricsLabel?: string;
 }
 
-export default function BranoDetailLayout({ brano }: BranoDetailLayoutProps) {
+export default function BranoDetailLayout({
+  brano,
+  descriptionLabel,
+  lyricsLabel
+}: BranoDetailLayoutProps) {
+  const descLabel = descriptionLabel && descriptionLabel.trim() ? descriptionLabel : 'Descrizione';
+  const lyricLabel = lyricsLabel && lyricsLabel.trim() ? lyricsLabel : 'Testo della canzone';
   return (
     <article className="max-w-4xl mx-auto">
       {/* Cover Image */}
@@ -59,7 +69,7 @@ export default function BranoDetailLayout({ brano }: BranoDetailLayoutProps) {
       {brano.descrizione && (
         <section className="mb-10">
           <h2 className="text-lg font-semibold text-purple-dark mb-4">
-            Descrizione
+            {descLabel}
           </h2>
           <div className="text-neutral-dark leading-relaxed whitespace-pre-line">
             {brano.descrizione}
@@ -71,7 +81,7 @@ export default function BranoDetailLayout({ brano }: BranoDetailLayoutProps) {
       {brano.lyrics && (
         <section className="mb-10">
           <h2 className="text-lg font-semibold text-purple-dark mb-4">
-            Testo della canzone
+            {lyricLabel}
           </h2>
           <div className="bg-neutral-light/50 p-5 rounded border-l-4 border-purple-light">
             <pre className="font-sans text-sm text-neutral-dark whitespace-pre-wrap leading-loose">

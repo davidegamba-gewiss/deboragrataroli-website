@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BranoDetailLayout } from '@/components/brani';
-import { getBranoData, getAllBraniSlugs } from '@/lib/content';
+import { getBranoData, getAllBraniSlugs, getLabelsSettings } from '@/lib/content';
 import { ROUTES } from '@/utils/routing';
 import { generatePageMetadata, generateSongSchema, generateBreadcrumbSchema, JsonLd } from '@/lib/seo';
 
@@ -44,7 +44,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BranoDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const brano = await getBranoData(slug);
+  const [brano, labelsSettings] = await Promise.all([
+    getBranoData(slug),
+    getLabelsSettings(),
+  ]);
 
   if (!brano) {
     notFound();
@@ -94,7 +97,11 @@ export default async function BranoDetailPage({ params }: PageProps) {
       </nav>
 
       {/* Brano Detail */}
-      <BranoDetailLayout brano={brano} />
+      <BranoDetailLayout
+        brano={brano}
+        descriptionLabel={labelsSettings.brano_description_label}
+        lyricsLabel={labelsSettings.brano_lyrics_label}
+      />
     </PageLayout>
   );
 }

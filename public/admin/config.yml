@@ -73,6 +73,30 @@ collections:
             widget: "string"
             required: false
 
+          - label: "Titolo Sezione Intro"
+            name: "intro_section_title"
+            widget: "string"
+            required: false
+            hint: "Titolo della sezione introduttiva (default: 'Benvenuti nel mio mondo musicale')"
+
+          - label: "Titolo Sezione Brani"
+            name: "featured_brani_title"
+            widget: "string"
+            required: false
+            hint: "Titolo della sezione brani in evidenza (default: 'I Miei Brani')"
+
+          - label: "Titolo Sezione Social"
+            name: "follow_section_title"
+            widget: "string"
+            required: false
+            hint: "Titolo della sezione social (default: 'Seguimi')"
+
+          - label: "Sottotitolo Sezione Social"
+            name: "follow_section_subtitle"
+            widget: "string"
+            required: false
+            hint: "Sottotitolo della sezione social"
+
           - label: "Contenuto"
             name: "body"
             widget: "markdown"
@@ -113,6 +137,12 @@ collections:
             name: "hero_subtitle"
             widget: "string"
             required: false
+
+          - label: "Titolo Sezione Contenuto"
+            name: "content_title"
+            widget: "string"
+            required: false
+            hint: "Titolo della sezione biografia (default: 'La mia storia')"
 
           - label: "Contenuto"
             name: "body"
@@ -195,6 +225,18 @@ collections:
             name: "hero_subtitle"
             widget: "string"
             required: false
+
+          - label: "Titolo Prossimi Eventi"
+            name: "upcoming_events_title"
+            widget: "string"
+            required: false
+            hint: "Titolo della sezione prossimi eventi (default: 'Prossimi Eventi')"
+
+          - label: "Titolo Eventi Passati"
+            name: "past_events_title"
+            widget: "string"
+            required: false
+            hint: "Titolo della sezione eventi passati (default: 'Eventi Passati')"
 
           - label: "Contenuto"
             name: "body"
@@ -318,6 +360,18 @@ collections:
             name: "hero_subtitle"
             widget: "string"
             required: false
+
+          - label: "Titolo Info Contatto"
+            name: "contact_info_title"
+            widget: "string"
+            required: false
+            hint: "Titolo della sezione info contatto (default: 'Parliamo!')"
+
+          - label: "Titolo Form Contatto"
+            name: "contact_form_title"
+            widget: "string"
+            required: false
+            hint: "Titolo del form di contatto (default: 'Inviami un messaggio')"
 
           - label: "Contenuto"
             name: "body"
@@ -810,3 +864,21 @@ collections:
             widget: "color"
             default: "#ffffff"
             enableAlpha: false
+
+      - name: "labels"
+        label: "Etichette"
+        file: "content/settings/labels.md"
+        fields:
+          - label: "Etichetta Descrizione Brano"
+            name: "brano_description_label"
+            widget: "string"
+            required: false
+            default: "Descrizione"
+            hint: "Etichetta per la sezione descrizione del brano"
+
+          - label: "Etichetta Testo Canzone"
+            name: "brano_lyrics_label"
+            widget: "string"
+            required: false
+            default: "Testo della canzone"
+            hint: "Etichetta per la sezione testo del brano"

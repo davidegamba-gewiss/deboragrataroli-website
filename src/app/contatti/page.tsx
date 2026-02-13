@@ -27,6 +27,12 @@ export default async function ContattiPage() {
   const subtitle = pageContent?.frontmatter.hero_subtitle || 'Scrivimi per collaborazioni ed eventi';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-contatti.jpg';
   const email = contactSettings.email || 'debora.grataroli@gmail.com';
+  const contactInfoTitle = pageContent?.frontmatter.contact_info_title && pageContent.frontmatter.contact_info_title.trim()
+    ? pageContent.frontmatter.contact_info_title
+    : 'Parliamo!';
+  const contactFormTitle = pageContent?.frontmatter.contact_form_title && pageContent.frontmatter.contact_form_title.trim()
+    ? pageContent.frontmatter.contact_form_title
+    : 'Inviami un messaggio';
 
   return (
     <PageLayout
@@ -40,7 +46,7 @@ export default async function ContattiPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Contact Info */}
         <div>
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Parliamo!</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">{contactInfoTitle}</h2>
 
           {pageContent?.htmlContent ? (
             <div
@@ -153,7 +159,7 @@ export default async function ContattiPage() {
 
         {/* Contact Form */}
         <div>
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Inviami un messaggio</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">{contactFormTitle}</h2>
 
           <ContactForm />
         </div>

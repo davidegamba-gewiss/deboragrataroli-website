@@ -6,6 +6,8 @@ import { getAllBraniData, type BranoDataFormat } from '@/lib/content';
 interface FeaturedBraniProps {
   /** Pre-loaded brani data (for server component usage) */
   brani?: BranoDataFormat[];
+  /** Section title from CMS */
+  title?: string;
 }
 
 /**
@@ -20,7 +22,7 @@ interface FeaturedBraniProps {
  * - BranoCard components
  * - Link to all songs page
  */
-export async function FeaturedBrani({ brani }: FeaturedBraniProps) {
+export async function FeaturedBrani({ brani, title }: FeaturedBraniProps) {
   // Load brani from CMS if not provided
   const allBrani = brani ?? await getAllBraniData();
 
@@ -32,12 +34,14 @@ export async function FeaturedBrani({ brani }: FeaturedBraniProps) {
     return null;
   }
 
+  const sectionTitle = title && title.trim() ? title : 'I Miei Brani';
+
   return (
     <section className="py-16 lg:py-24 px-4 md:px-8 bg-white">
       <div className="max-w-[1280px] mx-auto">
         {/* Section Title */}
         <h2 className="font-playfair text-4xl md:text-5xl lg:text-[48px] text-purple-dark text-center mb-12">
-          I Miei Brani
+          {sectionTitle}
         </h2>
 
         {/* Brani Grid */}

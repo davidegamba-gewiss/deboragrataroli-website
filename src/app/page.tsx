@@ -24,6 +24,10 @@ export default async function HomePage() {
   const heroSubtitle = pageContent?.frontmatter.hero_subtitle || 'Cantautrice e Pianista';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-home.jpg';
   const htmlContent = pageContent?.htmlContent || '';
+  const introSectionTitle = pageContent?.frontmatter.intro_section_title || '';
+  const featuredBraniTitle = pageContent?.frontmatter.featured_brani_title || '';
+  const followSectionTitle = pageContent?.frontmatter.follow_section_title || '';
+  const followSectionSubtitle = pageContent?.frontmatter.follow_section_subtitle || '';
 
   return (
     <>
@@ -36,13 +40,13 @@ export default async function HomePage() {
       />
 
       {/* Introduction Section */}
-      <IntroSection htmlContent={htmlContent} />
+      <IntroSection htmlContent={htmlContent} title={introSectionTitle} />
 
       {/* Featured Brani Section */}
-      <FeaturedBrani />
+      <FeaturedBrani title={featuredBraniTitle} />
 
       {/* Follow/Social Section */}
-      <FollowSection />
+      <FollowSection title={followSectionTitle} subtitle={followSectionSubtitle} />
     </>
   );
 }

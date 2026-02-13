@@ -8,6 +8,8 @@
 export interface IntroSectionProps {
   /** HTML content from CMS (parsed markdown) */
   htmlContent?: string;
+  /** Section title from CMS */
+  title?: string;
 }
 
 /**
@@ -25,15 +27,16 @@ che sgorgano dal cuore. Ti invito a esplorare il mio repertorio e a
 lasciarti trasportare dalla musica.</p>
 `;
 
-export function IntroSection({ htmlContent }: IntroSectionProps) {
+export function IntroSection({ htmlContent, title }: IntroSectionProps) {
   // Use CMS content if available and not empty, otherwise use default
   const content = htmlContent && htmlContent.trim() ? htmlContent : defaultContent;
+  const sectionTitle = title && title.trim() ? title : 'Benvenuti nel mio mondo musicale';
 
   return (
     <section className="py-16 lg:py-24 px-4 md:px-8 bg-white">
       <div className="max-w-[1280px] mx-auto">
         <h2 className="font-playfair text-4xl md:text-5xl lg:text-[48px] text-purple-dark mb-6">
-          Benvenuti nel mio mondo musicale
+          {sectionTitle}
         </h2>
 
         <div

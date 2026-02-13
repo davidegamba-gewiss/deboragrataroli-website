@@ -5,9 +5,13 @@ import type { EventiPassatiGroup } from '@/lib/content';
 
 export interface EventiPassatiProps {
   gruppi: EventiPassatiGroup[];
+  /** Section title from CMS */
+  title?: string;
 }
 
-export default function EventiPassati({ gruppi }: EventiPassatiProps) {
+export default function EventiPassati({ gruppi, title }: EventiPassatiProps) {
+  const sectionTitle = title && title.trim() ? title : 'Eventi Passati';
+
   if (gruppi.length === 0) {
     return null;
   }
@@ -15,7 +19,7 @@ export default function EventiPassati({ gruppi }: EventiPassatiProps) {
   return (
     <section>
       <h2 className="text-2xl font-semibold text-neutral-dark mb-8 mt-16">
-        Eventi Passati
+        {sectionTitle}
       </h2>
 
       <div className="space-y-12">

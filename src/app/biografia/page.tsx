@@ -22,6 +22,9 @@ export default async function BiografiaPage() {
   const heroSubtitle = pageContent?.frontmatter.hero_subtitle || '';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-biografia.jpg';
   const htmlContent = pageContent?.htmlContent || '';
+  const contentTitle = pageContent?.frontmatter.content_title && pageContent.frontmatter.content_title.trim()
+    ? pageContent.frontmatter.content_title
+    : 'La mia storia';
 
   return (
     <>
@@ -35,7 +38,7 @@ export default async function BiografiaPage() {
 
       {/* Biography Content */}
       <BiografiaContent
-        title="La mia storia"
+        title={contentTitle}
         showTitle
         htmlContent={htmlContent}
       />

@@ -12,6 +12,13 @@ interface SocialLinkItem {
   label: string;
 }
 
+export interface FollowSectionProps {
+  /** Section title from CMS */
+  title?: string;
+  /** Section subtitle from CMS */
+  subtitle?: string;
+}
+
 /**
  * FollowSection Component
  *
@@ -21,9 +28,13 @@ interface SocialLinkItem {
  * - Reads social links from GlobalSettingsContext
  * - Responsive grid (3 on mobile, 5 on tablet/desktop)
  * - SocialButton components
+ * - Accepts optional title and subtitle from CMS
  */
-export function FollowSection() {
+export function FollowSection({ title, subtitle }: FollowSectionProps) {
   const settings = useGlobalSettings();
+
+  const sectionTitle = title && title.trim() ? title : 'Seguimi';
+  const sectionSubtitle = subtitle && subtitle.trim() ? subtitle : 'Resta aggiornato sui miei nuovi brani, eventi e contenuti esclusivi';
 
   // Build social links array from settings
   const allSocialLinks: SocialLinkItem[] = [
@@ -62,12 +73,12 @@ export function FollowSection() {
       <div className="max-w-[1280px] mx-auto">
         {/* Section Title */}
         <h2 className="font-playfair text-3xl md:text-4xl lg:text-[40px] text-purple-dark text-center mb-8">
-          Seguimi
+          {sectionTitle}
         </h2>
 
         {/* Description */}
         <p className="text-center text-neutral-dark/80 max-w-xl mx-auto mb-10">
-          Resta aggiornato sui miei nuovi brani, eventi e contenuti esclusivi
+          {sectionSubtitle}
         </p>
 
         {/* Social Buttons Grid */}

@@ -32,6 +32,19 @@ export interface PageFrontmatter {
   seo_description?: string;
   hero_image?: string;
   hero_subtitle?: string;
+  // Homepage section titles
+  intro_section_title?: string;
+  featured_brani_title?: string;
+  follow_section_title?: string;
+  follow_section_subtitle?: string;
+  // Contatti section titles
+  contact_info_title?: string;
+  contact_form_title?: string;
+  // Eventi section titles
+  upcoming_events_title?: string;
+  past_events_title?: string;
+  // Biografia section title
+  content_title?: string;
 }
 
 /**
@@ -132,6 +145,11 @@ export interface ColorSettings {
   accent_color?: string;
   text_color?: string;
   background_color?: string;
+}
+
+export interface LabelsSettings {
+  brano_description_label?: string;
+  brano_lyrics_label?: string;
 }
 
 /**
@@ -722,6 +740,14 @@ export async function getColorSettings(): Promise<ColorSettings> {
 }
 
 /**
+ * Get labels settings
+ */
+export async function getLabelsSettings(): Promise<LabelsSettings> {
+  const content = await getContentFile<LabelsSettings>('settings', 'labels');
+  return content?.frontmatter ?? {};
+}
+
+/**
  * Get all settings at once
  */
 export async function getAllSettings(): Promise<{
@@ -729,13 +755,15 @@ export async function getAllSettings(): Promise<{
   contact: ContactSettings;
   social: SocialSettings;
   colors: ColorSettings;
+  labels: LabelsSettings;
 }> {
-  const [general, contact, social, colors] = await Promise.all([
+  const [general, contact, social, colors, labels] = await Promise.all([
     getGeneralSettings(),
     getContactSettings(),
     getSocialSettings(),
     getColorSettings(),
+    getLabelsSettings(),
   ]);
 
-  return { general, contact, social, colors };
+  return { general, contact, social, colors, labels };
 }
