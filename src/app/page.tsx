@@ -21,7 +21,7 @@ export default async function HomePage() {
   const pageContent = await getHomePage();
 
   // Use CMS content or defaults
-  const heroSubtitle = pageContent?.frontmatter.hero_subtitle || 'Cantautrice e Pianista';
+  const heroSubtitle = pageContent?.frontmatter.hero_subtitle || '';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-home.jpg';
   const htmlContent = pageContent?.htmlContent || '';
   const introSectionTitle = pageContent?.frontmatter.intro_section_title || '';

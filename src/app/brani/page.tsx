@@ -21,7 +21,7 @@ export default async function BraniPage() {
   const [brani, pageContent] = await Promise.all([getAllBraniData(), getBraniPage()]);
 
   const title = pageContent?.frontmatter.title || 'I Miei Brani';
-  const subtitle = pageContent?.frontmatter.hero_subtitle || 'Ascolta la mia musica';
+  const subtitle = pageContent?.frontmatter.hero_subtitle || '';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-brani.jpg';
 
   return (

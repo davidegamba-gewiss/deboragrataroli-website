@@ -24,7 +24,7 @@ export default async function ContattiPage() {
   ]);
 
   const title = pageContent?.frontmatter.title || 'Contatti';
-  const subtitle = pageContent?.frontmatter.hero_subtitle || 'Scrivimi per collaborazioni ed eventi';
+  const subtitle = pageContent?.frontmatter.hero_subtitle || '';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-contatti.jpg';
   const email = contactSettings.email || 'debora.grataroli@gmail.com';
   const contactInfoTitle = pageContent?.frontmatter.contact_info_title && pageContent.frontmatter.contact_info_title.trim()

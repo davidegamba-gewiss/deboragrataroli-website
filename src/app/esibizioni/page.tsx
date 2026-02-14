@@ -23,7 +23,7 @@ export default async function EsibizioniPage() {
   ]);
 
   const title = pageContent?.frontmatter.title || 'Esibizioni Live';
-  const subtitle = pageContent?.frontmatter.hero_subtitle || 'Guarda le mie performance live';
+  const subtitle = pageContent?.frontmatter.hero_subtitle || '';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-esibizioni.jpg';
 
   return (

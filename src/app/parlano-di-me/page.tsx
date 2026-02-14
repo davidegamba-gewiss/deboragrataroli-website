@@ -24,7 +24,7 @@ export default async function ParlanoDiMePage() {
   ]);
 
   const title = pageContent?.frontmatter.title || 'Parlano di Me';
-  const subtitle = pageContent?.frontmatter.hero_subtitle || 'Rassegna stampa e articoli pubblicati';
+  const subtitle = pageContent?.frontmatter.hero_subtitle || '';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-stampa.jpg';
 
   return (

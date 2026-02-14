@@ -24,7 +24,7 @@ export default async function EventiPage() {
   ]);
 
   const title = pageContent?.frontmatter.title || 'Eventi e Concerti';
-  const subtitle = pageContent?.frontmatter.hero_subtitle || 'Scopri dove e quando mi esibisco';
+  const subtitle = pageContent?.frontmatter.hero_subtitle || '';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-eventi.jpg';
   const upcomingEventsTitle = pageContent?.frontmatter.upcoming_events_title || '';
   const pastEventsTitle = pageContent?.frontmatter.past_events_title || '';
