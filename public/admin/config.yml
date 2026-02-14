@@ -159,7 +159,7 @@ collections:
               - numbered-list
 
       - name: "brani-page"
-        label: "Pagina Brani"
+        label: "I Miei Brani"
         file: "content/pages/brani.md"
         fields:
           - label: "Titolo"
@@ -200,7 +200,7 @@ collections:
               - numbered-list
 
       - name: "concerti-page"
-        label: "Pagina Concerti/Eventi"
+        label: "Concerti/Eventi"
         file: "content/pages/concerti.md"
         fields:
           - label: "Titolo"
@@ -253,7 +253,7 @@ collections:
               - numbered-list
 
       - name: "esibizioni-page"
-        label: "Pagina Esibizioni"
+        label: "Esibizioni"
         file: "content/pages/esibizioni.md"
         fields:
           - label: "Titolo"
@@ -294,7 +294,7 @@ collections:
               - numbered-list
 
       - name: "rassegna-stampa-page"
-        label: "Pagina Rassegna Stampa"
+        label: "Parlano di Me"
         file: "content/pages/rassegna-stampa.md"
         fields:
           - label: "Titolo"
