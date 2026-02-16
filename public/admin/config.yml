@@ -399,11 +399,11 @@ collections:
     slug: "{{slug}}"
     extension: "md"
     format: "frontmatter"
-    sortable_fields: ['title', 'categoria', 'data_pubblicazione']
+    sortable_fields: ['ordine', 'title', 'categoria', 'data_pubblicazione']
     view_groups:
       - label: "Categoria"
         field: "categoria"
-    summary: "{{title}} - {{categoria}}"
+    summary: "[{{ordine}}] {{title}} - {{categoria}}"
     editor:
       preview: true
     fields:
@@ -476,6 +476,15 @@ collections:
         media_folder: "/public/media/brani"
         public_folder: "/media/brani"
         hint: "Immagine aggiuntiva (backstage, promo, etc.)"
+
+      - label: "Ordine"
+        name: "ordine"
+        widget: "number"
+        required: true
+        default: 100
+        value_type: "int"
+        min: 1
+        hint: "Numero per ordinamento manuale (più basso = prima)"
 
       - label: "In evidenza"
         name: "featured"

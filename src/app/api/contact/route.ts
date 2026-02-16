@@ -69,6 +69,7 @@ function getSubjectLabel(oggetto?: string): string {
   const labels: Record<string, string> = {
     info: 'Informazioni generali',
     evento: 'Richiesta per evento',
+    lezioni: 'Lezioni di canto',
     collaborazione: 'Collaborazione',
     altro: 'Altro',
   };

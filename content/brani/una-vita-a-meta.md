@@ -56,4 +56,5 @@ lyrics: |-
   Un giorno supererò le mie paure 
   Un giorno vincerò io
 featured: true
+ordine: 1
 ---

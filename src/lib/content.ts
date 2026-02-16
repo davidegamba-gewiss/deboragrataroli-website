@@ -60,6 +60,7 @@ export interface BranoFrontmatter {
   descrizione?: string;
   lyrics?: string;
   immagine_extra?: string;
+  ordine: number;
   featured?: boolean;
 }
 
@@ -290,8 +291,11 @@ export async function getRassegnaStampaPage(): Promise<ContentItem<PageFrontmatt
  */
 export async function getAllBraniFromCMS(): Promise<ContentItem<BranoFrontmatter>[]> {
   const items = await getCollectionItems<BranoFrontmatter>('brani');
-  // Sort by date (newest first) or by title
+  // Sort by ordine (ascending) then by date (descending)
   return items.sort((a, b) => {
+    if (a.frontmatter.ordine !== b.frontmatter.ordine) {
+      return a.frontmatter.ordine - b.frontmatter.ordine;
+    }
     if (a.frontmatter.data_pubblicazione && b.frontmatter.data_pubblicazione) {
       return new Date(b.frontmatter.data_pubblicazione).getTime() -
         new Date(a.frontmatter.data_pubblicazione).getTime();

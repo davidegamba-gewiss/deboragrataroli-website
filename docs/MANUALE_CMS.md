@@ -121,6 +121,7 @@ Nella sezione **Pagine** puoi modificare il contenuto delle seguenti pagine del 
    - **Descrizione**: Testo descrittivo del brano
    - **Testo (Lyrics)**: Testo completo della canzone
    - **Immagine Extra**: Foto aggiuntiva (backstage, promo, ecc.)
+   - **Ordine**: Numero per ordinamento manuale (più basso = prima)
    - **In evidenza**: Attiva per mostrare il brano nella home
 
 ### Modificare un brano esistente

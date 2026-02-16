@@ -32,6 +32,7 @@ export interface ContactFormProps {
 const defaultSubjectOptions = [
   { value: 'info', label: 'Informazioni generali' },
   { value: 'evento', label: 'Richiesta per evento' },
+  { value: 'lezioni', label: 'Lezioni di canto' },
   { value: 'collaborazione', label: 'Collaborazione' },
   { value: 'altro', label: 'Altro' },
 ];
