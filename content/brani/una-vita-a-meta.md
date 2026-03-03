@@ -48,13 +48,13 @@ lyrics: |-
   Sentirsi inferiore come se fossi un fallimento 
 
   Lascio che la vita faccia il suo corso
-  Senza essere mai essere me stessa
+  Senza mai essere me stessa
   Rimanendo immobile davanti alla felicità
   Ma forse un giorno non avrò più timore della vita
   Non avrò più paura di vivere 
   Mi amerò e mi accetterò
   Un giorno supererò le mie paure 
   Un giorno vincerò io
-featured: true
 ordine: 1
+featured: true
 ---
