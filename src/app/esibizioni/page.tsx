@@ -22,7 +22,7 @@ export default async function EsibizioniPage() {
     getEsibizioniPage(),
   ]);
 
-  const title = pageContent?.frontmatter.title || 'Esibizioni';
+  const title = pageContent?.frontmatter.title || 'Esibizioni Live';
   const subtitle = pageContent?.frontmatter.hero_subtitle || '';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-esibizioni.jpg';
 
@@ -32,24 +32,27 @@ export default async function EsibizioniPage() {
         imageSrc: heroImage,
         title: title,
         subtitle: subtitle,
-        imageAlt: `Debora Grataroli – ${title}`,
+        imageAlt: title,
       }}
     >
-      <section className="py-16 lg:py-24" aria-labelledby="esibizioni-intro">
-        {/* Section Intro - no redundant heading since H1 is in hero */}
-        <div className="mb-12 text-center">
-          {pageContent?.htmlContent ? (
+      <section className="py-16 lg:py-24">
+        {/* Section Header */}
+        <header className="mb-12 text-center">
+          <h2 className="mb-4 font-playfair text-4xl font-semibold text-purple-dark md:text-5xl">
+            {title}
+          </h2>
+          {pageContent?.htmlContent && (
             <div
-              id="esibizioni-intro"
               className="mx-auto max-w-2xl text-base text-neutral-dark/70 md:text-lg prose prose-purple"
               dangerouslySetInnerHTML={{ __html: pageContent.htmlContent }}
             />
-          ) : (
-            <p id="esibizioni-intro" className="mx-auto max-w-2xl text-base text-neutral-dark/70 md:text-lg">
+          )}
+          {!pageContent?.htmlContent && (
+            <p className="mx-auto max-w-2xl text-base text-neutral-dark/70 md:text-lg">
               Guarda le mie performance live, video studio e cover
             </p>
           )}
-        </div>
+        </header>
 
         {/* Video Gallery with Filters */}
         <VideoGallery esibizioni={esibizioni} />

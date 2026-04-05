@@ -48,13 +48,13 @@ export default async function ContattiPage() {
         imageSrc: heroImage,
         title: title,
         subtitle: subtitle,
-        imageAlt: `Debora Grataroli – ${title}`,
+        imageAlt: title,
       }}
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Contact Info */}
-        <section aria-labelledby="contact-info-title">
-          <h2 id="contact-info-title" className="text-2xl font-semibold text-gray-900 mb-6">{contactInfoTitle}</h2>
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">{contactInfoTitle}</h2>
 
           {pageContent?.htmlContent ? (
             <div
@@ -68,8 +68,8 @@ export default async function ContattiPage() {
             </p>
           )}
 
-          {/* Contact Info with address tag for semantic SEO */}
-          <address className="not-italic mb-6">
+          {/* Email */}
+          <div className="mb-6">
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
               Email
             </h3>
@@ -79,7 +79,7 @@ export default async function ContattiPage() {
             >
               {email}
             </a>
-          </address>
+          </div>
 
           {/* Social Links */}
           <div className="mb-8">
@@ -163,14 +163,14 @@ export default async function ContattiPage() {
               form o contattami direttamente via email specificando i dettagli della tua richiesta.
             </p>
           </div>
-        </section>
+        </div>
 
         {/* Contact Form */}
-        <section aria-labelledby="contact-form-title">
-          <h2 id="contact-form-title" className="text-2xl font-semibold text-gray-900 mb-6">{contactFormTitle}</h2>
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">{contactFormTitle}</h2>
 
           <ContactForm />
-        </section>
+        </div>
       </div>
     </PageLayout>
   );

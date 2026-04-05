@@ -37,7 +37,7 @@ export default function EventoCard({
       {data && (
         <div className="flex-shrink-0 sm:w-32 sm:text-center">
           <time
-            dateTime={ora ? `${data}T${ora}` : data}
+            dateTime={data}
             className={`
               flex items-center sm:flex-col gap-2 sm:gap-1
               text-sm font-semibold

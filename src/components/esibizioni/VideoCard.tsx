@@ -26,7 +26,7 @@ export default function VideoCard({
   const watchUrl = getYouTubeWatchUrl(youtubeUrl);
 
   return (
-    <figure className="group">
+    <article className="group">
       {/* Video Thumbnail */}
       <a
         href={watchUrl}
@@ -39,7 +39,7 @@ export default function VideoCard({
         {thumbnailUrl && (
           <Image
             src={thumbnailUrl}
-            alt={`Guarda il video: ${titolo} – Debora Grataroli`}
+            alt={`Anteprima di ${titolo}`}
             fill
             loading="lazy"
             quality={75}
@@ -68,12 +68,10 @@ export default function VideoCard({
         )}
       </a>
 
-      {/* Figcaption with video title */}
-      <figcaption className="mt-4">
-        <strong className="line-clamp-2 text-sm font-semibold text-neutral-dark transition-colors duration-200 group-hover:text-purple-medium md:text-base">
-          {titolo}
-        </strong>
-      </figcaption>
-    </figure>
+      {/* Title */}
+      <h3 className="mt-4 line-clamp-2 text-sm font-semibold text-neutral-dark transition-colors duration-200 group-hover:text-purple-medium md:text-base">
+        {titolo}
+      </h3>
+    </article>
   );
 }

@@ -26,7 +26,7 @@ export default function BranoDetailLayout({
       <div className="relative w-full max-w-md mx-auto mb-10 aspect-square rounded-lg overflow-hidden shadow-xl">
         <Image
           src={brano.cover}
-          alt={`Cover ufficiale del brano ${brano.titolo} di Debora Grataroli`}
+          alt={`Cover di ${brano.titolo}`}
           fill
           sizes="(max-width: 768px) 100vw, 400px"
           className="object-cover"
@@ -97,7 +97,7 @@ export default function BranoDetailLayout({
           <div className="relative w-full max-h-96 rounded-lg overflow-hidden">
             <Image
               src={brano.imagineExtra}
-              alt={`${brano.titolo} – Debora Grataroli`}
+              alt={`Immagine aggiuntiva di ${brano.titolo}`}
               width={1000}
               height={400}
               className="w-full h-auto object-cover rounded-lg"

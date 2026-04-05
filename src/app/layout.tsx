@@ -64,9 +64,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       canonical: SITE_CONFIG.url,
-      languages: {
-        'it-IT': SITE_CONFIG.url,
-      },
     },
     openGraph: {
       type: 'website',
