@@ -49,7 +49,8 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        // Apply security headers to all pages except /admin (Decap CMS needs iframes)
+        source: '/((?!admin).*)',
         headers: [
           {
             key: 'X-Content-Type-Options',
@@ -73,18 +74,30 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Allow iframes for /admin (required by Decap CMS)
+        source: '/admin/:path*',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+        ],
+      },
     ];
   },
 
   // Redirects
   async redirects() {
     return [
-      // Ensure /admin always has trailing slash for Decap CMS
-      {
-        source: '/admin',
-        destination: '/admin/',
-        permanent: true,
-      },
       // www → non-www redirect is handled by Vercel via domain settings,
       // but documented here for reference:
       // { source: '/(.*)', has: [{ type: 'host', value: 'www.deboragrataroli.it' }],
