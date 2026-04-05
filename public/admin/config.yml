@@ -4,8 +4,8 @@
 backend:
   name: github
   repo: davidegamba-gewiss/deboragrataroli-website
-  branch: claude/setup-nextjs-14-project-TzmnH
-  base_url: https://deboragrataroli-website.vercel.app
+  branch: main
+  base_url: https://deboragrataroli.it
   auth_endpoint: api/auth
   app_id: Ov23lie5ZAfI8YGAL9S0
 
@@ -29,8 +29,8 @@ slug:
 publish_mode: editorial_workflow
 
 # Site URL for preview
-site_url: https://deboragrataroli-website.vercel.app
-display_url: https://deboragrataroli-website.vercel.app
+site_url: https://deboragrataroli.it
+display_url: https://deboragrataroli.it
 
 # Logo for CMS
 logo_url: /media/logo.png
