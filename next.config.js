@@ -6,6 +6,12 @@ const nextConfig = {
   // Enable compression
   compress: true,
 
+  // Remove X-Powered-By: Next.js header for security
+  poweredByHeader: false,
+
+  // Ensure canonical URLs without trailing slash
+  trailingSlash: false,
+
   // Image optimization configuration
   images: {
     // Allow remote images from any HTTPS source
@@ -37,6 +43,53 @@ const nextConfig = {
   experimental: {
     // Optimize package imports
     optimizePackageImports: ['framer-motion', 'react-icons'],
+  },
+
+  // Security and SEO headers
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+        ],
+      },
+    ];
+  },
+
+  // Redirects
+  async redirects() {
+    return [
+      // Ensure /admin always has trailing slash for Decap CMS
+      {
+        source: '/admin',
+        destination: '/admin/',
+        permanent: true,
+      },
+      // www → non-www redirect is handled by Vercel via domain settings,
+      // but documented here for reference:
+      // { source: '/(.*)', has: [{ type: 'host', value: 'www.deboragrataroli.it' }],
+      //   destination: 'https://deboragrataroli.it/:path*', permanent: true }
+    ];
   },
 
   // Rewrites for Decap CMS admin (serve static files correctly)

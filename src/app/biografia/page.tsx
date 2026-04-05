@@ -4,14 +4,20 @@ import { BiografiaContent } from '@/components/biografia';
 import { generatePageMetadata } from '@/lib/seo';
 import { getBiografiaPage } from '@/lib/content';
 
-export const metadata: Metadata = generatePageMetadata({
-  title: 'Biografia',
-  description:
-    'Scopri la storia di Debora Grataroli, cantautrice e pianista italiana. Il percorso artistico, le influenze musicali e la passione per la musica che ha plasmato la sua carriera.',
-  path: '/biografia',
-  keywords: ['biografia', 'storia', 'percorso artistico', 'cantautrice italiana', 'pianista'],
-  type: 'profile',
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return generatePageMetadata({
+    title: 'Biografia',
+    description:
+      'Scopri la storia di Debora Grataroli, cantautrice e pianista italiana. Dal suo percorso musicale alle collaborazioni artistiche.',
+    path: '/biografia',
+    keywords: ['biografia', 'storia', 'percorso artistico', 'cantautrice italiana', 'pianista'],
+    image: {
+      url: '/og/biografia.jpg',
+      alt: 'Debora Grataroli – Biografia',
+    },
+    type: 'profile',
+  });
+}
 
 export default async function BiografiaPage() {
   // Load content from CMS

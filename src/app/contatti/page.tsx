@@ -6,14 +6,22 @@ import { generatePageMetadata } from '@/lib/seo';
 
 export async function generateMetadata(): Promise<Metadata> {
   const pageContent = await getContattiPage();
-  return generatePageMetadata({
+  const base = generatePageMetadata({
     title: pageContent?.frontmatter.title || 'Contatti',
     description:
       pageContent?.frontmatter.seo_description ||
-      'Contatta Debora Grataroli per collaborazioni, eventi e informazioni.',
+      'Contatta Debora Grataroli per collaborazioni, concerti e informazioni. Scrivici tramite il form o via email.',
     path: '/contatti',
     keywords: ['contatti', 'email', 'collaborazioni', 'eventi', 'booking'],
   });
+  return {
+    ...base,
+    robots: {
+      index: true,
+      follow: true,
+      noarchive: true,
+    },
+  };
 }
 
 export default async function ContattiPage() {

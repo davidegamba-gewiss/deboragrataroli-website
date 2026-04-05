@@ -36,19 +36,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/eventi`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/esibizioni`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/contatti`,
       lastModified: currentDate,
       changeFrequency: 'yearly',
-      priority: 0.6,
+      priority: 0.5,
     },
     {
       url: `${baseUrl}/parlano-di-me`,
@@ -64,7 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}/brani/${brano.slug}`,
     lastModified: currentDate,
     changeFrequency: 'monthly' as const,
-    priority: 0.6,
+    priority: 0.8,
   }));
 
   return [...staticPages, ...braniPages];

@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: pageContent?.frontmatter.title || 'I Miei Brani',
     description:
       pageContent?.frontmatter.seo_description ||
-      'Scopri il catalogo completo dei brani originali di Debora Grataroli.',
+      'Ascolta i brani originali di Debora Grataroli. Musica italiana d\'autore con testi originali e arrangiamenti per pianoforte.',
     path: '/brani',
     keywords: ['brani originali', 'canzoni italiane', 'musica cantautoriale', 'discografia'],
     type: 'music.album',

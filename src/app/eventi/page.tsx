@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: pageContent?.frontmatter.title || 'Eventi e Concerti',
     description:
       pageContent?.frontmatter.seo_description ||
-      'Scopri i prossimi concerti e esibizioni di Debora Grataroli.',
+      'Prossimi concerti ed eventi live di Debora Grataroli. Date, luoghi e info per assistere alle esibizioni.',
     path: '/eventi',
     keywords: ['concerti', 'eventi musicali', 'live', 'tour', 'calendario concerti'],
   });

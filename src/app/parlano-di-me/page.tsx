@@ -7,10 +7,10 @@ import { generatePageMetadata } from '@/lib/seo';
 export async function generateMetadata(): Promise<Metadata> {
   const pageContent = await getRassegnaStampaPage();
   return generatePageMetadata({
-    title: pageContent?.frontmatter.title || 'Parlano di Me',
+    title: pageContent?.frontmatter.title || 'Parlano di Me – Rassegna Stampa',
     description:
       pageContent?.frontmatter.seo_description ||
-      'Rassegna stampa e articoli su Debora Grataroli.',
+      'Articoli e recensioni su Debora Grataroli. Rassegna stampa e menzioni sui principali media musicali italiani.',
     path: '/parlano-di-me',
     keywords: ['rassegna stampa', 'articoli', 'interviste', 'recensioni', 'media musicali'],
     type: 'article',

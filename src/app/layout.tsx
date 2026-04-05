@@ -37,13 +37,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteDescription = generalSettings.site_description || SITE_CONFIG.description;
   const tagline = generalSettings.tagline || 'Cantautrice e Pianista';
 
+  const defaultDescription =
+    'Debora Grataroli, cantautrice e pianista italiana. Scopri i miei brani originali, eventi live e la mia storia musicale.';
+
   return {
     metadataBase: new URL(SITE_CONFIG.url),
     title: {
-      default: `${siteName} - ${tagline}`,
+      default: `${siteName} – ${tagline}`,
       template: `%s | ${siteName}`,
     },
-    description: siteDescription,
+    description: siteDescription || defaultDescription,
     keywords: [...SITE_CONFIG.keywords],
     authors: [{ name: siteName }],
     creator: siteName,
@@ -59,18 +62,21 @@ export async function generateMetadata(): Promise<Metadata> {
         'max-snippet': -1,
       },
     },
+    alternates: {
+      canonical: SITE_CONFIG.url,
+    },
     openGraph: {
       type: 'website',
       locale: SITE_CONFIG.locale,
       url: SITE_CONFIG.url,
       siteName: siteName,
-      title: `${siteName} - ${tagline}`,
-      description: siteDescription,
+      title: `${siteName} – ${tagline}`,
+      description: siteDescription || defaultDescription,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${siteName} - ${tagline}`,
-      description: siteDescription,
+      title: `${siteName} – ${tagline}`,
+      description: siteDescription || defaultDescription,
       creator: SITE_CONFIG.twitterHandle,
     },
     icons: generalSettings.favicon

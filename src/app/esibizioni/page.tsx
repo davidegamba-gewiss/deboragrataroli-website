@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: pageContent?.frontmatter.title || 'Esibizioni Live',
     description:
       pageContent?.frontmatter.seo_description ||
-      'Guarda le esibizioni live, performance studio e cover di Debora Grataroli.',
+      'Video delle esibizioni live di Debora Grataroli. Concerti, sessioni studio e cover in esclusiva.',
     path: '/esibizioni',
     keywords: ['esibizioni live', 'video concerti', 'performance', 'youtube', 'cover musicali'],
   });
