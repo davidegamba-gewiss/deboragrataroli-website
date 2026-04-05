@@ -21,7 +21,7 @@ export default async function HomePage() {
   const pageContent = await getHomePage();
 
   // Use CMS content or defaults
-  const heroSubtitle = pageContent?.frontmatter.hero_subtitle || '';
+  const heroSubtitle = pageContent?.frontmatter.hero_subtitle || 'Cantautrice e Pianista';
   const heroImage = pageContent?.frontmatter.hero_image || '/images/hero-home.jpg';
   const htmlContent = pageContent?.htmlContent || '';
   const introSectionTitle = pageContent?.frontmatter.intro_section_title || '';
@@ -31,21 +31,21 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section - H1: Debora Grataroli – Cantautrice e Pianista */}
       <HeroSection
         imageSrc={heroImage}
         title="Debora Grataroli"
         subtitle={heroSubtitle}
-        imageAlt="Debora Grataroli in concerto"
+        imageAlt="Debora Grataroli, cantautrice e pianista italiana"
       />
 
       {/* Introduction Section */}
       <IntroSection htmlContent={htmlContent} title={introSectionTitle} />
 
-      {/* Featured Brani Section */}
+      {/* Featured Brani Section - H2: I Miei Brani */}
       <FeaturedBrani title={featuredBraniTitle} />
 
-      {/* Follow/Social Section */}
+      {/* Follow/Social Section - H2: Seguimi */}
       <FollowSection title={followSectionTitle} subtitle={followSectionSubtitle} />
     </>
   );

@@ -30,27 +30,25 @@ export default async function BraniPage() {
         imageSrc: heroImage,
         title: title,
         subtitle: subtitle,
-        imageAlt: title,
+        imageAlt: `Debora Grataroli – ${title}`,
       }}
     >
-      <section className="py-16 lg:py-24">
-        {/* Section Header */}
-        <header className="text-center mb-12">
-          <h2 className="font-playfair text-4xl md:text-5xl font-semibold text-purple-dark mb-4">
-            {title}
-          </h2>
+      <section className="py-16 lg:py-24" aria-labelledby="brani-intro">
+        {/* Section Intro - no redundant heading since H1 is in hero */}
+        <div className="text-center mb-12">
           {pageContent?.htmlContent && (
             <div
+              id="brani-intro"
               className="text-neutral-dark/70 text-base md:text-lg max-w-2xl mx-auto prose prose-purple"
               dangerouslySetInnerHTML={{ __html: pageContent.htmlContent }}
             />
           )}
           {!pageContent?.htmlContent && (
-            <p className="text-neutral-dark/70 text-base md:text-lg max-w-2xl mx-auto">
+            <p id="brani-intro" className="text-neutral-dark/70 text-base md:text-lg max-w-2xl mx-auto">
               Scopri il catalogo completo dei miei brani originali
             </p>
           )}
-        </header>
+        </div>
 
         {/* Brani Grid */}
         <BranoListGrid brani={brani} />

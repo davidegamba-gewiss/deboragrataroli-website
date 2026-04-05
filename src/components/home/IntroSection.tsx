@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { ROUTES } from '@/utils/routing';
+
 /**
  * IntroSection Component
  *
@@ -17,14 +20,15 @@ export interface IntroSectionProps {
  * Used when CMS content is empty or not available
  */
 const defaultContent = `
-<p>Scopri i miei brani originali, ascolta le mie storie musicali e seguimi
-nei miei concerti e performance live. La musica è il mio modo di raccontare
-emozioni, sogni e momenti di vita che spero possano toccare anche il tuo cuore.</p>
+<p>Benvenuto nel mio spazio musicale. Sono Debora Grataroli,
+cantautrice e pianista italiana. La mia musica nasce
+dall'intreccio tra testi autobiografici e arrangiamenti
+per pianoforte, con influenze che spaziano dal cantautorato
+italiano alla musica d'autore contemporanea.</p>
 
-<p>Ogni canzone nasce da un'emozione autentica, da un momento vissuto
-o da un sogno che prende forma attraverso le note del pianoforte e le parole
-che sgorgano dal cuore. Ti invito a esplorare il mio repertorio e a
-lasciarti trasportare dalla musica.</p>
+<p>Qui trovi i miei brani originali, le date dei prossimi concerti
+e i video delle mie esibizioni live. Ogni canzone nasce da un'emozione autentica,
+da un momento vissuto o da un sogno che prende forma attraverso le note.</p>
 `;
 
 export function IntroSection({ htmlContent, title }: IntroSectionProps) {
@@ -43,6 +47,30 @@ export function IntroSection({ htmlContent, title }: IntroSectionProps) {
           className="max-w-[800px] prose-custom [&_p]:text-base [&_p]:md:text-lg [&_p]:text-neutral-dark [&_p]:leading-relaxed [&_p]:mb-8 last:[&_p]:mb-0"
           dangerouslySetInnerHTML={{ __html: content }}
         />
+
+        {/* Internal link to biography */}
+        <div className="mt-8">
+          <Link
+            href={ROUTES.BIOGRAFIA}
+            className="inline-flex items-center gap-2 text-purple-medium hover:text-purple-dark transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 rounded"
+          >
+            Leggi la mia biografia
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </Link>
+        </div>
       </div>
     </section>
   );

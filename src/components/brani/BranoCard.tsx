@@ -27,7 +27,7 @@ export default function BranoCard({
       <div className="relative aspect-square overflow-hidden bg-neutral-light">
         <Image
           src={cover}
-          alt={`Cover di ${titolo}`}
+          alt={categoria ? `Cover del brano ${titolo} – ${categoria} – Debora Grataroli` : `Cover del brano ${titolo} di Debora Grataroli`}
           fill
           loading="lazy"
           quality={80}

@@ -59,7 +59,7 @@ export function BranoCard({ titolo, slug, cover, categoria }: BranoCardProps) {
         ) : (
           <Image
             src={cover}
-            alt={`Cover di ${titolo}`}
+            alt={categoria ? `Cover del brano ${titolo} – ${categoria} – Debora Grataroli` : `Cover del brano ${titolo} di Debora Grataroli`}
             fill
             loading="lazy"
             quality={80}

@@ -29,7 +29,7 @@ export default function ArticoloCard({
       <div className="relative aspect-video overflow-hidden bg-neutral-light">
         <Image
           src={immagine}
-          alt={`Immagine articolo: ${titolo}`}
+          alt={`${titolo} – ${testata}`}
           fill
           loading="lazy"
           quality={80}
@@ -55,10 +55,10 @@ export default function ArticoloCard({
           </time>
         </div>
 
-        {/* Title */}
-        <h3 className="mb-3 line-clamp-2 text-base font-semibold text-neutral-dark transition-colors duration-200 group-hover:text-purple-medium md:text-lg">
+        {/* Title - H2 for SEO (each article is autonomous content) */}
+        <h2 className="mb-3 line-clamp-2 text-base font-semibold text-neutral-dark transition-colors duration-200 group-hover:text-purple-medium md:text-lg">
           {titolo}
-        </h3>
+        </h2>
 
         {/* Excerpt */}
         <p className="mb-4 line-clamp-3 flex-grow text-sm leading-relaxed text-gray-600">
