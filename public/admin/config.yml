@@ -4,7 +4,7 @@
 backend:
   name: github
   repo: davidegamba-gewiss/deboragrataroli-website
-  branch: main
+  branch: claude/setup-nextjs-14-project-TzmnH
   base_url: https://deboragrataroli.it
   auth_endpoint: api/auth
   app_id: Ov23lie5ZAfI8YGAL9S0
