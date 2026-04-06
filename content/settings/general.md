@@ -1,7 +1,7 @@
 ---
 site_name: Debora Grataroli
 tagline: Cantautrice e Pianista
-site_description: Sito ufficiale di Debora Grataroli
+site_description: Debora Grataroli, cantautrice e pianista italiana.
 logo: /media/icona-sito.png
 favicon: /media/icona-sito.png
 ---
