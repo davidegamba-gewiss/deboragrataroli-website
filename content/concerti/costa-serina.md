@@ -1,6 +1,6 @@
 ---
 title: Costa Serina
-luogo: Costa Serina
+luogo: Costa Serina (BG)
 citta: "Costa Serina (BG) "
 data_evento: 2026-07-11T21:00
 anno: 2026
