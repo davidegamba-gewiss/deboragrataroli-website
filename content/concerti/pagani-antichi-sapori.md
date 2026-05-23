@@ -1,6 +1,6 @@
 ---
 title: Paganì Antichi Sapori
-luogo: "San Pellegrino Terme "
+luogo: San Pellegrino Terme (BG)
 citta: "San Pellegrino Terme (BG) "
 data_evento: 2026-06-26T20:00
 anno: 2026
