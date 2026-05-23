@@ -1,6 +1,6 @@
 ---
 title: Oltre Il Colle
-luogo: Oltre Il Colle
+luogo: Oltre Il Colle (BG)
 citta: "Oltre Il Colle (BG) "
 data_evento: 2026-08-29T21:00
 anno: 2026
