@@ -1,6 +1,6 @@
 ---
 title: Olmo Al Brembo
-luogo: Olmo Al Brembo
+luogo: Olmo Al Brembo (BG)
 citta: Olmo Al Brembo
 data_evento: 2026-07-25T21:00
 anno: 2026
