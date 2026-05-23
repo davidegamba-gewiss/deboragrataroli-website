@@ -1,6 +1,6 @@
 ---
 title: Chiostro Santissima Trinità
-luogo: Serina
+luogo: Serina (BG)
 citta: "Serina (BG) "
 data_evento: 2026-08-07T20:45
 anno: 2026
