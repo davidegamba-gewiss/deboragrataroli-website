@@ -1,5 +1,5 @@
 ---
-title: Costa Serina
+title: Piazza Fra' Cecilio
 luogo: Costa Serina (BG)
 citta: "Costa Serina (BG) "
 data_evento: 2026-07-19T21:00
