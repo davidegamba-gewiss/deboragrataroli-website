@@ -1,5 +1,5 @@
 ---
-title: Oltre Il Colle
+title: Arena
 luogo: Oltre Il Colle (BG)
 citta: "Oltre Il Colle (BG) "
 data_evento: 2026-08-29T21:00
