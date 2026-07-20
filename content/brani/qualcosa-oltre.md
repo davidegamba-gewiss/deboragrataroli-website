@@ -36,8 +36,8 @@ lyrics: |-
   Ma come glielo spieghi
   Che non ce la fai più
   Ma come glielo spieghi
-  Che non riesci più a sorridere  
-  Ma come glielo spieghi
+  Che non riesci più a sorridere 
+  Come glielo spieghi
   Che non riesci più a vivere 
   Pensi di non meritarlo
 
@@ -61,7 +61,7 @@ lyrics: |-
   Che non ce la fai più
   Ma come glielo spieghi
   Che non riesci più a sorridere  
-  Ma come glielo spieghi
+  Come glielo spieghi
   Che non riesci più a vivere 
   Pensi di non meritarlo
 
@@ -71,13 +71,13 @@ lyrics: |-
 
   Come glielo spieghi
   Che non riesci più a sorridere  
-  Ma come glielo spieghi
+  Come glielo spieghi
   Che non riesci più a vivere 
   Pensi di non meritarlo
 
   Come glielo spieghi 
   Che non potrà finire qui, così
 immagine_extra: ""
-featured: true
 ordine: 2
+featured: true
 ---
